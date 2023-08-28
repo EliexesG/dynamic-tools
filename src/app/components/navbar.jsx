@@ -13,7 +13,7 @@ from "@fortawesome/free-solid-svg-icons";
 export default function Navbar () {
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 top-0">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 top-0 z-3">
       <div className="container-fluid">
       <a className="navbar-brand" href="/">
         <Image src={'https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg'} alt="brand-logo" width={30} height={24} className="d-inline-block align-text-top me-2"/>

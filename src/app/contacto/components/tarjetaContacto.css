@@ -1,0 +1,13 @@
+.tarjetaContacto {
+    min-height: 250px;
+    max-height: 250px;
+    transition: all .2s ease-in-out;
+}
+
+.tarjetaContacto:hover {
+    transform: scale(1.03);
+}
+
+a:hover {
+    color: grey !important;
+}

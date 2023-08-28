@@ -52,7 +52,7 @@ export default function Footer () {
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-8">
                                 <p>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione nulla sunt, ex aliquid velit rem architecto ullam cupiditate expedita, quis sapiente repellendus officiis itaque, fugiat beatae eum praesentium iure debitis.
+                                    Somos una empresa que da soporte de ingeniería a nuestros clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, etc.
                                 </p>
                             </div>
                         </div>

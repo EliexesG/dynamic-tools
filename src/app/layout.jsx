@@ -13,6 +13,7 @@ const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap'})
 
 export const metadata = {
   title: 'A&M Dynamic Tools S.A.',
+  description: 'app for A&M Dynamic Tools S.A.',
 }
 
 export default function RootLayout({ children }) {
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
       <body style={font.style}>
           <Navbar/>
           <div className="body-content pt-5 pb-5">
-            <main style={{height:"800px",}} className='container mt-5'>
+            <main className='p-4 m-4 mt-5'>
               {children}
             </main>
           </div>
@@ -34,5 +35,4 @@ export default function RootLayout({ children }) {
       </body>
     </html>
   )
-
 }
