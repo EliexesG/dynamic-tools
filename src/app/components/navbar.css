@@ -1,0 +1,7 @@
+.navbar-brand {
+    transition: all .2s ease-in-out;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.03);
+}
