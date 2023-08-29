@@ -92,7 +92,7 @@ export default function FormularioContacto () {
                     id: idToast,
                 });
             }
-            else if (envio.status == 400) {
+            else if (envio.status === 400) {
                 toast.error('Error al enviar solicitud, intente más tarde', {
                     id: idToast,
                 });
