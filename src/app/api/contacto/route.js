@@ -89,6 +89,7 @@ const generarContenidoCliente = async ({cuerpo}) => {
         <ul>
           <li>Correo: <strong>${cuerpo.correo}</strong></li> 
           <li>Tipo de petición: <strong>${cuerpo.tipo}</strong></li>
+          <li>Petición: <strong>${cuerpo.peticion}</strong></li>
         </ul>
     
         <p>Estamos procesando su solicitud y nos pondremos en contacto pronto.</p>
@@ -111,8 +112,8 @@ const generarContenidoCliente = async ({cuerpo}) => {
 export async function POST (req) {
 
     var data = await req.json();
-    var MailOptionsCorporativo = mailOptionsCorporativo(data.correosEnvio);
-    var MailOptionsCliente = mailOptionsClliente(data.correosEnvio, data.cuerpo.correo);
+    var MailOptionsCorporativo = mailOptionsCorporativo();
+    var MailOptionsCliente = mailOptionsClliente(data.cuerpo.correo);
 
     try {
 
@@ -133,7 +134,7 @@ export async function POST (req) {
         await Transporter.sendMail({
             ...MailOptionsCliente,
             ...ContenidoCliente,
-            subject: data.asunto,
+            subject: "A&M Dynamic Tools S.A. Contacto",
         });
 
         return NextResponse.json(

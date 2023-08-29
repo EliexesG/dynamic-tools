@@ -1,7 +1,7 @@
 'use client'
 
 import './formularioContacto.css';
-import { contactos } from '../page';
+import { contactos } from '@/lib/data';
 import { EnviarCorreo } from '@/lib/api';
 
 import { Formik } from "formik";
@@ -62,10 +62,6 @@ export default function FormularioContacto () {
     }
 
     const handleEnviarCorreo = async (values, actions) => {
-        
-        var correosEnvio = contactos.map(contacto => {return contacto.contactos.filter(email => email.tipo.includes("Email"))})
-                           .filter(contacto => contacto.length > 0)
-                           .map(contacto => {return contacto[0]});
 
         var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto} (${values.correo})`;
 
@@ -78,7 +74,7 @@ export default function FormularioContacto () {
 
         var adjuntos = archivos ? archivos : null;
 
-        var data = {correosEnvio, asunto, cuerpo, adjuntos};
+        var data = {asunto, cuerpo, adjuntos};
         
         
         try {

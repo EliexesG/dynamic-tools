@@ -11,19 +11,17 @@ export const Transporter = nodemailer.createTransport({
     }
 });
 
-export const mailOptionsCorporativo = (correosEnvio) => {
+export const mailOptionsCorporativo = () => {
     return {
-        from: correosEnvio[0].detalle,
-        to: correosEnvio[0].detalle,
-        cc: correosEnvio.slice(1).map(correo => {
-            return correo.detalle;
-        }).join()
+        from: 'gympro001mensajes@gmail.com',
+        to: 'gympro001mensajes@gmail.com',
+        cc: 'eliasgabriel6100@gmail.com',
     }
 }
 
-export const mailOptionsClliente = (correosEnvio, correoCliente) => {
+export const mailOptionsClliente = (correoCliente) => {
     return {
-        from: correosEnvio[0].detalle,
+        from: 'gympro001mensajes@gmail.com',
         to: correoCliente
     }
 }
