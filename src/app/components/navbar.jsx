@@ -7,7 +7,7 @@ import { faHouse,
          faHandshakeAngle, 
          faScrewdriverWrench, 
          faUsers, 
-         faEnvelopeOpen } 
+         faComment } 
 from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar () {
@@ -42,7 +42,7 @@ export default function Navbar () {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/contacto">
-              <FontAwesomeIcon icon={faEnvelopeOpen} /> Contacto</a>
+              <FontAwesomeIcon icon={faComment} /> Contacto</a>
             </li>
           </ul>
         </div>

@@ -17,7 +17,7 @@ export default function Contacto () {
     return (
         <>
             <div id="contenedorImagenTexto" className="md-4">
-                <Image id="imagenContactanos" src={Imagen} alt="contactanos page" height={3000} width={3000} objectFit="cover" className="rounded" />
+                <Image id="imagenContactanos" src={Imagen} alt="contactanos page" height={3000} width={3000} className="rounded" />
                 <h1 id="tituloContactenos" className="text-center">Contactos</h1>
                 <p id="textoContactenos" className="text-center">En este apartado podrás encontrar todos nuestros contactos</p>
             </div>

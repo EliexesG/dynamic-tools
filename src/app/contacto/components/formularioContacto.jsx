@@ -2,9 +2,11 @@
 
 import './formularioContacto.css';
 import { contactos } from '../page';
+import { EnviarCorreo } from '@/lib/api';
 
 import { Formik } from "formik";
 import * as yup from 'yup';
+import toast from 'react-hot-toast'
 
 import { useState } from "react";
 
@@ -28,17 +30,30 @@ export default function FormularioContacto () {
         setTipoSolicitud(e.target.value);
     };
 
-    const handleSubmitEmail = (values) => {
+    const handleEnviarCorreo = async (values, actions) => {
         
-        var correosEnvio = contactos.map(contacto => {return contacto.contactos.filter(email => email.tipo.includes("Email"))}).filter(contacto => contacto.length > 0).map(contacto => {return contacto[0]});
-        console.log(correosEnvio)
+        var correosEnvio = contactos.map(contacto => {return contacto.contactos.filter(email => email.tipo.includes("Email"))})
+                           .filter(contacto => contacto.length > 0)
+                           .map(contacto => {return contacto[0]});
+
         var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto}`;
-        console.log(asunto)
+
         var cuerpo = `Correo de Cliente:\n${values.correo}\n\n` +
                      `Petición:\n${values.peticion}`;
-        console.log(cuerpo)
+
         var adjuntos = values.archivo ? values.archivo : null;
-        console.log(adjuntos)
+
+        var data = {correosEnvio, asunto, cuerpo, adjuntos};
+
+        try {
+            await EnviarCorreo(data);
+            toast.success("Información enviada correctamente");
+        }
+        catch (ex) {
+            toast.error("Error al enviar información, intente más tarde");
+        }
+
+        actions.resetForm();
     }
 
     return (
@@ -58,8 +73,8 @@ export default function FormularioContacto () {
                         archivo: '',
                     }}
 
-                    onSubmit={(values) => {
-                        handleSubmitEmail(values);
+                    onSubmit={(values, actions) => {
+                        handleEnviarCorreo(values, actions);
                     }}
 
                     validationSchema={schemaFormulario}

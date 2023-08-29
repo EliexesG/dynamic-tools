@@ -5,6 +5,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import { Roboto } from 'next/font/google';
 import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import Navbar from './components/navbar';
 import Footer from './components/footer';
@@ -25,6 +26,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body style={font.style}>
+          <div>
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
+          </div>
           <Navbar/>
           <div className="body-content pt-5 pb-5">
             <main className='p-4 m-4 mt-5'>

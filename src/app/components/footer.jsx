@@ -5,7 +5,7 @@ import { faHouse,
          faHandshakeAngle, 
          faScrewdriverWrench, 
          faUsers, 
-         faEnvelopeOpen } 
+         faComment } 
 from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer () {
@@ -42,7 +42,7 @@ export default function Footer () {
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
                                     <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contacto">
-                                    <FontAwesomeIcon icon={faEnvelopeOpen} /> Contacto</a>
+                                    <FontAwesomeIcon icon={faComment} /> Contacto</a>
                                 </h6>
                             </div>
                         </div>
