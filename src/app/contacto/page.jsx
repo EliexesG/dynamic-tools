@@ -7,9 +7,9 @@ import Imagen from '../images/contactanos_page.png';
 import './page.css';
 
 export const contactos = [
-    {titulo: "A&M Dynamic Tools S.A.", contactos: [{tipo:"Email", detalle: "dynamictoolscr@gmail.com"}]},
+    {titulo: "A&M Dynamic Tools S.A.", contactos: [{tipo:"Email", detalle: "gympro001mensajes@gmail.com"}]},
     {titulo: "Ing. Mauricio Alfaro Martínez", contactos: [{tipo: "Cel", detalle: "8923 1003"}]},
-    {titulo: "Jose Enrique Alfato Martínez", contactos: [{tipo: "Cel", detalle: "8989 3653"}, {tipo: "Email", detalle: "jalfarodynamictools@gmail.com" }]},
+    {titulo: "Jose Enrique Alfato Martínez", contactos: [{tipo: "Cel", detalle: "8989 3653"}, {tipo: "Email", detalle: "eliasgabriel6100@gmail.com" }]},
 ]
 
 export default function Contacto () {

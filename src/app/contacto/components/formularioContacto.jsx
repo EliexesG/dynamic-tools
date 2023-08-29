@@ -38,8 +38,12 @@ export default function FormularioContacto () {
 
         var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto}`;
 
-        var cuerpo = `Correo de Cliente:\n${values.correo}\n\n` +
-                     `Petición:\n${values.peticion}`;
+        var cuerpo = {
+            correo: values.correo, 
+            peticion: values.peticion, 
+            tipo: opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto, 
+            fecha: new Date().toLocaleString()
+        };
 
         var adjuntos = values.archivo ? values.archivo : null;
 
