@@ -11,5 +11,5 @@ export async function EnviarCorreo (data) {
     })
 
     var json = await respuesta.json();
-    console.log(json)
+    return json;
 }

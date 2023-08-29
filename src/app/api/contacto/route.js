@@ -119,10 +119,13 @@ export async function POST (req) {
         const ContenidoCorporativo = await generarContenidoCorporativo(data);
         const ContenidoCliente = await generarContenidoCliente(data);
 
+        var attachments = data.adjuntos ? data.adjuntos : null;
+
         //Se envía correo a la empresa
         await Transporter.sendMail({
             ...MailOptionsCorporativo,
             ...ContenidoCorporativo,
+            ...(attachments && {attachments}),
             subject: data.asunto,
         });
 
@@ -134,7 +137,7 @@ export async function POST (req) {
         });
 
         return NextResponse.json(
-            {response: 'success'},
+            {response: 'success', status: 200},
             {status: 200}
         );
 
@@ -142,7 +145,7 @@ export async function POST (req) {
     catch (error) {
         console.log(error);
         return NextResponse.json(
-            {response: 'error'},
+            {response: 'error', status: 400},
             {status: 400}
         );
     }

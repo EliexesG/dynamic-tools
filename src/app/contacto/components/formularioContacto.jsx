@@ -19,6 +19,7 @@ export default function FormularioContacto () {
     })
 
     const [tipoSolicitud, setTipoSolicitud] = useState(0);
+    const [archivos, setArchivos] = useState(null);
 
     const opcionesSelect = [
         {value: -1, texto: "Seleccione"},
@@ -28,7 +29,37 @@ export default function FormularioContacto () {
 
     const handleTipoSolicitud = (e) => {
         setTipoSolicitud(e.target.value);
+        setArchivos(null);
     };
+
+    const handleArchivo = async (e) => {
+        
+        var archivos = e.target.files;
+        var adjuntos = [];
+
+        for(var i = 0; i < archivos.length; i++) {
+
+            const archivo = archivos[i];
+
+            const buffer = await archivo.arrayBuffer();
+
+            let str = '';
+
+            const bufferView = new Uint8Array(buffer);
+
+            for(let i = 0; i < bufferView.length; i++) {
+                str += String.fromCharCode(bufferView[i]);
+            }
+
+            const base64 = btoa(str);
+
+            adjuntos.push({filename: archivos[i].name, content: base64, encoding: 'base64'});
+
+        }
+
+        setArchivos(adjuntos)
+        
+    }
 
     const handleEnviarCorreo = async (values, actions) => {
         
@@ -36,7 +67,7 @@ export default function FormularioContacto () {
                            .filter(contacto => contacto.length > 0)
                            .map(contacto => {return contacto[0]});
 
-        var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto}`;
+        var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto} (${values.correo})`;
 
         var cuerpo = {
             correo: values.correo, 
@@ -45,17 +76,35 @@ export default function FormularioContacto () {
             fecha: new Date().toLocaleString()
         };
 
-        var adjuntos = values.archivo ? values.archivo : null;
+        var adjuntos = archivos ? archivos : null;
 
         var data = {correosEnvio, asunto, cuerpo, adjuntos};
-
+        
+        
         try {
-            await EnviarCorreo(data);
-            toast.success("Información enviada correctamente");
+
+            const idToast = toast.loading("Enviando Solicitud...")
+            
+            const envio = await EnviarCorreo(data);
+
+            if(envio.status === 200) {
+                toast.success('Se ha enviado la solicitud correctamente', {
+                    id: idToast,
+                });
+            }
+            else if (envio.status == 400) {
+                toast.error('Error al enviar solicitud, intente más tarde', {
+                    id: idToast,
+                });
+            }
         }
-        catch (ex) {
-            toast.error("Error al enviar información, intente más tarde");
+        catch(err) {
+            console.log(err);
+            toast.error('Error al enviar solicitud, intente más tarde', {
+                id: idToast,
+            });
         }
+            
 
         actions.resetForm();
     }
@@ -74,7 +123,7 @@ export default function FormularioContacto () {
                         tipoSolicitud: 0,
                         correo: '',
                         peticion: '',
-                        archivo: '',
+                        archivos: '',
                     }}
 
                     onSubmit={(values, actions) => {
@@ -136,17 +185,21 @@ export default function FormularioContacto () {
                                 </div>
                                 {tipoSolicitud == 2 && (
                                     <div className='col-md-12 mb-4'>
-                                        <label htmlFor='archivo' className='form-label'>Adjunte Archivo</label>
+                                        <label htmlFor='archivo' className='form-label'>Adjunte Archivos</label>
                                         <input 
                                             type='file' 
-                                            name='archivo' 
-                                            id='archivo' 
-                                            className={`form-control ${errors.archivo && touched.archivo ? 'border-danger' : ''}`} 
-                                            value={values.archivo}
-                                            onChange={handleChange}>
+                                            name='archivos' 
+                                            id='archivos'
+                                            multiple 
+                                            className={`form-control ${errors.archivos && touched.archivos ? 'border-danger' : ''}`} 
+                                            value={values.archivos}
+                                            onChange={ async (e) => {
+                                                handleChange(e);
+                                                await handleArchivo(e);
+                                            }}>
                                         </input>
-                                        {errors.archivo && touched.archivo && (
-                                        <p className='text-danger'>{errors.archivo}</p>
+                                        {errors.archivos && touched.archivos && (
+                                        <p className='text-danger'>{errors.archivos}</p>
                                         )}
                                     </div>
                                 )}
