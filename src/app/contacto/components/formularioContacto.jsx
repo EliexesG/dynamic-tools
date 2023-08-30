@@ -1,7 +1,6 @@
 'use client'
 
 import './formularioContacto.css';
-import { contactos } from '@/lib/data';
 import { EnviarCorreo } from '@/lib/api';
 
 import { Formik } from "formik";
@@ -18,7 +17,7 @@ export default function FormularioContacto () {
         peticion: yup.string().required("Debe ingresar la petición").min(10, "La petición debe contener un mínimo de 10 carácteres")
     })
 
-    const [tipoSolicitud, setTipoSolicitud] = useState(0);
+    const [tipoSolicitud, setTipoSolicitud] = useState(-1);
     const [archivos, setArchivos] = useState(null);
 
     const opcionesSelect = [
@@ -101,7 +100,8 @@ export default function FormularioContacto () {
             });
         }
             
-
+        setTipoSolicitud(-1);
+        
         actions.resetForm();
     }
 
