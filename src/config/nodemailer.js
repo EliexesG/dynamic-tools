@@ -13,15 +13,15 @@ export const Transporter = nodemailer.createTransport({
 
 export const mailOptionsCorporativo = () => {
     return {
-        from: 'gympro001mensajes@gmail.com',
-        to: 'gympro001mensajes@gmail.com',
-        cc: 'eliasgabriel6100@gmail.com',
+        from: 'dynamictoolscr@gmail.com',
+        to: 'dynamictoolscr@gmail.com',
+        cc: 'jalfarodynamictools@gmail.com',
     }
 }
 
 export const mailOptionsClliente = (correoCliente) => {
     return {
-        from: 'gympro001mensajes@gmail.com',
+        from: 'dynamictoolscr@gmail.com',
         to: correoCliente
     }
 }

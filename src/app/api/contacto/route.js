@@ -134,7 +134,7 @@ export async function POST (req) {
         await Transporter.sendMail({
             ...MailOptionsCliente,
             ...ContenidoCliente,
-            subject: "A&M Dynamic Tools S.A. Contacto",
+            subject: "A&M Dynamic Tools S.A. | Contacto",
         });
 
         return NextResponse.json(

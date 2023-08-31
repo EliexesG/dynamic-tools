@@ -27,7 +27,8 @@ export default function FormularioContacto () {
     ];
 
     const handleTipoSolicitud = (e) => {
-        setTipoSolicitud(e.target.value);
+        var tipoSolicitud = e.target.value;
+        setTipoSolicitud(tipoSolicitud);
         setArchivos(null);
     };
 
@@ -35,6 +36,7 @@ export default function FormularioContacto () {
         
         var archivos = e.target.files;
         var adjuntos = [];
+        console.log(archivos)
 
         for(var i = 0; i < archivos.length; i++) {
 
@@ -62,23 +64,26 @@ export default function FormularioContacto () {
 
     const handleEnviarCorreo = async (values, actions) => {
 
-        var asunto = `Tipo de Solicitud: ${opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto} (${values.correo})`;
+        var tipoSolicitud = opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto;
+
+        var fecha = new Date().toLocaleString();
+
+        var asunto = `Tipo de Solicitud: ${tipoSolicitud} | ${fecha}`;
 
         var cuerpo = {
             correo: values.correo, 
             peticion: values.peticion, 
-            tipo: opcionesSelect.filter(opcion => opcion.value == values.tipoSolicitud)[0].texto, 
-            fecha: new Date().toLocaleString()
+            tipo: tipoSolicitud, 
+            fecha: fecha,
         };
 
         var adjuntos = archivos ? archivos : null;
 
         var data = {asunto, cuerpo, adjuntos};
-        
+
+        const idToast = toast.loading("Enviando Solicitud...")
         
         try {
-
-            const idToast = toast.loading("Enviando Solicitud...")
             
             const envio = await EnviarCorreo(data);
 
@@ -107,25 +112,21 @@ export default function FormularioContacto () {
 
     return (
 
-        <div className="card p-3 shadow">
+        <div className="card p-3">
             <div className="card-header">
                 <h1 className="text-center fw-bold card-title">Deja tu Información</h1>
                 <p className="text-center fw-bold mb-4 card-text">Nos pondremos en contacto con usted</p>
             </div>
             <div className="card-body">
                 <Formik 
-
                     initialValues={{
                         tipoSolicitud: 0,
                         correo: '',
                         peticion: '',
-                        archivos: '',
                     }}
-
                     onSubmit={(values, actions) => {
                         handleEnviarCorreo(values, actions);
                     }}
-
                     validationSchema={schemaFormulario}
                 >
                     {({handleSubmit, values, handleChange, errors, touched}) => (
@@ -136,11 +137,11 @@ export default function FormularioContacto () {
                                     <select 
                                         name="tipoSolicitud" 
                                         id="tipoSolicitud" 
-                                        className={`form-select ${errors.tipoSolicitud && touched.tipoSolicitud ? 'border-danger' : ''}`} 
+                                        className={`form-select shadow ${errors.tipoSolicitud && touched.tipoSolicitud ? 'border-danger' : ''}`} 
                                         value={values.tipoSolicitud} 
                                         onChange={(e) => {
                                             handleChange(e);
-                                            handleTipoSolicitud(e);
+                                            handleTipoSolicitud(e, values);
                                         }}>
                                         {opcionesSelect.map((opcion) => (
                                             <option key={opcion.value} value={opcion.value}>{opcion.texto}</option>
@@ -156,7 +157,7 @@ export default function FormularioContacto () {
                                         name="correo" 
                                         type="text" 
                                         id="correo" 
-                                        className={`form-control ${errors.correo && touched.correo ? 'border-danger' : ''}`} 
+                                        className={`form-control shadow ${errors.correo && touched.correo ? 'border-danger' : ''}`} 
                                         placeholder="alguien@dominio.com" 
                                         value={values.correo} 
                                         onChange={handleChange}
@@ -170,7 +171,7 @@ export default function FormularioContacto () {
                                     <textarea 
                                         name="peticion" 
                                         id="peticion" 
-                                        className={`form-control ${errors.peticion && touched.peticion ? 'border-danger' : ''}`} 
+                                        className={`form-control shadow ${errors.peticion && touched.peticion ? 'border-danger' : ''}`} 
                                         placeholder="Información acerca de..." 
                                         value={values.peticion}
                                         onChange={handleChange}>
@@ -183,20 +184,15 @@ export default function FormularioContacto () {
                                     <div className='col-md-12 mb-4'>
                                         <label htmlFor='archivo' className='form-label'>Adjunte Archivos</label>
                                         <input 
-                                            type='file' 
+                                            type='file'
                                             name='archivos' 
                                             id='archivos'
                                             multiple 
-                                            className={`form-control ${errors.archivos && touched.archivos ? 'border-danger' : ''}`} 
-                                            value={values.archivos}
+                                            className="form-control shadow" 
                                             onChange={ async (e) => {
-                                                handleChange(e);
                                                 await handleArchivo(e);
                                             }}>
                                         </input>
-                                        {errors.archivos && touched.archivos && (
-                                        <p className='text-danger'>{errors.archivos}</p>
-                                        )}
                                     </div>
                                 )}
                             </div>
