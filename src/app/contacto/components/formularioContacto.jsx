@@ -36,11 +36,13 @@ export default function FormularioContacto () {
         
         var archivos = e.target.files;
         var adjuntos = [];
-        console.log(archivos)
+        var tamanno = 0;
 
         for(var i = 0; i < archivos.length; i++) {
 
             const archivo = archivos[i];
+
+            tamanno += archivo.size;
 
             const buffer = await archivo.arrayBuffer();
 
@@ -57,9 +59,9 @@ export default function FormularioContacto () {
             adjuntos.push({filename: archivos[i].name, content: base64, encoding: 'base64'});
 
         }
-
-        setArchivos(adjuntos)
         
+        tamanno = tamanno / 1e+6;
+        setArchivos(adjuntos);
     }
 
     const handleEnviarCorreo = async (values, actions) => {
