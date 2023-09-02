@@ -17,17 +17,17 @@ export default function TarjetaServicio ({titulo, descripcion}) {
     }
 
     return (
-        <article className="card shadow mb-4 p-4">
+        <article className="card shadow mb-4 p-4 bg-light">
             <div className="row">
                 <div className="card-header text-center col-md-4 d-flex align-items-center justify-content-center">
-                    <h3 className="card-title">{titulo}</h3>
+                    <h4 className="card-title">{titulo}</h4>
                 </div>
                 <div className="card-body col-md-6 d-flex align-items-center justify-content-center">
                     <p className={`card-text ${!mostrarTexto ? 'text-ocultado' : 'text-completo'}`}>{descripcion}</p>
                 </div>
                 <div className='col-md-2 d-flex align-items-center justify-content-center'>
                     <button 
-                        className='border-0 bg-white'
+                        className='border-0 bg-light'
                         onClick={handleMostrarTexto}
                     >
                         <FontAwesomeIcon icon={faGear} className="fs-1 icon" />

@@ -1,6 +1,6 @@
 import './page.css';
 
-import Image from "next/image";
+import Imagen from '../components/Imagen';
 
 import { servicios } from '@/lib/data';
 import TarjetaServicio from './components/tarjetaServicio';
@@ -18,7 +18,7 @@ export default function Servicios () {
     return (
         <>
             <div id="contenedorImagenTexto" className="mb-4">
-                <Image id="imagenServicios" src={'/images/servicios/servicios_page.jpg'} alt="servicios page" height={3000} width={3000} className="rounded" />
+                <Imagen id="imagenServicios" src={'/images/servicios/servicios_page.jpg'} alt="servicios page" height={3000} width={3000} className="rounded" />
                 <h1 id="tituloServicios" className="text-center">Servicios</h1>
                 <p id="textoServicios" className="text-center">En este apartado podrás encontrar todos los servicios que ofrecemos</p>
             </div>
