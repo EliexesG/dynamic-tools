@@ -10,14 +10,12 @@ import { faHouse,
          faComment } 
 from "@fortawesome/free-solid-svg-icons";
 
-import imagen from '@/images/small_size_logo.png'
-
 export default function Navbar () {
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 top-0 z-3">
         <div className="container-fluid">
         <a className="navbar-brand align-items-center" href="/">
-          <Image src={imagen} alt="brand-logo" width={55} height={49} className="me-2 rounded"/>
+          <Image src={'/images/logos/small_size_logo.png'} alt="brand-logo" width={55} height={49} className="me-2 rounded"/>
           <span>A&M Dynamic Tools S.A.</span>
         </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,8 +40,8 @@ export default function Navbar () {
                 <FontAwesomeIcon icon={faUsers} /> Nosotros</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/contacto">
-                <FontAwesomeIcon icon={faComment} /> Contacto</a>
+                <a className="nav-link" href="/contactanos">
+                <FontAwesomeIcon icon={faComment} /> Contactanos</a>
               </li>
             </ul>
           </div>

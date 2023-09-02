@@ -1,0 +1,32 @@
+.card-text {
+    text-align: justify;
+    transition: max-height 0.5s ease-in-out, text-overflow 0.5s ease-in-out,  
+              overflow 0.5s ease-in-out; 
+}
+
+.text-ocultado {
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.text-completo {
+    text-overflow: initial;
+    overflow: visible;
+    -webkit-line-clamp: initial; 
+  }
+
+.icon {
+    transition: all .5s ease-in-out;
+    color: black;
+}
+
+.arrow {
+    transition: all .5s ease-in-out;
+}
+
+.icon:hover {
+    transform: rotate(180deg);
+}

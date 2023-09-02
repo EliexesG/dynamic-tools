@@ -1,0 +1,10 @@
+.carousel-inner .carousel-item{
+    height: 520px !important;
+    width: 100%;
+}
+
+.carousel-inner .carousel-item img{
+    height: 85%;
+    width: 100%;
+    object-fit: scale-down;
+}

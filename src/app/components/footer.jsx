@@ -41,8 +41,8 @@ export default function Footer () {
                             </div>
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contacto">
-                                    <FontAwesomeIcon icon={faComment} /> Contacto</a>
+                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contactanos">
+                                    <FontAwesomeIcon icon={faComment} /> Contactanos</a>
                                 </h6>
                             </div>
                         </div>

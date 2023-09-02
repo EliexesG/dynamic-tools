@@ -8,7 +8,7 @@ from "@fortawesome/free-solid-svg-icons";
 export default function TarjetaContacto({titulo, contactos, className}) {
     
     return (
-        <div className={className}>
+        <article className={className}>
             <div className="card p-3 shadow tarjetaContacto">
                 <div className="card-header">
                     <h3 className="card-title">{titulo}</h3>
@@ -25,7 +25,7 @@ export default function TarjetaContacto({titulo, contactos, className}) {
                     ))}
                 </div>
             </div>
-        </div>
+        </article>
     );
 
 }

@@ -18,15 +18,15 @@ export const metadata = {
   description: 'app for A&M Dynamic Tools S.A.',
   icons:{
     icon: [
-      '/favicon.ico?v=4',
+      '/favicons/favicon.ico?v=4',
     ],
     apple: [
-      '/apple-touch.icon.png?v=4',
+      '/favicons/apple-touch.icon.png?v=4',
     ],
     shortcut: [
-      '/apple-touch-icon.png',
+      '/favicons/apple-touch-icon.png',
     ],
-    manifest: '/site.webmanifest',
+    manifest: '/favicons/site.webmanifest',
   },
 }
 
