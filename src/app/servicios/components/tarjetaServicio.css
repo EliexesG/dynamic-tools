@@ -1,10 +1,14 @@
 .card-text {
     text-align: justify;
-    transition: max-height 0.5s ease-in-out, text-overflow 0.5s ease-in-out,  
-              overflow 0.5s ease-in-out; 
 }
 
 .text-ocultado {
+    /*width: calc(100%);
+    overflow: hidden !important;
+    max-height: 4.5em !important; 
+    line-height: 24px !important;
+    text-overflow: ellipsis !important;
+    */
     text-overflow: ellipsis; 
     overflow: hidden;
     display: -webkit-box;
@@ -13,20 +17,40 @@
 }
 
 .text-completo {
+    /*
+    max-height: initial !important;
+    text-overflow: clip !important;
+    */
     text-overflow: initial;
     overflow: visible;
     -webkit-line-clamp: initial; 
-  }
+}
 
 .icon {
-    transition: all .5s ease-in-out;
+    transition: transform .3s ease-in-out;
     color: black;
 }
 
-.arrow {
-    transition: all .5s ease-in-out;
+.icon:hover {
+    transform: rotate(20deg);
 }
 
-.icon:hover {
-    transform: rotate(180deg);
+.icon_spin {
+    transition: transform .2s ease-in-out;
+    transform: rotate(-40deg);
+}
+
+.icon_start_position {
+    transition: transform .2s ease-in-out;
+    transform: rotate(40deg);
+}
+
+.arrow_up {
+    transition: transform .5s ease-in-out;
+    transform: rotate(-180deg);
+}
+
+.arrow_down {
+    transition: transform .5s ease-in-out;
+    transform: rotate(0deg);
 }

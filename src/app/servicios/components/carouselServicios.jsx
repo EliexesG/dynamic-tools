@@ -33,7 +33,7 @@ export default function CarouselServicios ({imagenes}) {
                 <div className="carousel-inner">
                     {imagenes.map(imagen => (
                         <div key={imagen.id} className={`carousel-item ${imagen.id === 1 ? 'active' : ''}`}>
-                           <Imagen src={imagen.url} height={1000} width={1000} alt={`imagen ${imagen.id}`} className="d-block rounded mt-3" />
+                           <Imagen src={imagen.url} height={1000} width={1000} alt={`imagen ${imagen.id}`} className="d-block rounded-4 mt-3" />
                         </div>
                     ))}
                 </div>

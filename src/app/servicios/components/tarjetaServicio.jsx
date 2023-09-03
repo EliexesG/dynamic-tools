@@ -3,17 +3,19 @@
 import './tarjetaServicio.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 export default function TarjetaServicio ({titulo, descripcion}) {
 
     const [mostrarTexto, setMostrarTexto] = useState(false);
+    const [tuercaGira, setTuercaGira] = useState(false);
+    const [flechaHaciaArriba, setFlechaHaciaArriba] = useState(false);
 
     const handleMostrarTexto = (e) => {
-        //var element = e.currentTarget.parentNode.parentNode.querySelector(".card-body .card-text");
-        //element.classList.replace('text-ocultado', 'text-completo')
         setMostrarTexto(!mostrarTexto);
+        setTuercaGira(!tuercaGira);
+        setFlechaHaciaArriba(!flechaHaciaArriba);
     }
 
     return (
@@ -27,12 +29,12 @@ export default function TarjetaServicio ({titulo, descripcion}) {
                 </div>
                 <div className='col-md-2 d-flex align-items-center justify-content-center'>
                     <button 
-                        className='border-0 bg-light'
+                        className={`border-0 bg-light ${tuercaGira ? 'icon_spin' : 'icon_start_position'}`}
                         onClick={handleMostrarTexto}
                     >
                         <FontAwesomeIcon icon={faGear} className="fs-1 icon" />
                     </button>
-                    <FontAwesomeIcon icon={faArrowLeft} className="fs-4 ms-1 arrow" /> 
+                    <FontAwesomeIcon icon={faArrowDown} className={`fs-4 ms-1 ${flechaHaciaArriba ? 'arrow_up' : 'arrow_down'}`} /> 
                 </div>
             </div>
         </article>

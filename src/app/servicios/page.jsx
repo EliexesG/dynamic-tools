@@ -18,7 +18,7 @@ export default function Servicios () {
     return (
         <>
             <div id="contenedorImagenTexto" className="mb-4">
-                <Imagen id="imagenServicios" src={'/images/servicios/servicios_page.jpg'} alt="servicios page" height={3000} width={3000} className="rounded" />
+                <Imagen id="imagenServicios" src={'/images/servicios/servicios_page.jpg'} alt="servicios page" height={3000} width={3000} className="rounded bg-dark" />
                 <h1 id="tituloServicios" className="text-center">Servicios</h1>
                 <p id="textoServicios" className="text-center">En este apartado podrás encontrar todos los servicios que ofrecemos</p>
             </div>
@@ -36,7 +36,7 @@ export default function Servicios () {
             <hr className="mb-4 mt4" />
             <section id='imagenes'>
                 <h1 className="text-center fw-bold">Imagenes</h1>
-                <p className="text-center fw-bold mb-4">Imagenes de ejemplo y procesos</p>
+                <p className="text-center fw-bold mb-4">Ejemplos de trabajos realizados</p>
                 <CarouselServicios imagenes={servicios.imagenes} />
             </section>
         </>
