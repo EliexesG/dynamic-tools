@@ -28,13 +28,13 @@ export default function TarjetaServicio ({titulo, descripcion}) {
                     <p className={`card-text ${!mostrarTexto ? 'text-ocultado' : 'text-completo'}`}>{descripcion}</p>
                 </div>
                 <div className='col-md-2 d-flex align-items-center justify-content-center'>
+                    <FontAwesomeIcon icon={faArrowDown} className={`fs-4 ms-1 ${flechaHaciaArriba ? 'arrow_up' : 'arrow_down'}`} /> 
                     <button 
-                        className={`border-0 bg-light ${tuercaGira ? 'icon_spin' : 'icon_start_position'}`}
+                        className={`border-0 bg-light bg-opacity-10 ${tuercaGira ? 'icon_spin' : 'icon_start_position'}`}
                         onClick={handleMostrarTexto}
                     >
                         <FontAwesomeIcon icon={faGear} className="fs-1 icon" />
                     </button>
-                    <FontAwesomeIcon icon={faArrowDown} className={`fs-4 ms-1 ${flechaHaciaArriba ? 'arrow_up' : 'arrow_down'}`} /> 
                 </div>
             </div>
         </article>

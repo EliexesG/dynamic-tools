@@ -1,5 +1,13 @@
 .card-text {
     text-align: justify;
+    margin-bottom: 36px;
+    max-height: 500px;
+    transition: all ease-in 0.3s;
+    overflow: auto;
+}
+
+@keyframes delay-overflow {
+    from { overflow: auto; }
 }
 
 .text-ocultado {
@@ -9,11 +17,13 @@
     line-height: 24px !important;
     text-overflow: ellipsis !important;
     */
+    max-height: 4.5em;
     text-overflow: ellipsis; 
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    
 }
 
 .text-completo {
@@ -23,7 +33,8 @@
     */
     text-overflow: initial;
     overflow: visible;
-    -webkit-line-clamp: initial; 
+    -webkit-line-clamp: initial;
+    animation: .2s delay-overflow;
 }
 
 .icon {

@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 
 import Navbar from './components/navbar';
 import Footer from './components/footer';
-import ImportBsJS from '../lib/importBsJS';
+import ImportBsJS from './components/importBsJS';
 
 const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap'})
 

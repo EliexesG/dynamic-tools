@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import toast from 'react-hot-toast'
 
 import { useState } from "react";
+import { ConvertirArchivosToAdjuntos } from '@/lib/utils';
 
 export default function FormularioContacto () {
 
@@ -35,32 +36,9 @@ export default function FormularioContacto () {
     const handleArchivo = async (e) => {
         
         var archivos = e.target.files;
-        var adjuntos = [];
-        var tamanno = 0;
 
-        for(var i = 0; i < archivos.length; i++) {
-
-            const archivo = archivos[i];
-
-            tamanno += archivo.size;
-
-            const buffer = await archivo.arrayBuffer();
-
-            let str = '';
-
-            const bufferView = new Uint8Array(buffer);
-
-            for(let i = 0; i < bufferView.length; i++) {
-                str += String.fromCharCode(bufferView[i]);
-            }
-
-            const base64 = btoa(str);
-
-            adjuntos.push({filename: archivos[i].name, content: base64, encoding: 'base64'});
-
-        }
+        var adjuntos = await ConvertirArchivosToAdjuntos(archivos);
         
-        tamanno = tamanno / 1e+6;
         setArchivos(adjuntos);
     }
 
@@ -83,6 +61,9 @@ export default function FormularioContacto () {
 
         var data = {asunto, cuerpo, adjuntos};
 
+        console.log(data)
+
+        
         const idToast = toast.loading("Enviando Solicitud...")
         
         try {
@@ -106,6 +87,7 @@ export default function FormularioContacto () {
                 id: idToast,
             });
         }
+        
             
         setTipoSolicitud(-1);
         
