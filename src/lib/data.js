@@ -1,10 +1,21 @@
-export const contactos = [
-    {titulo: "A&M Dynamic Tools S.A.", especialidad: "Empresa", contactos: [{tipo:"Email", detalle: "dynamictoolscr@gmail.com"}]},
-    {titulo: "Ing. Mauricio Alfaro Martínez", especialidad: "Tool Room Manager",  contactos: [{tipo: "Cel", detalle: "8923 1003"}]},
-    {titulo: "Jose Enrique Alfaro Martínez", especialidad: "Tool & Die Specialist", contactos: [{tipo: "Cel", detalle: "8989 3653"}, {tipo: "Email", detalle: "jalfarodynamictools@gmail.com" }]},
-];
+export const contactos = {
+    urlImagenPresentacion: '/images/contactanos/contactanos_page.png',
+    contactos: [
+        {titulo: "A&M Dynamic Tools S.A.", especialidad: "Empresa", contactos: [
+            {tipo:"Email", detalle: "dynamictoolscr@gmail.com"}
+        ]},
+        {titulo: "Ing. Mauricio Alfaro Martínez", especialidad: "Tool Room Manager",  contactos: [
+            {tipo: "Cel", detalle: "8923 1003"}
+        ]},
+        {titulo: "Jose Enrique Alfaro Martínez", especialidad: "Tool & Die Specialist", contactos: [
+            {tipo: "Cel", detalle: "8989 3653"}, 
+            {tipo: "Email", detalle: "jalfarodynamictools@gmail.com" },
+        ]},
+    ]
+};
 
 export const servicios = {
+    urlImagenPresentacion: '/images/servicios/servicios_page.jpg',
     informacion: [
         {
             titulo: "Mecanizado CNC y convencional.", 
@@ -47,7 +58,7 @@ export const servicios = {
             descripcion: "Somos especialistas en la fabricación de engranajes e piñones para sectores industriales exigentes. Contamos con una línea de producción equipada para el mecanizado. Nuestro diseño y programación CNC garantiza máxima precisión en los modulos, tolerancias geometricas y rugosidades superficiales. Contamos con personal calificado y una amplia experiencia en estándares como DIN, ANSI, AGMA. Realizamos trabajos de acuerdo a planos del cliente u órdenes de fabricación propias. Nuestro objetivo es brindar soluciones de alta calidad y fiabilidad a la medida de su aplicación."
         }
     ],
-    imagenes: [
+    galeria: [
         {id: 1, url: '/images/servicios/servicios_1.jpg'},
         {id: 2, url: '/images/servicios/servicios_2.jpg'},
         {id: 3, url: '/images/servicios/servicios_3.jpg'},
@@ -68,5 +79,15 @@ export const servicios = {
         {id: 18, url: '/images/servicios/servicios_18.jpg'},
         {id: 19, url: '/images/servicios/servicios_19.jpg'},
         {id: 20, url: '/images/servicios/servicios_20.jpg'},
+        {id: 21, url: '/images/servicios/servicios_21.jpg'},
     ],
 };
+
+export const maquinaria = {
+    urlImagenPresentacion: '/images/maquinaria/maquinaria_page.jpg',
+    maquinas: [
+        {titulo: '', descripcion: '', imagenes: [
+            {id: 1, url: ''}
+        ]}
+    ]
+}

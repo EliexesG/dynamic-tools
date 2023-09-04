@@ -19,18 +19,18 @@ const Indicador = ({imagen}) => {
 
 }
 
-export default function CarouselServicios ({imagenes}) {
+export default function CarouselServicios ({galeria}) {
 
     return (
         <article>
             <div id="imagenesServicios" className="carousel slide rounded-4 bg-gradient bg-dark" data-bs-ride="carousel">
                 <div className="carousel-indicators bg-black rounded p-1">
-                    {imagenes.map((imagen) => (
+                    {galeria.map((imagen) => (
                         <Indicador key={imagen.id} imagen={imagen} />
                     ))}
                 </div>
                 <div className="carousel-inner">
-                    {imagenes.map(imagen => (
+                    {galeria.map(imagen => (
                         <div key={imagen.id} className={`carousel-item ${imagen.id === 1 ? 'active' : ''}`}>
                            <Imagen src={imagen.url} height={1000} width={1000} alt={`imagen ${imagen.id}`} className="d-block rounded-4 mt-3" />
                         </div>
