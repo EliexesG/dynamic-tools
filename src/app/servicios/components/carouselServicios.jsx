@@ -21,10 +21,9 @@ const Indicador = ({imagen}) => {
 
 export default function CarouselServicios ({imagenes}) {
 
-
     return (
         <article>
-            <div id="imagenesServicios" className="carousel slide rounded-4 bg-gradient bg-dark">
+            <div id="imagenesServicios" className="carousel slide rounded-4 bg-gradient bg-dark" data-bs-ride="carousel">
                 <div className="carousel-indicators bg-black rounded p-1">
                     {imagenes.map((imagen) => (
                         <Indicador key={imagen.id} imagen={imagen} />
