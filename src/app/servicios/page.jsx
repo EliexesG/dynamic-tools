@@ -23,7 +23,7 @@ export default function Servicios () {
                 <p id="textoServicios" className="text-center">En este apartado podrás encontrar todos los servicios que ofrecemos</p>
             </div>
             <hr className="mb-4" />
-            <div className='text-start mb-4'><a href='#imagenes' className='text-decoration-none btn btn-dark'><FontAwesomeIcon icon={faImage}/> Ver Imagenes</a></div>
+            <div className='text-center mb-4'><a href='#imagenes' className='text-decoration-none btn-secondary btn text-white p-3'><FontAwesomeIcon icon={faImage}/> Ver Galería</a></div>
             <section className='mb-4'>
                 {servicios.informacion.map((servicio, index) => (
                     <TarjetaServicio 
@@ -35,8 +35,8 @@ export default function Servicios () {
             </section>
             <hr className="mb-4 mt4" />
             <section id='imagenes'>
-                <h1 className="text-center fw-bold">Imagenes</h1>
-                <p className="text-center fw-bold mb-4">Ejemplos de trabajos realizados</p>
+                <h1 className="text-center fw-bold">Galería</h1>
+                <p className="text-center fw-bold mb-4">Ejemplos de trabajos realizados en el taller</p>
                 <CarouselServicios imagenes={servicios.imagenes} />
             </section>
         </>

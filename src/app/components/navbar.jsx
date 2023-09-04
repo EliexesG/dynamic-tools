@@ -12,7 +12,7 @@ from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar () {
   return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark position-fixed w-100 top-0 z-3">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary position-fixed w-100 top-0 z-3 bg-gradient">
         <div className="container-fluid">
         <a className="navbar-brand align-items-center" href="/">
           <Imagen src={'/images/logos/small_size_logo.png'} alt="brand-logo" width={55} height={49} className="me-2 rounded"/>

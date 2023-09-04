@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
           </div>
           <Navbar/>
           <div className="body-content pt-5 pb-5">
-            <main className='p-4 m-4 mt-5'>
+            <main className='p-4 m-5 mt-5'>
               {children}
             </main>
           </div>

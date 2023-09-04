@@ -180,7 +180,7 @@ export default function FormularioContacto () {
                                     </div>
                                 )}
                             </div>
-                            <button type='submit' className='btn btn-dark'>Enviar</button>
+                            <button type='submit' className='btn btn-secondary text-white'>Enviar</button>
                         </form>
                     )}
                 </Formik>

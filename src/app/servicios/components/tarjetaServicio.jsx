@@ -21,8 +21,8 @@ export default function TarjetaServicio ({titulo, descripcion}) {
     return (
         <article className="card shadow mb-4 p-4 bg-light">
             <div className="row">
-                <div className="card-header text-center col-md-4 d-flex align-items-center justify-content-center">
-                    <h4 className="card-title">{titulo}</h4>
+                <div className="card-header text-center col-md-4 d-flex align-items-center justify-content-center bg-primary bg-gradient">
+                    <h4 className="card-title text-white fw-bold">{titulo}</h4>
                 </div>
                 <div className="card-body col-md-6 d-flex align-items-center justify-content-center">
                     <p className={`card-text ${!mostrarTexto ? 'text-ocultado' : 'text-completo'}`}>{descripcion}</p>

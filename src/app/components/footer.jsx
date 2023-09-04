@@ -11,7 +11,7 @@ from "@fortawesome/free-solid-svg-icons";
 export default function Footer () {
     return (
         <div className="footer mt-auto w-100">
-            <footer className="text-center text-white bg-dark">
+            <footer className="text-center text-white bg-primary bg-gradient">
                 <div className="container d-block">
                     <section className="mt-5">
                         <div className="row text-center d-flex justify-content-center pt-5">

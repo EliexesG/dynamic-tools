@@ -1,1 +1,15 @@
-@import 'bootstrap/dist/css/bootstrap.min.css'
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$theme-colors: (
+    primary: #004651,
+    secondary: #00A181,
+    success: #198754,
+    info: #0dcaf0,
+    warning: #ffc107,
+    danger: #dc3545,
+    light: #f8f9fa,
+    dark: #212529
+);
+
+@import 'bootstrap'

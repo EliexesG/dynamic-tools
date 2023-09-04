@@ -22,7 +22,7 @@ export default function Contacto () {
             <hr className="mb-4" />
             <section className="row mb-4">
                 {contactos.map((contacto, index) => (
-                    <TarjetaContacto className="col-md-4 mb-4" key={index} titulo={contacto.titulo} contactos={contacto.contactos}/>
+                    <TarjetaContacto className="col-md-4 mb-4" key={index} titulo={contacto.titulo} contactos={contacto.contactos} especialidad={contacto.especialidad}/>
                 ))}
             </section>
             <FormularioContacto />
