@@ -8,6 +8,8 @@ import { faHouse,
          faComment } 
 from "@fortawesome/free-solid-svg-icons";
 
+import Link from 'next/link';
+
 export default function Footer () {
     return (
         <div className="footer mt-auto w-100">
@@ -17,32 +19,32 @@ export default function Footer () {
                         <div className="row text-center d-flex justify-content-center pt-5">
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/">
-                                    <FontAwesomeIcon icon={faHouse} /> Inicio</a>
+                                    <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/">
+                                    <FontAwesomeIcon icon={faHouse} /> Inicio</Link>
                                 </h6>
                             </div>
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/servicios">
-                                    <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios</a>
+                                    <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/servicios">
+                                    <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios</Link>
                                 </h6>
                             </div>
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/maquinaria">
-                                    <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria</a>
+                                    <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/maquinaria">
+                                    <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria</Link>
                                 </h6>
                             </div>
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/nosotros">
-                                    <FontAwesomeIcon icon={faUsers} /> Nosotros</a>
+                                    <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/nosotros">
+                                    <FontAwesomeIcon icon={faUsers} /> Nosotros</Link>
                                 </h6>
                             </div>
                             <div className="col-md-2">
                                 <h6 className="text-uppercase font-weight-bold">
-                                    <a className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contactanos">
-                                    <FontAwesomeIcon icon={faComment} /> Contactanos</a>
+                                    <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contactanos">
+                                    <FontAwesomeIcon icon={faComment} /> Contactanos</Link>
                                 </h6>
                             </div>
                         </div>

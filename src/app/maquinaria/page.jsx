@@ -19,11 +19,13 @@ export default function Maquinaria () {
                 <p id="textoMaquinaria" className="text-center">En este apartado podrás encontrar los equipos con los que contamos</p>
             </div>
             <hr className="mb-4" />
-            {maquinariaInfo.maquinas.map((maquina, index) => (
-                <section key={index}>
-                    <TarjetaMaquina titulo={maquina.titulo} descripcion={maquina.descripcion} imagenes={maquina.imagenes} />
-                </section>
-            ))}
+            <div className='ps-2 pe-2'>
+                {maquinariaInfo.maquinas.map((maquina, index) => (
+                    <section key={index}>
+                        <TarjetaMaquina titulo={maquina.titulo} descripcion={maquina.descripcion} imagenes={maquina.imagenes} />
+                    </section>
+                ))}
+            </div>
         </>
     );
 }

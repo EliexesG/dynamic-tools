@@ -4,5 +4,19 @@
 
 .imagenMaquina {
     height: auto;
-    width: 250px;
+    width: 260px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.imagenMaquina:hover {
+    transform: scale(1.1);
+}
+
+.ruedaContenedor {
+    width: 100%
+}
+
+.rueda {
+    position: absolute;
+    left: 50%;
 }
