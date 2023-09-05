@@ -1,4 +1,4 @@
-export const contactos = {
+export const contactosInfo = {
     urlImagenPresentacion: '/images/contactanos/contactanos_page.png',
     contactos: [
         {titulo: "A&M Dynamic Tools S.A.", especialidad: "Empresa", contactos: [
@@ -14,9 +14,9 @@ export const contactos = {
     ]
 };
 
-export const servicios = {
+export const serviciosInfo = {
     urlImagenPresentacion: '/images/servicios/servicios_page.jpg',
-    informacion: [
+    servicios: [
         {
             titulo: "Mecanizado CNC y convencional.", 
             descripcion: "Ofrecemos mecanizado CNC y convencional. El CNC asegura alta calidad y repetibilidad mediante programación digital, reduciendo costos vs el control manual. Automatiza los procesos para ser más eficientes, flexibles y escalables; satisfaciendo necesidades de producción modernas. Representa una opción tecnológica superior para la optimización de procesos productivos."
@@ -83,11 +83,37 @@ export const servicios = {
     ],
 };
 
-export const maquinaria = {
+export const maquinariaInfo = {
     urlImagenPresentacion: '/images/maquinaria/maquinaria_page.jpg',
     maquinas: [
-        {titulo: '', descripcion: '', imagenes: [
-            {id: 1, url: ''}
-        ]}
+        {titulo: 'Torno Convencional', descripcion: 'El torno convencional es una máquina esencial en ingeniería de precisión. Mediante la rotación de la pieza, permite cortar y dar forma a materiales metálicos. Es ampliamente utilizado en la industria para producir piezas con alta precisión.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_torno_convencional_1.jpg'},
+            {id: 2, url: '/images/maquinaria/maquinaria_torno_convencional_2.jpg'}
+        ]},
+        {titulo: 'Torno de Boquilla', descripcion: 'El torno convencional es una máquina esencial en ingeniería de precisión que permite cortar y dar forma a piezas metálicas mediante rotación. El torno de boquilla, por otro lado, se utiliza para mecanizar piezas de pequeño tamaño, como instrumentos médicos y componentes de microelectrónica.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_torno_boquilla.jpg'},
+        ]},
+        {titulo: 'Rectificadora Plana', descripcion: 'La rectificadora plana es una máquina utilizada en ingeniería de precisión para rectificar superficies planas de piezas metálicas, logrando una mayor precisión dimensional y una superficie más uniforme.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_rectificadora_plana1.jpg'},
+            {id: 2, url: '/images/maquinaria/maquinaria_rectificadora_plana2.jpg'},
+        ]},
+        {titulo: 'Proyector Optico de Perfiles', descripcion: 'El proyector óptico de perfiles es una máquina utilizada en ingeniería de precisión para medir y analizar perfiles y dimensiones de piezas.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_proyector_optico_perfiles.jpg'},
+        ]},
+        {titulo: 'Instrumentos de Medición', descripcion: 'Los instrumentos de medición son herramientas utilizadas para obtener mediciones precisas de magnitudes físicas. Incluyen dispositivos como calibradores, micrómetros y reglas, entre otros. Son esenciales en la ingeniería de precisión y en la fabricación de componentes y productos.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_instrumentos_medicion.jpg'},
+        ]},
+        {titulo: 'Fresadora Convencional', descripcion: 'La fresadora convencional es una máquina utilizada en ingeniería de precisión para realizar operaciones de fresado en diferentes materiales.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_fresadora_convencional.jpg'},
+        ]},
+        {titulo: 'Fresadora CNC', descripcion: 'La fresadora CNC es una máquina de control numérico computarizado utilizada para realizar operaciones de fresado de manera automatizada.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_fresadora_CNC.jpg'},
+        ]},
+        {titulo: 'Cierra Horizontal', descripcion: 'La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_cierra_horizontal.jpg'},
+        ]},
+        {titulo: 'Area de Soldadura', descripcion: 'La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.', imagenes: [
+            {id: 1, url: '/images/maquinaria/maquinaria_area_soldadura.jpg'},
+        ]},
     ]
 }

@@ -8,6 +8,6 @@
     transform: scale(1.03);
 }
 
-a:hover {
+.card-body a:hover {
     color: grey !important;
 }
