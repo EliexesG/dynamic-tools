@@ -47,7 +47,7 @@ export default function CarouselServicios ({galeria}) {
                         <Indicador key={imagen.id} imagen={imagen} />
                     ))}
                 </div>
-                <div className="carousel-inner">
+                <div className="carousel-inner h-100 w-100">
                     {galeria.map(imagen => (
                         <div key={imagen.id} className={`carousel-item ${imagen.id === 1 ? 'active' : ''}`}>
                            <Imagen src={imagen.url} height={1000} width={1000} alt={`imagen ${imagen.id}`} className="d-block rounded-4 mt-3" />
