@@ -1,8 +1,12 @@
 'use client'
 
+import { useState } from 'react';
 import './carouselServicios.css'
 
 import Imagen from '@/app/components/Imagen';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
 const Indicador = ({imagen}) => {
         
@@ -21,9 +25,23 @@ const Indicador = ({imagen}) => {
 
 export default function CarouselServicios ({galeria}) {
 
+
+    const [pantallaCompleta, setPantallaCompleta] = useState(false);
+
+    const handlePantallaCompleta = (e) => {
+        setPantallaCompleta(!pantallaCompleta);
+
+        if(pantallaCompleta) {
+            document.body.style.overflow = 'auto';
+        }
+        else {
+            document.body.style.overflow = 'hidden';
+        }
+     }
+
     return (
         <article>
-            <div id="imagenesServicios" className="carousel slide rounded-4 bg-gradient bg-dark" data-bs-ride="carousel">
+            <div id="imagenesServicios" className={`carousel slide bg-gradient bg-dark ${pantallaCompleta ? "mostrarPantallaCompleta" : "rounded-4"}`} data-bs-ride="carousel">
                 <div className="carousel-indicators bg-black rounded p-1">
                     {galeria.map((imagen) => (
                         <Indicador key={imagen.id} imagen={imagen} />
@@ -43,6 +61,9 @@ export default function CarouselServicios ({galeria}) {
                 <button className="carousel-control-next" type="button" data-bs-target="#imagenesServicios" data-bs-slide="next">
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
+                </button>
+                <button className='border border-0 bg-transparent' id='iconExpand' onClick={handlePantallaCompleta}>
+                    <FontAwesomeIcon icon={faExpand} className='fs-2' />
                 </button>
             </div>
         </article>

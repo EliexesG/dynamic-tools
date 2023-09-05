@@ -3,7 +3,7 @@
 import './tarjetaMaquinaria.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 import Imagen from '@/app/components/Imagen';
 
@@ -11,7 +11,7 @@ export default function TarjetaMaquina ({titulo, descripcion, imagenes}) {
     return (
         <article className="row p-3 mb-4 rounded border border-1 border-primary">
             <div className='ruedaContenedor'>
-                <FontAwesomeIcon className='rueda fs-2 text-primary' icon={faCaretDown}/>
+                <FontAwesomeIcon className='rueda fs-2 text-primary' icon={faImage}/>
             </div>
             <div className="col-md-6 row align-items-center justify-content-center mt-4">
                 {imagenes.map(imagen => (
