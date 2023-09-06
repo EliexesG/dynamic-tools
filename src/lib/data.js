@@ -112,7 +112,7 @@ export const maquinariaInfo = {
         {titulo: 'Cierra Horizontal', descripcion: 'La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.', imagenes: [
             {id: 1, url: '/images/maquinaria/maquinaria_cierra_horizontal.jpg'},
         ]},
-        {titulo: 'Area de Soldadura', descripcion: 'La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.', imagenes: [
+        {titulo: 'Area de Soldadura', descripcion: 'El área de soldadura es el espacio físico designado y equipado para llevar a cabo operaciones de soldadura. Es un entorno de trabajo específicamente diseñado para garantizar la seguridad del soldador y la calidad del proceso de soldadura.', imagenes: [
             {id: 1, url: '/images/maquinaria/maquinaria_area_soldadura.jpg'},
         ]},
     ]

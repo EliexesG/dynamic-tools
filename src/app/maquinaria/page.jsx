@@ -3,7 +3,7 @@ import './page.css';
 import Imagen from '../components/Imagen';
 
 import { maquinariaInfo } from '@/lib/data';
-import TarjetaMaquina from './components/tarjetaMaquina';
+import TarjetaMaquina from './components/tarjetaMaquinaria';
 
 export const metadata = {
     title: 'Maquinaria'
