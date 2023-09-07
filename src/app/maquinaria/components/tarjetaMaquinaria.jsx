@@ -6,11 +6,32 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExpand } from '@fortawesome/free-solid-svg-icons';
 
 import Imagen from '@/app/components/Imagen';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function TarjetaMaquina ({titulo, descripcion, imagenes}) {
 
     const [mostrarImagenesCompleto, setMostrarImagenesCompleto] = useState(false);
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            
+            if(mostrarImagenesCompleto === true) {
+                handleMostrarImagenesCompleto(event);
+            }
+
+          }
+        };
+    
+        document.addEventListener('keydown', keyDownHandler);
+    
+        // 👇️ clean up event listener
+        return () => {
+          document.removeEventListener('keydown', keyDownHandler);
+        };
+        
+    });
 
     const handleMostrarImagenesCompleto = (e) => {
         setMostrarImagenesCompleto(!mostrarImagenesCompleto);

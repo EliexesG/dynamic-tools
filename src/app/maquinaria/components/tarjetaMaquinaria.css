@@ -24,6 +24,6 @@
 
 .mostrarImagenesCompleto .contenedorImagenes .imagenMaquina {
     height: auto;
-    width: 85%;
+    width: 65%;
     object-fit: scale-down;
 }

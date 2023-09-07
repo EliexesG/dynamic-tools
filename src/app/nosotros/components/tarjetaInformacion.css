@@ -1,0 +1,13 @@
+.tarjetaInformacion {
+    min-height: 150px;
+    max-height: 300px;
+    transition: all .2s ease-in-out;
+}
+
+.tarjetaInformacion:hover {
+    transform: scale(1.03);
+}
+
+.card-text {
+    text-align: justify;
+}

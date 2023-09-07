@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './carouselServicios.css'
 
 import Imagen from '@/app/components/Imagen';
@@ -27,6 +27,27 @@ export default function CarouselServicios ({galeria}) {
 
 
     const [pantallaCompleta, setPantallaCompleta] = useState(false);
+
+    useEffect(() => {
+        const keyDownHandler = event => {
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            
+            if(pantallaCompleta === true) {
+                handlePantallaCompleta(event);
+            }
+
+          }
+        };
+    
+        document.addEventListener('keydown', keyDownHandler);
+    
+        // 👇️ clean up event listener
+        return () => {
+          document.removeEventListener('keydown', keyDownHandler);
+        };
+        
+    });
 
     const handlePantallaCompleta = (e) => {
         setPantallaCompleta(!pantallaCompleta);
