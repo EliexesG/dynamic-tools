@@ -248,7 +248,7 @@ export const nosotrosInfo = {
   },
   informacionUbicacion: {
     titulo: "¿Dónde nos Ubicamos?",
-    descripcion: "",
+    descripcion: "Para que puedas ubicarnos de forma más sencilla.",
     html: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.2898400034804!2d-84.21890687811525!3d10.003692238385685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0f95f4b047b5f%3A0xe94ccee130656719!2sA%26M%20DynamicTools%20S.A!5e0!3m2!1sen!2scr!4v1694120360882!5m2!1sen!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   }
 };

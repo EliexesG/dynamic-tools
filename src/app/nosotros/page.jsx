@@ -7,8 +7,6 @@ import TarjetaInformacion from "./components/tarjetaInformacion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart, faUsers, faEye, faMap, faMapPin } from "@fortawesome/free-solid-svg-icons";
 
-import { renderToHTML } from "next/dist/server/render";
-
 export const metadata = {
     title: 'Nosotros'
 }
@@ -37,8 +35,10 @@ export default function Nosotros () {
             <hr className='mb-4'></hr>
             <InformacionPlana id="mision" titulo={nosotrosInfo.informacionMision.titulo} descripción={nosotrosInfo.informacionMision.descripcion} />
             <hr className='mb-4'></hr>
-            <InformacionPlana id="ubicacion" titulo={nosotrosInfo.informacionUbicacion.titulo} descripción={nosotrosInfo.informacionUbicacion.descripcion} />
-            <section dangerouslySetInnerHTML={{__html: nosotrosInfo.informacionUbicacion.html}} />
+            <section className="row">
+                <InformacionPlana id="ubicacion" className={"col-md-6"} titulo={nosotrosInfo.informacionUbicacion.titulo} descripción={nosotrosInfo.informacionUbicacion.descripcion} />
+                <article className="col-md-6 rounded d-flex align-items-center justify-content-center" dangerouslySetInnerHTML={{__html: nosotrosInfo.informacionUbicacion.html}} />
+            </section>
         </>
     );
 }

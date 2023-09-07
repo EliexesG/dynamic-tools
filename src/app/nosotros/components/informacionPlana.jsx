@@ -1,9 +1,8 @@
 import './informacionPlana.css'
 
-export default function InformacionPlana ({id, titulo, descripción}) {
+export default function InformacionPlana ({id, titulo, descripción, className}) {
     return (
-        <>
-            <section className='mb-4'>
+            <section className={`mb-4 ${className}`}>
                 <h3 id={id} className="text-center p-3 rounded bg-primary text-white fw-bold mb-4">{titulo}</h3>
                 <article className='row'>
                     <div className='col-md-12 p-3'>
@@ -13,6 +12,5 @@ export default function InformacionPlana ({id, titulo, descripción}) {
                     </div>
                 </article>
             </section>
-        </>
     );
 }
