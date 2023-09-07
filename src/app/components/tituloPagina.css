@@ -1,15 +1,15 @@
-#contenedorImagenTexto {
+#contenedorImagenTextoTitulo {
     position: relative;
 }
 
-#imagenServicios {
+#imagenTitulo {
     width: 100%;
     height: 400px;
     object-fit: cover;
     filter: brightness(50%);
 }
 
-#tituloServicios {
+#tituloPaginaTitulo {
     color: white;
     font-weight: bold;
     position: absolute;
@@ -18,7 +18,7 @@
     transform: translate(-50%, -50%);
 }
 
-#textoServicios {
+#textoPaginaTitulo {
     color: white;
     font-weight: bold;
     position: absolute;

@@ -117,3 +117,7 @@ export const maquinariaInfo = {
         ]},
     ]
 }
+
+export const nosotrosInfo = {
+    urlImagenPresentacion: '/images/nosotros/nosotros_page.jpg'
+}
