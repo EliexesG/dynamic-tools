@@ -1,6 +1,6 @@
 import { maquinariaInfo } from '@/lib/data';
 import TarjetaMaquina from './components/tarjetaMaquinaria';
-import TituloPagina from '../components/TituloPagina';
+import TituloPagina from '../components/tituloPagina';
 
 export const metadata = {
     title: 'Maquinaria'

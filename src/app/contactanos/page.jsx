@@ -1,6 +1,6 @@
 import TarjetaContacto from "./components/tarjetaContacto";
 import FormularioContacto from "./components/formularioContacto";
-import TituloPagina from "../components/TituloPagina";
+import TituloPagina from "../components/tituloPagina";
 
 import { contactosInfo } from "@/lib/data";
 
