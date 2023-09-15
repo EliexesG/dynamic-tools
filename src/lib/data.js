@@ -109,7 +109,7 @@ export const maquinariaInfo = {
   urlImagenPresentacion: "/images/maquinaria/maquinaria_page.jpg",
   titulo: "Maquinaria",
   descripcion: "En este apartado podrás encontrar los equipos con los que contamos",
-  descripcionInicio: "Alguanas de las máquinas a nuestra disposición",
+  descripcionInicio: "Algunas de las máquinas a nuestra disposición",
   maquinas: [
     {
       titulo: "Torno Convencional",

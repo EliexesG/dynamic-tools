@@ -20,9 +20,8 @@ const Indicador = ({imagen}) => {
 }
 
 export default function CarouselMaquinaria ({galeria, id}) {
-
     return (
-        <article className='mb-4'>
+        <article>
             <div id={id} className="carousel slide bg-gradient bg-dark imagenesMaquinaria rounded-4" data-bs-ride="carousel">
                 <div className="carousel-indicators bg-black rounded p-1">
                     {galeria.map((imagen) => (
