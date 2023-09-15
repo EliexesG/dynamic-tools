@@ -1,0 +1,16 @@
+.tarjetaMaquinaria {
+    transition: transform 0.2s ease-in-out !important;
+}
+
+.tarjetaMaquinaria:hover {
+    transform: scale(1.03) !important;
+}
+
+.card-text {
+    max-height: 4.5em;
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

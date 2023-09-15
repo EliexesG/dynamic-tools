@@ -24,6 +24,9 @@ export const contactosInfo = {
 
 export const serviciosInfo = {
   urlImagenPresentacion: "/images/servicios/servicios_page.jpg",
+  titulo: "Servicios",
+  descripcion: "En este apartado podrás encontrar todos los servicios que ofrecemos",
+  descripcionInicio: "Algunos de los servicios que ofrecemos",
   servicios: [
     {
       titulo: "Mecanizado CNC y convencional.",
@@ -104,6 +107,9 @@ export const serviciosInfo = {
 
 export const maquinariaInfo = {
   urlImagenPresentacion: "/images/maquinaria/maquinaria_page.jpg",
+  titulo: "Maquinaria",
+  descripcion: "En este apartado podrás encontrar los equipos con los que contamos",
+  descripcionInicio: "Alguanas de las máquinas a nuestra disposición",
   maquinas: [
     {
       titulo: "Torno Convencional",
@@ -207,7 +213,7 @@ export const nosotrosInfo = {
   urlImagenPresentacion: "/images/nosotros/nosotros_page.jpg",
   informacionPrincipal: {
     titulo: "¿Quienes Somos? (Lo que nos Hace Únicos)",
-    descripción:
+    descripcion:
       "En A&M Dynamic Tools, nos enorgullece ser una entidad siempre confiable en nuestro campo.|Nos destacamos por nuestra pasión, innovación y dedicación hacia nuestros clientes. Lo que nos hace únicos es nuestra capacidad para ofrecer soluciones personalizadas y adaptadas a las necesidades específicas de cada proyecto.|Nuestro equipo de profesionales altamente capacitados y experimentados se compromete a brindar resultados excepcionales. Nos esforzamos por superar las expectativas y entregar productos y servicios de la más alta calidad.|Además, nos diferenciamos por nuestra ética de trabajo, integridad y enfoque en establecer relaciones sólidas con nuestros clientes. Valoramos la confianza y la transparencia en todas nuestras interacciones, lo que nos permite construir asociaciones a largo plazo basadas en la satisfacción mutua.|En A&M Dynamic Tools, nos apasiona impulsar el éxito de nuestros clientes y estamos dedicados a ser su socio confiable en el logro de sus objetivos. Trabajamos incansablemente para mantenernos a la vanguardia de la industria, adoptando tecnologías y enfoques innovadores para mantenernos a la cabeza del mercado.|Explora nuestra empresa y descubre cómo nuestra experiencia, calidad y compromiso nos hacen únicos en el sector. ¡Permítenos ser parte de tu éxito!",
   },
   informacionVision: {
