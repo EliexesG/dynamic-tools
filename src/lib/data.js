@@ -226,9 +226,14 @@ export const nosotrosInfo = {
       "Nuestro Compromiso con la Excelencia y la Integridad.|En A&M Dynamic Tools, nos regimos por un conjunto de valores fundamentales que guían todas nuestras acciones y decisiones. Estos valores son la base de nuestra cultura empresarial y reflejan nuestro compromiso con la excelencia y la integridad en todo lo que hacemos.",
     valores: [
       {
-        titulo: "Excelencia",
+        titulo: "Confianza",
         descripcion:
           "Comprometidos a brindar siempre nuestro máximo esfuerzo en cada aplicación",
+      },
+      {
+        titulo: "Excelencia",
+        descripcion:
+          "Comprometidos con la mejora continúa en nuestros procesos diariamente",
       },
       {
         titulo: "Integridad",
@@ -240,7 +245,7 @@ export const nosotrosInfo = {
           "Garantizamos un entorno compartido limpio, seguro y organizado",
       },
       {
-        titulo: "Enfoque en el cliente",
+        titulo: "Responsabilidad",
         descripcion:
           "Nos responsabilizamos de manera absoluta y realizamos esfuerzos proactivos para asegurar su éxito",
       },

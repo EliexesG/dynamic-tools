@@ -15,7 +15,7 @@ export const metadata = {
     default: 'A&M Dynamic Tools S.A.',
     template: '%s | A&M Dynamic Tools S.A.'
   },
-  description: 'app for A&M Dynamic Tools S.A.',
+  description: 'Somos una empresa encargada de un taller que da soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico.',
   icons:{
     icon: [
       '/images/favicons/favicon.ico?v=4',
@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
           </div>
           <Navbar/>
           <div className="body-content pt-5 pb-5">
-            <main className='container-lg mt-5'>
+            <main className='container pt-4 mt-5'>
               {children}
             </main>
           </div>
