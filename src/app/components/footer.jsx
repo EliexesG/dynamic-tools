@@ -54,7 +54,7 @@ export default function Footer () {
                         <div className="row d-flex justify-content-center">
                             <div className="col-lg-8">
                                 <p>
-                                    Somos una empresa que da soporte de ingeniería a nuestros clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, etc.
+                                    Somos una empresa encargada de un taller que da soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad
                                 </p>
                             </div>
                         </div>
