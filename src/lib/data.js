@@ -1,5 +1,8 @@
 export const contactosInfo = {
   urlImagenPresentacion: "/images/contactanos/contactanos_page.png",
+  titulo: "Contactanos",
+  descripcion: "En este apartado podrás encontrar todos nuestros contactos",
+  descripcionInicio: "Para contactarnos da click aquí",
   contactos: [
     {
       titulo: "A&M Dynamic Tools S.A.",
@@ -112,6 +115,14 @@ export const maquinariaInfo = {
   descripcionInicio: "Algunas de las máquinas a nuestra disposición",
   maquinas: [
     {
+      titulo: "Fresadora CNC",
+      descripcion:
+        "La fresadora CNC es una máquina de control numérico computarizado utilizada para realizar operaciones de fresado de manera automatizada.",
+      imagenes: [
+        { id: 1, url: "/images/maquinaria/maquinaria_fresadora_CNC.jpg" },
+      ],
+    },
+    {
       titulo: "Torno Convencional",
       descripcion:
         "El torno convencional es una máquina esencial en ingeniería de precisión. Mediante la rotación de la pieza, permite cortar y dar forma a materiales metálicos. Es ampliamente utilizado en la industria para producir piezas con alta precisión.",
@@ -127,14 +138,6 @@ export const maquinariaInfo = {
       ],
     },
     {
-      titulo: "Torno de Boquilla",
-      descripcion:
-        "El torno convencional es una máquina esencial en ingeniería de precisión que permite cortar y dar forma a piezas metálicas mediante rotación. El torno de boquilla, por otro lado, se utiliza para mecanizar piezas de pequeño tamaño, como instrumentos médicos y componentes de microelectrónica.",
-      imagenes: [
-        { id: 1, url: "/images/maquinaria/maquinaria_torno_boquilla.jpg" },
-      ],
-    },
-    {
       titulo: "Rectificadora Plana",
       descripcion:
         "La rectificadora plana es una máquina utilizada en ingeniería de precisión para rectificar superficies planas de piezas metálicas, logrando una mayor precisión dimensional y una superficie más uniforme.",
@@ -147,6 +150,14 @@ export const maquinariaInfo = {
           id: 2,
           url: "/images/maquinaria/maquinaria_rectificadora_plana2.jpg",
         },
+      ],
+    },
+    {
+      titulo: "Torno de Boquilla",
+      descripcion:
+        "El torno convencional es una máquina esencial en ingeniería de precisión que permite cortar y dar forma a piezas metálicas mediante rotación. El torno de boquilla, por otro lado, se utiliza para mecanizar piezas de pequeño tamaño, como instrumentos médicos y componentes de microelectrónica.",
+      imagenes: [
+        { id: 1, url: "/images/maquinaria/maquinaria_torno_boquilla.jpg" },
       ],
     },
     {
@@ -180,14 +191,6 @@ export const maquinariaInfo = {
           id: 1,
           url: "/images/maquinaria/maquinaria_fresadora_convencional.jpg",
         },
-      ],
-    },
-    {
-      titulo: "Fresadora CNC",
-      descripcion:
-        "La fresadora CNC es una máquina de control numérico computarizado utilizada para realizar operaciones de fresado de manera automatizada.",
-      imagenes: [
-        { id: 1, url: "/images/maquinaria/maquinaria_fresadora_CNC.jpg" },
       ],
     },
     {

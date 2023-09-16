@@ -12,7 +12,7 @@ export default function Contacto () {
 
     return (
         <>
-            <TituloPagina url={contactosInfo.urlImagenPresentacion} titulo={'Contactanos'} texto={'En este apartado podrás encontrar todos nuestros contactos'} />
+            <TituloPagina url={contactosInfo.urlImagenPresentacion} titulo={contactosInfo.titulo} texto={contactosInfo.descripcion} />
             <section className="row mb-4">
                 {contactosInfo.contactos.map((contacto, index) => (
                     <TarjetaContacto className="col-md-4 mb-4" key={index} titulo={contacto.titulo} contactos={contacto.contactos} especialidad={contacto.especialidad}/>
