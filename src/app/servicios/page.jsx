@@ -14,7 +14,7 @@ export default function Servicios () {
 
     return (
         <>
-            <TituloPagina url={serviciosInfo.urlImagenPresentacion} titulo={'Servicios'} texto={'En este apartado podrás encontrar todos los servicios que ofrecemos'} />
+            <TituloPagina url={serviciosInfo.urlImagenPresentacion} titulo={serviciosInfo.titulo} texto={serviciosInfo.descripcion} />
             <div className='text-center mb-4'><a href='#imagenes' className='text-decoration-none btn-secondary btn text-white p-3'><FontAwesomeIcon icon={faImage}/> Ver Galería</a></div>
             <section className='mb-4'>
                 {serviciosInfo.servicios.map((servicio, index) => (

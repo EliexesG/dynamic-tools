@@ -1,0 +1,18 @@
+.tarjetaServicioInicio {
+    min-height: 150px;
+    max-height: 300px;
+    transition: all .2s ease-in-out;
+}
+
+.tarjetaServicioInicio:hover {
+    transform: scale(1.03);
+}
+
+.tarjetaServicioInicio .card-text {
+    max-height: 4.5em;
+    text-overflow: ellipsis; 
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

@@ -1,5 +1,8 @@
 export const contactosInfo = {
   urlImagenPresentacion: "/images/contactanos/contactanos_page.png",
+  titulo: "Contactanos",
+  descripcion: "En este apartado podrás encontrar todos nuestros contactos",
+  descripcionInicio: "Para contactarnos da click aquí",
   contactos: [
     {
       titulo: "A&M Dynamic Tools S.A.",
@@ -24,6 +27,9 @@ export const contactosInfo = {
 
 export const serviciosInfo = {
   urlImagenPresentacion: "/images/servicios/servicios_page.jpg",
+  titulo: "Servicios",
+  descripcion: "En este apartado podrás encontrar todos los servicios que ofrecemos",
+  descripcionInicio: "Algunos de los servicios que ofrecemos",
   servicios: [
     {
       titulo: "Mecanizado CNC y convencional.",
@@ -104,7 +110,18 @@ export const serviciosInfo = {
 
 export const maquinariaInfo = {
   urlImagenPresentacion: "/images/maquinaria/maquinaria_page.jpg",
+  titulo: "Maquinaria",
+  descripcion: "En este apartado podrás encontrar los equipos con los que contamos",
+  descripcionInicio: "Algunas de las máquinas a nuestra disposición",
   maquinas: [
+    {
+      titulo: "Fresadora CNC",
+      descripcion:
+        "La fresadora CNC es una máquina de control numérico computarizado utilizada para realizar operaciones de fresado de manera automatizada.",
+      imagenes: [
+        { id: 1, url: "/images/maquinaria/maquinaria_fresadora_CNC.jpg" },
+      ],
+    },
     {
       titulo: "Torno Convencional",
       descripcion:
@@ -121,14 +138,6 @@ export const maquinariaInfo = {
       ],
     },
     {
-      titulo: "Torno de Boquilla",
-      descripcion:
-        "El torno convencional es una máquina esencial en ingeniería de precisión que permite cortar y dar forma a piezas metálicas mediante rotación. El torno de boquilla, por otro lado, se utiliza para mecanizar piezas de pequeño tamaño, como instrumentos médicos y componentes de microelectrónica.",
-      imagenes: [
-        { id: 1, url: "/images/maquinaria/maquinaria_torno_boquilla.jpg" },
-      ],
-    },
-    {
       titulo: "Rectificadora Plana",
       descripcion:
         "La rectificadora plana es una máquina utilizada en ingeniería de precisión para rectificar superficies planas de piezas metálicas, logrando una mayor precisión dimensional y una superficie más uniforme.",
@@ -141,6 +150,14 @@ export const maquinariaInfo = {
           id: 2,
           url: "/images/maquinaria/maquinaria_rectificadora_plana2.jpg",
         },
+      ],
+    },
+    {
+      titulo: "Torno de Boquilla",
+      descripcion:
+        "El torno convencional es una máquina esencial en ingeniería de precisión que permite cortar y dar forma a piezas metálicas mediante rotación. El torno de boquilla, por otro lado, se utiliza para mecanizar piezas de pequeño tamaño, como instrumentos médicos y componentes de microelectrónica.",
+      imagenes: [
+        { id: 1, url: "/images/maquinaria/maquinaria_torno_boquilla.jpg" },
       ],
     },
     {
@@ -177,14 +194,6 @@ export const maquinariaInfo = {
       ],
     },
     {
-      titulo: "Fresadora CNC",
-      descripcion:
-        "La fresadora CNC es una máquina de control numérico computarizado utilizada para realizar operaciones de fresado de manera automatizada.",
-      imagenes: [
-        { id: 1, url: "/images/maquinaria/maquinaria_fresadora_CNC.jpg" },
-      ],
-    },
-    {
       titulo: "Cierra Horizontal",
       descripcion:
         "La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.",
@@ -207,7 +216,7 @@ export const nosotrosInfo = {
   urlImagenPresentacion: "/images/nosotros/nosotros_page.jpg",
   informacionPrincipal: {
     titulo: "¿Quienes Somos? (Lo que nos Hace Únicos)",
-    descripción:
+    descripcion:
       "En A&M Dynamic Tools, nos enorgullece ser una entidad siempre confiable en nuestro campo.|Nos destacamos por nuestra pasión, innovación y dedicación hacia nuestros clientes. Lo que nos hace únicos es nuestra capacidad para ofrecer soluciones personalizadas y adaptadas a las necesidades específicas de cada proyecto.|Nuestro equipo de profesionales altamente capacitados y experimentados se compromete a brindar resultados excepcionales. Nos esforzamos por superar las expectativas y entregar productos y servicios de la más alta calidad.|Además, nos diferenciamos por nuestra ética de trabajo, integridad y enfoque en establecer relaciones sólidas con nuestros clientes. Valoramos la confianza y la transparencia en todas nuestras interacciones, lo que nos permite construir asociaciones a largo plazo basadas en la satisfacción mutua.|En A&M Dynamic Tools, nos apasiona impulsar el éxito de nuestros clientes y estamos dedicados a ser su socio confiable en el logro de sus objetivos. Trabajamos incansablemente para mantenernos a la vanguardia de la industria, adoptando tecnologías y enfoques innovadores para mantenernos a la cabeza del mercado.|Explora nuestra empresa y descubre cómo nuestra experiencia, calidad y compromiso nos hacen únicos en el sector. ¡Permítenos ser parte de tu éxito!",
   },
   informacionVision: {

@@ -10,7 +10,7 @@ export default function Maquinaria () {
 
     return (
         <>
-            <TituloPagina url={maquinariaInfo.urlImagenPresentacion} titulo={'Maquinaria'} texto={'En este apartado podrás encontrar los equipos con los que contamos'} />
+            <TituloPagina url={maquinariaInfo.urlImagenPresentacion} titulo={maquinariaInfo.titulo} texto={maquinariaInfo.descripcion} />
             <div className='ps-2 pe-2'>
                 {maquinariaInfo.maquinas.map((maquina, index) => (
                     <section key={index}>
