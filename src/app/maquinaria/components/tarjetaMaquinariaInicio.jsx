@@ -1,6 +1,6 @@
 import './tarjetaMaquinariaInicio.css';
 
-import CarouselMaquinaria from './CarouselMaquinaria';
+import CarouselMaquinaria from './carouselMaquinaria';
 
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
