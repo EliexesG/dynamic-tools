@@ -1,14 +1,14 @@
-.tarjetaServicio {
+.tarjetaServicioInicio {
     min-height: 150px;
     max-height: 300px;
     transition: all .2s ease-in-out;
 }
 
-.tarjetaServicio:hover {
+.tarjetaServicioInicio:hover {
     transform: scale(1.03);
 }
 
-.card-text {
+.tarjetaServicioInicio .card-text {
     max-height: 4.5em;
     text-overflow: ellipsis; 
     overflow: hidden;

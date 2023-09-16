@@ -1,7 +1,4 @@
-'use client'
-
 import './carouselMaquinaria.css'
-
 import Imagen from '@/app/components/Imagen';
 
 const Indicador = ({imagen}) => {
@@ -22,7 +19,7 @@ const Indicador = ({imagen}) => {
 export default function CarouselMaquinaria ({galeria, id}) {
     return (
         <article>
-            <div id={id} className="carousel slide bg-gradient bg-dark imagenesMaquinaria rounded-4" data-bs-ride="carousel">
+            <div id={id} className="carousel slide bg-gradient bg-dark carouselMaquinaria rounded-4" data-bs-ride="carousel">
                 <div className="carousel-indicators bg-black rounded p-1">
                     {galeria.map((imagen) => (
                         <Indicador key={imagen.id} imagen={imagen} />
@@ -35,7 +32,7 @@ export default function CarouselMaquinaria ({galeria, id}) {
                         </div>
                     ))}
                 </div>
-                <button className="carousel-control-prev" type="button" data-bs-target="#imagenesServicios" data-bs-slide="prev">
+                <button className="carousel-control-prev" type="button" data-bs-target={`#${id}`} data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>

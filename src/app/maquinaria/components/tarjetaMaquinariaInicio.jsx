@@ -13,8 +13,8 @@ export default function TarjetaMaquinariaInicio({
  idNumero
 }) {
   return (
-    <article className={`${className} tarjetaMaquinaria`}>
-      <div className="card p-3 shadow tarjetaInformacion rounded-4">
+    <article className={`${className} tarjetaMaquinariaInicio`}>
+      <div className="card p-3 shadow rounded-4">
         <div className="card-header bg-gradient">
           <div className='mb-4'>
             {maquina.imagenes.length > 1 && (

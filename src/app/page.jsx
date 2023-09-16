@@ -17,12 +17,11 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 export default function Home() {
   return (
     <>
-      <TituloPagina url={"/images/inicio/inicio_page.jpg"} titulo={"A&M Dynamic Tools S.A."} texto={"Taller de Ingeniería Mecánica en Precisión"} />
-      <div className="mb-4 d-flex justify-content-center w-100">
-        <Imagen alt={"Logo Completo"} src={"/images/logos/full_size_logo.jpeg"} height={150} width={250} />
-        <Link className="btn btn-secondary text-white ms-2 h-25" href={"/contactanos"} ><FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Contactanos</Link>
+      <div className="mb-4 w-100">
+        <Imagen alt={"Logo Completo"} src={"/images/logos/full_size_logo.jpeg"} height={80} width={180} />
       </div>
-      <hr className='mb-4'></hr>
+      <TituloPagina url={"/images/inicio/inicio_page.jpg"} titulo={"A&M Dynamic Tools S.A."} texto={"Taller de Ingeniería Mecánica en Precisión"} />
+      
       <InformacionPlana id="quienesSomos" titulo={nosotrosInfo.informacionPrincipal.titulo.replace(' (Lo que nos Hace Únicos)', '')} descripcion={nosotrosInfo.informacionPrincipal.descripcion.split('|').slice(0, 3).join('|')} />
       <Link className="btn btn-secondary text-white mb-4" href={"/nosotros"} ><FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más</Link>
       <hr className='mb-4'></hr>

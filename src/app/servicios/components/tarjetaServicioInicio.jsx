@@ -9,7 +9,7 @@ export default function TarjetaServicioInicio({titulo, descripcion, className}) 
     
     return (
         <article className={className}>
-            <div className="card p-3 shadow tarjetaServicio rounded-4">
+            <div className="card p-3 shadow tarjetaServicioInicio rounded-4">
                 <div className="card-header bg-gradient">
                     <h3 className="card-title text-primary fw-bold text-center">
                         <FontAwesomeIcon icon={faHandshakeAngle} />

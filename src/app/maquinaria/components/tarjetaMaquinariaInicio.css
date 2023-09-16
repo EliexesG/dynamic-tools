@@ -1,12 +1,12 @@
-.tarjetaMaquinaria {
+.tarjetaMaquinariaInicio {
     transition: transform 0.2s ease-in-out !important;
 }
 
-.tarjetaMaquinaria:hover {
+.tarjetaMaquinariaInicio:hover {
     transform: scale(1.03) !important;
 }
 
-.card-text {
+.tarjetaMaquinariaInicio .card-text {
     max-height: 4.5em;
     text-overflow: ellipsis; 
     overflow: hidden;

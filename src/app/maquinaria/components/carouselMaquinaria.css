@@ -1,8 +1,8 @@
-.carousel-inner .carousel-item{
+.carouselMaquinaria .carousel-inner .carousel-item{
     height: 300px;
 }
 
-.carousel-inner .carousel-item img{
+.carouselMaquinaria .carousel-inner .carousel-item img{
     height: 85%;
     width: 100%;
     object-fit: scale-down;
