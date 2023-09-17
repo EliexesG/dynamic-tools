@@ -18,7 +18,7 @@ import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 export default function Home() {
   return (
     <>
-      <div className="mb-4 w-100 d-flex justify-content-end border-bottom border-primary pb-2">
+      <div className="mb-4 w-100 d-flex justify-content-center border-bottom border-primary pb-2">
         <Imagen alt={"Logo Completo"} src={"/images/logos/full_size_logo.jpeg"} height={80} width={180} />
       </div>
       <TituloPagina url={"/images/inicio/inicio_page.jpg"} titulo={"A&M Dynamic Tools S.A."} texto={"Taller de Ingeniería Mecánica en Precisión"} />
