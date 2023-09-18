@@ -27,12 +27,8 @@ export default function Navbar () {
     collapseDiv.current.classList.add('collapsing')
     collapseButton.current.classList.add('collapsed')
     collapseButton.current.setAttribute('aria-expanded', false)
-
-    setTimeout(() => {
-      collapseDiv.current.classList.remove('collapsing')
-      collapseDiv.current.classList.add('collapse')    
-    }, 250);
-
+    collapseDiv.current.classList.remove('collapsing')
+    collapseDiv.current.classList.add('collapse')  
   }
 
   return (
