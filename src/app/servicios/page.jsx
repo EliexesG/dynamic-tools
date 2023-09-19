@@ -7,7 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 export const metadata = {
-    title: 'Servicios'
+    title: 'Servicios',
+    description: "Pagina referente a informacion acerca de nuestros servicios como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/servicios"
+    }
 }
 
 export default function Servicios () {
@@ -21,13 +25,13 @@ export default function Servicios () {
                     <TarjetaServicio 
                         key={index} 
                         titulo={servicio.titulo} 
-                        descripcion={servicio.descripcion} 
+                        descripcion={servicio.descripcion}
                     />
                 ))}
             </section>
             <hr className="mb-4 mt4" />
             <section id='imagenes'>
-                <h1 className="text-center fw-bold">Galería</h1>
+                <h2 className="text-center fw-bold">Galería</h2>
                 <p className="text-center fw-bold mb-4">Ejemplos de trabajos realizados en el taller</p>
                 <CarouselServicios galeria={serviciosInfo.galeria} />
             </section>

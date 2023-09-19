@@ -22,7 +22,7 @@ export default function TarjetaServicio ({titulo, descripcion}) {
         <article className="card shadow mb-4 p-4 bg-light">
             <div className="row">
                 <div className="card-header text-center col-md-4 d-flex align-items-center justify-content-center bg-primary bg-gradient">
-                    <h4 className="card-title text-white fw-bold">{titulo}</h4>
+                    <h2 className="card-title text-white fw-bold fs-4">{titulo}</h2>
                 </div>
                 <div className="card-body col-md-6 d-flex align-items-center justify-content-center">
                     <p className={`card-text ${!mostrarTexto ? 'text-ocultado' : 'text-completo'}`}>{descripcion}</p>
@@ -32,6 +32,7 @@ export default function TarjetaServicio ({titulo, descripcion}) {
                     <button 
                         className={`border-0 bg-light bg-opacity-10 ${tuercaGira ? 'icon_spin' : 'icon_start_position'}`}
                         onClick={handleMostrarTexto}
+                        aria-label='expandir'
                     >
                         <FontAwesomeIcon icon={faGear} className="fs-1 icon" />
                     </button>

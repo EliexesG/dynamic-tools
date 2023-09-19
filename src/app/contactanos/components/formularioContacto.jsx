@@ -98,7 +98,7 @@ export default function FormularioContacto () {
 
         <div className="card p-3">
             <div className="card-header">
-                <h1 className="text-center fw-bold card-title">Deja tu Información</h1>
+                <h2 className="text-center fw-bold card-title">Deja tu Información</h2>
                 <p className="text-center fw-bold mb-4 card-text">Nos pondremos en contacto con usted</p>
             </div>
             <div className="card-body">

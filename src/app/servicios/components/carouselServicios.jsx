@@ -83,7 +83,7 @@ export default function CarouselServicios ({galeria}) {
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Next</span>
                 </button>
-                <button className='border border-0 bg-transparent' id='iconExpand' onClick={handlePantallaCompleta}>
+                <button className='border border-0 bg-transparent' id='iconExpand' onClick={handlePantallaCompleta} name='expand_galeria' aria-label='expandir'>
                     <FontAwesomeIcon icon={faExpand} className='fs-2' />
                 </button>
             </div>

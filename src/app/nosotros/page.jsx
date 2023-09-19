@@ -8,7 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart, faUsers, faEye, faMap, faMapPin } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata = {
-    title: 'Nosotros'
+    title: 'Nosotros',
+    description: "Pagina referente a informacion acerca de nosotros como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/nosotros"
+    }
 }
 
 export default function Nosotros () {
@@ -37,7 +41,7 @@ export default function Nosotros () {
             <hr className='mb-4'></hr>
             <section className="row">
                 <InformacionPlana id="ubicacion" className={"col-md-6"} titulo={nosotrosInfo.informacionUbicacion.titulo} descripcion={nosotrosInfo.informacionUbicacion.descripcion} />
-                <article className="col-md-6 rounded d-flex align-items-center justify-content-center" dangerouslySetInnerHTML={{__html: nosotrosInfo.informacionUbicacion.html}} />
+                <div title="mapa" className="col-md-6 rounded d-flex align-items-center justify-content-center" dangerouslySetInnerHTML={{__html: nosotrosInfo.informacionUbicacion.html}} />
             </section>
         </>
     );

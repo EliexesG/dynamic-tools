@@ -18,34 +18,34 @@ export default function Footer () {
                     <section className="mt-5">
                         <div className="row text-center d-flex justify-content-center pt-5">
                             <div className="col-md-2">
-                                <h6 className="text-uppercase font-weight-bold">
+                                <p className="text-uppercase font-weight-bold">
                                     <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/">
                                     <FontAwesomeIcon icon={faHouse} /> Inicio</Link>
-                                </h6>
+                                </p>
                             </div>
                             <div className="col-md-2">
-                                <h6 className="text-uppercase font-weight-bold">
+                                <p className="text-uppercase font-weight-bold">
                                     <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/servicios">
                                     <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios</Link>
-                                </h6>
+                                </p>
                             </div>
                             <div className="col-md-2">
-                                <h6 className="text-uppercase font-weight-bold">
+                                <p className="text-uppercase font-weight-bold">
                                     <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/maquinaria">
                                     <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria</Link>
-                                </h6>
+                                </p>
                             </div>
                             <div className="col-md-2">
-                                <h6 className="text-uppercase font-weight-bold">
+                                <p className="text-uppercase font-weight-bold">
                                     <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/nosotros">
                                     <FontAwesomeIcon icon={faUsers} /> Nosotros</Link>
-                                </h6>
+                                </p>
                             </div>
                             <div className="col-md-2">
-                                <h6 className="text-uppercase font-weight-bold">
+                                <p className="text-uppercase font-weight-bold">
                                     <Link className="text-decoration-none text-white-50 footer-link" aria-current="page" href="/contactanos">
                                     <FontAwesomeIcon icon={faComment} /> Contactanos</Link>
-                                </h6>
+                                </p>
                             </div>
                         </div>
                     </section>

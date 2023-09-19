@@ -11,9 +11,9 @@ export default function TarjetaContacto({titulo, especialidad, contactos, classN
         <article className={className}>
             <div className="card p-3 shadow tarjetaContacto">
                 <div className="card-header bg-primary bg-gradient">
-                    <h4 className="card-title text-white fw-bold text-center">{titulo}</h4>
+                    <h2 className="card-title text-white fw-bold text-center fs-4">{titulo}</h2>
                     {especialidad !== "N/A" && (
-                        <p className='card-title text-white fw-bold text-center'>{especialidad}</p>
+                        <h3 className='card-title text-white fw-bold text-center fs-5'>{especialidad}</h3>
                     )}
                 </div>
                 <div className="card-body">

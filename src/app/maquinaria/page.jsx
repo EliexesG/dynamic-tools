@@ -3,7 +3,11 @@ import TarjetaMaquina from './components/tarjetaMaquinaria';
 import TituloPagina from '../components/tituloPagina';
 
 export const metadata = {
-    title: 'Maquinaria'
+    title: 'Maquinaria',
+    description: "Pagina referente a informacion acerca de las maquinas con las que contamos como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/maquinaria"
+    }
 }
 
 export default function Maquinaria () {
