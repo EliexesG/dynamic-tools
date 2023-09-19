@@ -8,7 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandHoldingHeart, faUsers, faEye, faMap, faMapPin } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata = {
-    title: 'Nosotros'
+    title: 'Nosotros',
+    description: "Pagina referente a informacion acerca de nosotros como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/nosotros"
+    }
 }
 
 export default function Nosotros () {

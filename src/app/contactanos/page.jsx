@@ -5,7 +5,11 @@ import TituloPagina from "../components/tituloPagina";
 import { contactosInfo } from "@/lib/data";
 
 export const metadata = {
-    title: 'Contactanos'
+    title: 'Contactanos',
+    description: "Pagina referente a informacion acerca de nuestros contactos como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/contactanos"
+    }
 }
 
 export default function Contacto () {

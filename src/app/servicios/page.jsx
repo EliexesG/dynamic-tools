@@ -7,7 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 
 export const metadata = {
-    title: 'Servicios'
+    title: 'Servicios',
+    description: "Pagina referente a informacion acerca de nuestros servicios como empresa A&M Dynamic Tools S.A.",
+    alternates: {
+        canonical: "/servicios"
+    }
 }
 
 export default function Servicios () {

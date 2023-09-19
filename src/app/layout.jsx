@@ -28,6 +28,7 @@ export const metadata = {
     ],
     manifest: '/images/favicons/site.webmanifest',
   },
+  metadataBase: new URL("https://www.aymdynamictools.com")
 }
 
 export default function RootLayout({ children }) {
