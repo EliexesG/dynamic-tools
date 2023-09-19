@@ -25,13 +25,13 @@ export default function Servicios () {
                     <TarjetaServicio 
                         key={index} 
                         titulo={servicio.titulo} 
-                        descripcion={servicio.descripcion} 
+                        descripcion={servicio.descripcion}
                     />
                 ))}
             </section>
             <hr className="mb-4 mt4" />
             <section id='imagenes'>
-                <h1 className="text-center fw-bold">Galería</h1>
+                <h2 className="text-center fw-bold">Galería</h2>
                 <p className="text-center fw-bold mb-4">Ejemplos de trabajos realizados en el taller</p>
                 <CarouselServicios galeria={serviciosInfo.galeria} />
             </section>

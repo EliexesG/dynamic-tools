@@ -60,7 +60,7 @@ export default function TarjetaMaquina ({titulo, descripcion, imagenes}) {
                 </div>
             </div>
             <div className="col-md-6 d-flex align-items-center justify-content-center flex-column mt-4" id="contenedorCartaTexto">
-                <h4 className="fw-bold text-center rounded p-2 bg-primary text-white fw-bold">{titulo}</h4>
+                <h2 className="fw-bold text-center rounded p-2 bg-primary text-white fw-bold fs-4">{titulo}</h2>
                 <p>{descripcion}</p>
             </div>
         </article>
