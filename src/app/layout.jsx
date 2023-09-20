@@ -8,6 +8,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import ImportBsJS from './components/importBsJS';
 
+const baseURL = process.env.URL_BASE;
 const font = Roboto({ subsets: ['latin'], weight: '400', display: 'swap'})
 
 export const metadata = {
@@ -28,7 +29,7 @@ export const metadata = {
     ],
     manifest: '/images/favicons/site.webmanifest',
   },
-  metadataBase: new URL("https://www.aymdynamictools.com")
+  metadataBase: new URL(baseURL)
 }
 
 export default function RootLayout({ children }) {
