@@ -1,9 +1,11 @@
+const baseURL = process.env.URL_BASE;
+
 export default function robots() {
     return {
       rules: {
         userAgent: "*",
         allow: "/",
       },
-      sitemap: `https://www.aymdynamictools.com/sitemap.xml`,
+      sitemap: `${baseURL}/sitemap.xml`,
     }
   }

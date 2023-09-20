@@ -1,11 +1,11 @@
 export default async function sitemap () {
-    const baseUrl = "https://www.aymdynamictools.com";
+    const baseURL = process.env.URL_BASE;
 
     return [
-        {url: baseUrl, lastModified: new Date()},
-        {url: `${baseUrl}/contactanos`, lastModified: new Date()},
-        {url: `${baseUrl}/maquinaria`, lastModified: new Date()},
-        {url: `${baseUrl}/nosotros`, lastModified: new Date()},
-        {url: `${baseUrl}/servicios`, lastModified: new Date()}
+        {url: baseURL, lastModified: new Date()},
+        {url: `${baseURL}/contactanos`, lastModified: new Date()},
+        {url: `${baseURL}/maquinaria`, lastModified: new Date()},
+        {url: `${baseURL}/nosotros`, lastModified: new Date()},
+        {url: `${baseURL}/servicios`, lastModified: new Date()}
     ]
 }
