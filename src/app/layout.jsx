@@ -29,7 +29,10 @@ export const metadata = {
     ],
     manifest: '/images/favicons/site.webmanifest',
   },
-  metadataBase: new URL(baseURL)
+  metadataBase: new URL(baseURL),
+  verification: {
+    google: "pcNfz3a4pNm57U-NIdp0LRcHIf1d37aVN1rAi8IG0BU",
+  },
 }
 
 export default function RootLayout({ children }) {
