@@ -27,3 +27,15 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+@media (max-width: 385px) {
+    #textoPaginaTitulo {
+        top: 250px;
+    }
+}
+
+@media (max-width: 270px) {
+    #textoPaginaTitulo {
+        top: 260px;
+    }
+}
