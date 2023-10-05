@@ -252,6 +252,10 @@ export const nosotrosInfo = {
     descripcion:
       "Proporcionar a nuestros clientes una perspectiva adicional para la resolución de problemas en diseño y fabricación en proyectos de ingeniería.| A través del uso de herramientas de CAD/CAM y tecnología CNC, generamos un valor agregado al ofrecer experiencia en diversas industrias, como médica, alimenticia, diseño, mantenimiento, fabricación y ensamble de moldes. Nos comprometemos a brindar soluciones innovadoras y de calidad, impulsando el éxito y la satisfacción de nuestros clientes en cada proyecto.",
   },
+  informacionQueHacemos: {
+    titulo: "¿Que Hacemos?",
+    descripcion: "Somos una empresa encargada de un taller de presición.|Damos soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad."
+  },
   informacionValores: {
     titulo: "Los Valores que nos Caracterizan",
     descripcion:

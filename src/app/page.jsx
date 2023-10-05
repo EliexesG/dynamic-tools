@@ -22,7 +22,7 @@ export default function Home() {
         <Imagen alt={"Logo Completo"} src={"/images/logos/full_size_logo.jpeg"} height={80} width={180} />
       </div>
       <TituloPagina url={"/images/inicio/inicio_page.jpg"} titulo={"A&M Dynamic Tools S.A."} texto={"Taller de Ingeniería Mecánica en Precisión"} />
-      
+      <InformacionPlana id="quehacemos" titulo={nosotrosInfo.informacionQueHacemos.titulo} descripcion={nosotrosInfo.informacionQueHacemos.descripcion}/>
       <InformacionPlana id="quienesSomos" titulo={nosotrosInfo.informacionPrincipal.titulo.replace(' (Lo que nos Hace Únicos)', '')} descripcion={nosotrosInfo.informacionPrincipal.descripcion.split('|').slice(0, 3).join('|')} />
       <Link className="btn btn-secondary text-white mb-4" href={"/nosotros"} ><FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más</Link>
       <hr className='mb-4'></hr>
