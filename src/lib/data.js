@@ -96,30 +96,6 @@ export const serviciosInfo = {
         "Somos especialistas en la fabricación de engranajes e piñones para sectores industriales exigentes. Contamos con una línea de producción equipada para el mecanizado. Nuestro diseño y programación CNC garantiza máxima precisión en los modulos, tolerancias geometricas y rugosidades superficiales. Contamos con personal calificado y una amplia experiencia en estándares como DIN, ANSI, AGMA. Realizamos trabajos de acuerdo a planos del cliente u órdenes de fabricación propias. Nuestro objetivo es brindar soluciones de alta calidad y fiabilidad a la medida de su aplicación.",
     },
   ],
-  galeria: [
-    { id: 1, url: "/images/servicios/servicios_1.jpg" },
-    { id: 2, url: "/images/servicios/servicios_2.jpg" },
-    { id: 3, url: "/images/servicios/servicios_3.jpg" },
-    { id: 4, url: "/images/servicios/servicios_4.jpg" },
-    { id: 5, url: "/images/servicios/servicios_5.jpg" },
-    { id: 6, url: "/images/servicios/servicios_6.jpg" },
-    { id: 7, url: "/images/servicios/servicios_7.jpg" },
-    { id: 8, url: "/images/servicios/servicios_8.jpg" },
-    { id: 9, url: "/images/servicios/servicios_9.jpg" },
-    { id: 10, url: "/images/servicios/servicios_10.jpg" },
-    { id: 11, url: "/images/servicios/servicios_11.jpg" },
-    { id: 12, url: "/images/servicios/servicios_12.jpg" },
-    { id: 13, url: "/images/servicios/servicios_13.jpg" },
-    { id: 14, url: "/images/servicios/servicios_14.jpg" },
-    { id: 15, url: "/images/servicios/servicios_15.jpg" },
-    { id: 16, url: "/images/servicios/servicios_16.jpg" },
-    { id: 17, url: "/images/servicios/servicios_17.jpg" },
-    { id: 18, url: "/images/servicios/servicios_18.jpg" },
-    { id: 19, url: "/images/servicios/servicios_19.jpg" },
-    { id: 20, url: "/images/servicios/servicios_20.jpg" },
-    { id: 21, url: "/images/servicios/servicios_21.jpg" },
-    { id: 22, url: "/images/servicios/servicios_22.jpg" }
-  ],
 };
 
 export const maquinariaInfo = {
@@ -298,3 +274,37 @@ export const nosotrosInfo = {
     html: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.2898400034804!2d-84.21890687811525!3d10.003692238385685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0f95f4b047b5f%3A0xe94ccee130656719!2sA%26M%20DynamicTools%20S.A!5e0!3m2!1sen!2scr!4v1694120360882!5m2!1sen!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   }
 };
+
+export const galeriaInfo = {
+  urlImagenPresentacion: "/images/galeria/galeria_page.jpg",
+  titulo: "Galería",
+  descripcion: "En este apartado podrás encontrar nuestra galería de presentación",
+  imagenes: [
+    {id: 1, url: '/images/galeria/imagenes/galeria_1.jpg'},
+    {id: 2, url: '/images/galeria/imagenes/galeria_2.jpg'},
+    {id: 3, url: '/images/galeria/imagenes/galeria_3.jpg'},
+    {id: 4, url: '/images/galeria/imagenes/galeria_4.jpg'},
+    {id: 5, url: '/images/galeria/imagenes/galeria_5.jpg'},
+    {id: 6, url: '/images/galeria/imagenes/galeria_6.jpg'},
+    {id: 7, url: '/images/galeria/imagenes/galeria_7.jpg'},
+    {id: 8, url: '/images/galeria/imagenes/galeria_8.jpg'},
+    {id: 9, url: '/images/galeria/imagenes/galeria_9.jpg'},
+    {id: 10, url: '/images/galeria/imagenes/galeria_10.jpg'},
+    {id: 11, url: '/images/galeria/imagenes/galeria_11.jpg'},
+    {id: 12, url: '/images/galeria/imagenes/galeria_12.jpg'},
+    {id: 13, url: '/images/galeria/imagenes/galeria_13.jpg'},
+    {id: 14, url: '/images/galeria/imagenes/galeria_14.jpg'},
+    {id: 15, url: '/images/galeria/imagenes/galeria_15.jpg'},
+    {id: 16, url: '/images/galeria/imagenes/galeria_16.jpg'},
+    {id: 17, url: '/images/galeria/imagenes/galeria_17.jpg'},
+    {id: 18, url: '/images/galeria/imagenes/galeria_18.jpg'},
+    {id: 19, url: '/images/galeria/imagenes/galeria_19.jpg'},
+    {id: 20, url: '/images/galeria/imagenes/galeria_20.jpg'},
+    {id: 21, url: '/images/galeria/imagenes/galeria_21.jpg'},
+    {id: 22, url: '/images/galeria/imagenes/galeria_22.jpg'},
+    {id: 23, url: '/images/galeria/imagenes/galeria_23.jpg'},
+  ],
+  videos: [
+    {id: 1, url: '/images/galeria/videos/galeria_video_1.mp4'}
+  ]
+}

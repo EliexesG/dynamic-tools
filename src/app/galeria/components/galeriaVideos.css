@@ -1,0 +1,15 @@
+.carousel-inner .carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.carousel-inner .carousel-item video {
+  height: 80%;
+  width: 70%;
+  object-fit: scale-down;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
