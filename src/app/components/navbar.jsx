@@ -9,7 +9,8 @@ import { faHouse,
          faHandshakeAngle, 
          faScrewdriverWrench, 
          faUsers, 
-         faComment } 
+         faComment,
+         faImage } 
 from "@fortawesome/free-solid-svg-icons";
 
 import Link from 'next/link';
@@ -54,6 +55,10 @@ export default function Navbar () {
               <li className="nav-item">
                 <Link className="nav-link" href="/maquinaria" onClick={handleCollapse}>
                 <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" href="/galeria" onClick={handleCollapse}>
+                <FontAwesomeIcon icon={faImage} /> Galería</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" href="/nosotros" onClick={handleCollapse}>
