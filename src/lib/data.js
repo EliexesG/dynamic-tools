@@ -31,7 +31,8 @@ export const contactosInfo = {
 export const serviciosInfo = {
   urlImagenPresentacion: "/images/servicios/servicios_page.jpg",
   titulo: "Servicios",
-  descripcion: "En este apartado podrás encontrar todos los servicios que ofrecemos",
+  descripcion:
+    "En este apartado podrás encontrar todos los servicios que ofrecemos",
   descripcionInicio: "Algunos de los servicios que ofrecemos",
   servicios: [
     {
@@ -101,7 +102,8 @@ export const serviciosInfo = {
 export const maquinariaInfo = {
   urlImagenPresentacion: "/images/maquinaria/maquinaria_page.jpg",
   titulo: "Maquinaria",
-  descripcion: "En este apartado podrás encontrar los equipos con los que contamos",
+  descripcion:
+    "En este apartado podrás encontrar los equipos con los que contamos",
   descripcionInicio: "Algunas de las máquinas a nuestra disposición",
   maquinas: [
     {
@@ -230,7 +232,8 @@ export const nosotrosInfo = {
   },
   informacionQueHacemos: {
     titulo: "¿Que Hacemos?",
-    descripcion: "Somos una empresa encargada de un taller de presición.|Damos soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad."
+    descripcion:
+      "Somos una empresa encargada de un taller de presición.|Damos soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad.",
   },
   informacionValores: {
     titulo: "Los Valores que nos Caracterizan",
@@ -271,40 +274,39 @@ export const nosotrosInfo = {
   informacionUbicacion: {
     titulo: "¿Dónde nos Ubicamos?",
     descripcion: "Para que puedas ubicarnos de forma más sencilla.",
-    html: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.2898400034804!2d-84.21890687811525!3d10.003692238385685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0f95f4b047b5f%3A0xe94ccee130656719!2sA%26M%20DynamicTools%20S.A!5e0!3m2!1sen!2scr!4v1694120360882!5m2!1sen!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-  }
+    html: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d982.2898400034804!2d-84.21890687811525!3d10.003692238385685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0f95f4b047b5f%3A0xe94ccee130656719!2sA%26M%20DynamicTools%20S.A!5e0!3m2!1sen!2scr!4v1694120360882!5m2!1sen!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
 };
 
 export const galeriaInfo = {
   urlImagenPresentacion: "/images/galeria/galeria_page.jpg",
   titulo: "Galería",
-  descripcion: "En este apartado podrás encontrar nuestra galería de presentación",
+  descripcion:
+    "En este apartado podrás encontrar nuestra galería de presentación",
   imagenes: [
-    {id: 1, url: '/images/galeria/imagenes/galeria_1.jpg'},
-    {id: 2, url: '/images/galeria/imagenes/galeria_2.jpg'},
-    {id: 3, url: '/images/galeria/imagenes/galeria_3.jpg'},
-    {id: 4, url: '/images/galeria/imagenes/galeria_4.jpg'},
-    {id: 5, url: '/images/galeria/imagenes/galeria_5.jpg'},
-    {id: 6, url: '/images/galeria/imagenes/galeria_6.jpg'},
-    {id: 7, url: '/images/galeria/imagenes/galeria_7.jpg'},
-    {id: 8, url: '/images/galeria/imagenes/galeria_8.jpg'},
-    {id: 9, url: '/images/galeria/imagenes/galeria_9.jpg'},
-    {id: 10, url: '/images/galeria/imagenes/galeria_10.jpg'},
-    {id: 11, url: '/images/galeria/imagenes/galeria_11.jpg'},
-    {id: 12, url: '/images/galeria/imagenes/galeria_12.jpg'},
-    {id: 13, url: '/images/galeria/imagenes/galeria_13.jpg'},
-    {id: 14, url: '/images/galeria/imagenes/galeria_14.jpg'},
-    {id: 15, url: '/images/galeria/imagenes/galeria_15.jpg'},
-    {id: 16, url: '/images/galeria/imagenes/galeria_16.jpg'},
-    {id: 17, url: '/images/galeria/imagenes/galeria_17.jpg'},
-    {id: 18, url: '/images/galeria/imagenes/galeria_18.jpg'},
-    {id: 19, url: '/images/galeria/imagenes/galeria_19.jpg'},
-    {id: 20, url: '/images/galeria/imagenes/galeria_20.jpg'},
-    {id: 21, url: '/images/galeria/imagenes/galeria_21.jpg'},
-    {id: 22, url: '/images/galeria/imagenes/galeria_22.jpg'},
-    {id: 23, url: '/images/galeria/imagenes/galeria_23.jpg'},
+    { id: 1, url: "/images/galeria/imagenes/galeria_1.jpg" },
+    { id: 2, url: "/images/galeria/imagenes/galeria_2.jpg" },
+    { id: 3, url: "/images/galeria/imagenes/galeria_3.jpg" },
+    { id: 4, url: "/images/galeria/imagenes/galeria_4.jpg" },
+    { id: 5, url: "/images/galeria/imagenes/galeria_5.jpg" },
+    { id: 6, url: "/images/galeria/imagenes/galeria_6.jpg" },
+    { id: 7, url: "/images/galeria/imagenes/galeria_7.jpg" },
+    { id: 8, url: "/images/galeria/imagenes/galeria_8.jpg" },
+    { id: 9, url: "/images/galeria/imagenes/galeria_9.jpg" },
+    { id: 10, url: "/images/galeria/imagenes/galeria_10.jpg" },
+    { id: 11, url: "/images/galeria/imagenes/galeria_11.jpg" },
+    { id: 12, url: "/images/galeria/imagenes/galeria_12.jpg" },
+    { id: 13, url: "/images/galeria/imagenes/galeria_13.jpg" },
+    { id: 14, url: "/images/galeria/imagenes/galeria_14.jpg" },
+    { id: 15, url: "/images/galeria/imagenes/galeria_15.jpg" },
+    { id: 16, url: "/images/galeria/imagenes/galeria_16.jpg" },
+    { id: 17, url: "/images/galeria/imagenes/galeria_17.jpg" },
+    { id: 18, url: "/images/galeria/imagenes/galeria_18.jpg" },
+    { id: 19, url: "/images/galeria/imagenes/galeria_19.jpg" },
+    { id: 20, url: "/images/galeria/imagenes/galeria_20.jpg" },
+    { id: 21, url: "/images/galeria/imagenes/galeria_21.jpg" },
+    { id: 22, url: "/images/galeria/imagenes/galeria_22.jpg" },
+    { id: 23, url: "/images/galeria/imagenes/galeria_23.jpg" },
   ],
-  videos: [
-    {id: 1, url: '/images/galeria/videos/galeria_video_1.mp4'}
-  ]
-}
+  videos: [{ id: 1, url: "/images/galeria/videos/galeria_video_1.mp4" }],
+};

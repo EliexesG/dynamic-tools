@@ -1,29 +1,27 @@
 #contenedorCartaTexto {
-    text-align: justify;
+  text-align: justify;
 }
 
 .imagenMaquina {
-    height: auto;
-    width: 260px;
+  height: auto;
+  width: 260px;
 }
 
 .mostrarImagenesCompleto {
-    position: fixed;
-    padding-top: 5px;
-    top: 0;
-    left: 0;
-    margin: 0 !important;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    overflow: auto;
-    background-color: rgba(33, 37, 41, 0.99);
+  position: fixed;
+  padding-top: 5px;
+  top: 0;
+  left: 0;
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  overflow: auto;
+  background-color: rgba(33, 37, 41, 0.99);
 }
 
-
-
 .mostrarImagenesCompleto .contenedorImagenes .imagenMaquina {
-    height: auto;
-    width: 65%;
-    object-fit: scale-down;
+  height: auto;
+  width: 65%;
+  object-fit: scale-down;
 }

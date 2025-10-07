@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { Transporter, mailOptionsClliente, mailOptionsCorporativo } from "@/config/nodemailer";
+import {
+  Transporter,
+  mailOptionsClliente,
+  mailOptionsCorporativo,
+} from "@/config/nodemailer";
 
-const generarContenidoCorporativo = async ({cuerpo}) => {
-
-    var html = `<!DOCTYPE html>
+const generarContenidoCorporativo = async ({ cuerpo }) => {
+  var html = `<!DOCTYPE html>
     <html>
     <head>
       <style>
@@ -57,17 +60,16 @@ const generarContenidoCorporativo = async ({cuerpo}) => {
       </table>
       
     </body>
-    </html>`
+    </html>`;
 
-    return {
-        text: `Detalles de la petición:\n\nCorreo del Cliente: ${cuerpo.correo}\n\nTipo: ${cuerpo.tipo}\n\nPetición: ${cuerpo.peticion}\n\nFecha: ${cuerpo.fecha}`,
-        html,
-    }
-}
+  return {
+    text: `Detalles de la petición:\n\nCorreo del Cliente: ${cuerpo.correo}\n\nTipo: ${cuerpo.tipo}\n\nPetición: ${cuerpo.peticion}\n\nFecha: ${cuerpo.fecha}`,
+    html,
+  };
+};
 
-const generarContenidoCliente = async ({cuerpo}) => {
-    
-    var html = `<!DOCTYPE html>
+const generarContenidoCliente = async ({ cuerpo }) => {
+  var html = `<!DOCTYPE html>
     <html>
     <head>
       <title>Confirmación de petición</title>
@@ -101,53 +103,49 @@ const generarContenidoCliente = async ({cuerpo}) => {
       </footer>
     
     </body>
-    </html>`
+    </html>`;
 
-    return {
-        text: `Estimado/a Cliente\nRecibimos su petición con los siguientes detalles:\n\nCorreo: ${cuerpo.correo}\nTipo de petición: ${cuerpo.tipo}\nPetición: ${cuerpo.peticion}\n\nEstamos procesando su solicitud y nos pondremos en contacto pronto\n\n© 2023 A&M Dynamic Tools S.A.`,
-        html,
-    }
-}
+  return {
+    text: `Estimado/a Cliente\nRecibimos su petición con los siguientes detalles:\n\nCorreo: ${cuerpo.correo}\nTipo de petición: ${cuerpo.tipo}\nPetición: ${cuerpo.peticion}\n\nEstamos procesando su solicitud y nos pondremos en contacto pronto\n\n© 2023 A&M Dynamic Tools S.A.`,
+    html,
+  };
+};
 
-export async function POST (req) {
+export async function POST(req) {
+  var data = await req.json();
+  var MailOptionsCorporativo = mailOptionsCorporativo();
+  var MailOptionsCliente = mailOptionsClliente(data.cuerpo.correo);
 
-    var data = await req.json();
-    var MailOptionsCorporativo = mailOptionsCorporativo();
-    var MailOptionsCliente = mailOptionsClliente(data.cuerpo.correo);
+  try {
+    const ContenidoCorporativo = await generarContenidoCorporativo(data);
+    const ContenidoCliente = await generarContenidoCliente(data);
 
-    try {
+    var attachments = data.adjuntos ? data.adjuntos : null;
 
-        const ContenidoCorporativo = await generarContenidoCorporativo(data);
-        const ContenidoCliente = await generarContenidoCliente(data);
+    //Se envía correo a la empresa
+    await Transporter.sendMail({
+      ...MailOptionsCorporativo,
+      ...ContenidoCorporativo,
+      ...(attachments && { attachments }),
+      subject: data.asunto,
+    });
 
-        var attachments = data.adjuntos ? data.adjuntos : null;
+    //Se envía correo al cliente
+    await Transporter.sendMail({
+      ...MailOptionsCliente,
+      ...ContenidoCliente,
+      subject: "A&M Dynamic Tools S.A. | Contacto",
+    });
 
-        //Se envía correo a la empresa
-        await Transporter.sendMail({
-            ...MailOptionsCorporativo,
-            ...ContenidoCorporativo,
-            ...(attachments && {attachments}),
-            subject: data.asunto,
-        });
-
-        //Se envía correo al cliente
-        await Transporter.sendMail({
-            ...MailOptionsCliente,
-            ...ContenidoCliente,
-            subject: "A&M Dynamic Tools S.A. | Contacto",
-        });
-
-        return NextResponse.json(
-            {response: 'success', status: 200},
-            {status: 200}
-        );
-
-    }
-    catch (error) {
-        console.log(error);
-        return NextResponse.json(
-            {response: 'error', status: 400},
-            {status: 400}
-        );
-    }
+    return NextResponse.json(
+      { response: "success", status: 200 },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { response: "error", status: 400 },
+      { status: 400 }
+    );
+  }
 }

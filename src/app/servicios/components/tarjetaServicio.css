@@ -1,68 +1,70 @@
 .card-text {
-    text-align: justify;
-    margin-bottom: 36px;
-    max-height: 500px;
-    transition: all ease-in 0.3s;
-    overflow: auto;
+  text-align: justify;
+  margin-bottom: 36px;
+  max-height: 500px;
+  transition: all ease-in 0.3s;
+  overflow: auto;
 }
 
 @keyframes delay-overflow {
-    from { overflow: auto; }
+  from {
+    overflow: auto;
+  }
 }
 
 .text-ocultado {
-    /*width: calc(100%);
+  /*width: calc(100%);
     overflow: hidden !important;
     max-height: 4.5em !important; 
     line-height: 24px !important;
     text-overflow: ellipsis !important;
     */
-    max-height: 4.5em;
-    text-overflow: ellipsis; 
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-
-    
+  max-height: 4.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .text-completo {
-    /*
+  /*
     max-height: initial !important;
     text-overflow: clip !important;
     */
-    text-overflow: initial;
-    overflow: visible;
-    -webkit-line-clamp: initial;
-    animation: .2s delay-overflow;
+  text-overflow: initial;
+  overflow: visible;
+  -webkit-line-clamp: initial;
+  line-clamp: initial;
+  animation: 0.2s delay-overflow;
 }
 
 .icon {
-    transition: transform .3s ease-in-out;
-    color: black;
+  transition: transform 0.3s ease-in-out;
+  color: black;
 }
 
 .icon:hover {
-    transform: rotate(20deg);
+  transform: rotate(20deg);
 }
 
 .icon_spin {
-    transition: transform .2s ease-in-out;
-    transform: rotate(-40deg);
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(-40deg);
 }
 
 .icon_start_position {
-    transition: transform .2s ease-in-out;
-    transform: rotate(40deg);
+  transition: transform 0.2s ease-in-out;
+  transform: rotate(40deg);
 }
 
 .arrow_up {
-    transition: transform .5s ease-in-out;
-    transform: rotate(-180deg);
+  transition: transform 0.5s ease-in-out;
+  transform: rotate(-180deg);
 }
 
 .arrow_down {
-    transition: transform .5s ease-in-out;
-    transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+  transform: rotate(0deg);
 }

@@ -8,29 +8,27 @@ export default function GaleriaImagenes({ imagenes }) {
   const [pantallaCompleta, setPantallaCompleta] = useState(false);
 
   useEffect(() => {
-    const keyDownHandler = event => {
-      if (event.key === 'Escape') {
+    const keyDownHandler = (event) => {
+      if (event.key === "Escape") {
         event.preventDefault();
-        
-        if(pantallaCompleta === true) {
+
+        if (pantallaCompleta === true) {
           handlePantallaCompleta(event);
         }
-
       }
     };
 
-    document.addEventListener('keydown', keyDownHandler);
+    document.addEventListener("keydown", keyDownHandler);
 
     // 👇️ clean up event listener
     return () => {
-      document.removeEventListener('keydown', keyDownHandler);
+      document.removeEventListener("keydown", keyDownHandler);
     };
-    
-});
+  });
 
   const handlePantallaCompleta = (e) => {
     setPantallaCompleta(!pantallaCompleta);
-    console.log('hola')
+    console.log("hola");
     if (pantallaCompleta) {
       document.body.style.overflow = "auto";
     } else {
