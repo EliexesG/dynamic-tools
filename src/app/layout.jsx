@@ -26,7 +26,7 @@ export const metadata = {
   },
   metadataBase: new URL(baseURL),
   verification: {
-    google: "pcNfz3a4pNm57U-NIdp0LRcHIf1d37aVN1rAi8IG0BU",
+    google: process.env.GOOGLE_VERIFICATION,
   },
 };
 
