@@ -5,9 +5,6 @@ import "./carouselServicios.css";
 
 import Imagen from "@/app/components/Imagen";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExpand } from "@fortawesome/free-solid-svg-icons";
-
 const Indicador = ({ imagen }) => {
   return (
     <>
@@ -128,7 +125,7 @@ export default function CarouselServicios({ galeria }) {
           name="expand_galeria"
           aria-label="expandir"
         >
-          <FontAwesomeIcon icon={faExpand} className="fs-2" />
+          {/* <FontAwesomeIcon icon={faExpand} className="fs-2" /> */}
         </button>
       </div>
     </article>

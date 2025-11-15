@@ -4,9 +4,6 @@ import { serviciosInfo, galeriaInfo } from "@/lib/data";
 import TarjetaServicio from "./components/tarjetaServicio";
 import CarouselServicios from "./components/carouselServicios";
 import TituloPagina from "../components/tituloPagina";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
 export const metadata = {
@@ -31,7 +28,7 @@ export default function Servicios() {
           href="/galeria"
           className="text-decoration-none btn-secondary btn text-white p-3"
         >
-          <FontAwesomeIcon icon={faImage} /> Ver Galería
+          {/* <FontAwesomeIcon icon={faImage} /> Ver Galería */}
         </Link>
       </div>
       <section className="mb-4">

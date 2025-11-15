@@ -1,17 +1,8 @@
 import { nosotrosInfo } from "@/lib/data";
 
 import TituloPagina from "../components/tituloPagina";
-import InformacionPlana from "./components/informacionPlana";
+import InformacionPlana from "../components/informacionPlana";
 import TarjetaInformacion from "./components/tarjetaInformacion";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandHoldingHeart,
-  faUsers,
-  faEye,
-  faMap,
-  faMapPin,
-} from "@fortawesome/free-solid-svg-icons";
 
 export const metadata = {
   title: "Nosotros",
@@ -37,31 +28,31 @@ export default function Nosotros() {
           href="#quienesSomos"
           className="text-decoration-none btn-secondary btn text-white p-2 me-1 mb-1"
         >
-          <FontAwesomeIcon icon={faUsers} /> Quienes Somos
+          {/* <FontAwesomeIcon icon={faUsers} /> Quienes Somos */}
         </a>
         <a
           href="#valores"
           className="text-decoration-none btn-primary btn text-white p-2 me-1 mb-1"
         >
-          <FontAwesomeIcon icon={faHandHoldingHeart} /> Valores
+          {/* <FontAwesomeIcon icon={faHandHoldingHeart} /> Valores */}
         </a>
         <a
           href="#vision"
           className="text-decoration-none btn-secondary btn text-white p-2 me-1 mb-1"
         >
-          <FontAwesomeIcon icon={faEye} /> Visión
+          {/* <FontAwesomeIcon icon={faEye} /> Visión */}
         </a>
         <a
           href="#mision"
           className="text-decoration-none btn-primary btn text-white p-2 me-1 mb-1"
         >
-          <FontAwesomeIcon icon={faMap} /> Misión
+          {/* <FontAwesomeIcon icon={faMap} /> Misión */}
         </a>
         <a
           href="#ubicacion"
           className="text-decoration-none btn-secondary btn text-white p-2 me-1 mb-1"
         >
-          <FontAwesomeIcon icon={faMapPin} /> Ubicación
+          {/* <FontAwesomeIcon icon={faMapPin} /> Ubicación */}
         </a>
       </div>
       <InformacionPlana

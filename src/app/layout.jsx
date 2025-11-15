@@ -1,15 +1,10 @@
-import "./custom.scss";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-
-import { Roboto } from "next/font/google";
+import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-import ImportBsJS from "./components/importBsJS";
 
 const baseURL = process.env.URL_BASE;
-const font = Roboto({ subsets: ["latin"], weight: "400", display: "swap" });
 
 export const metadata = {
   title: {
@@ -33,15 +28,19 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body style={font.style}>
-        <ImportBsJS />
-        <div>
-          <Toaster position="top-center" reverseOrder={false} />
+      <body>
+        {/* Toast */}
+        <Toaster position="top-center" reverseOrder={false} />
+
+        {/* Navbar */}
+        <Navbar className="w-full" />
+
+        {/* Content */}
+        <div className="mt-[120px] flex flex-col items-center w-full ps-4 pe-4">
+          <main>{children}</main>
         </div>
-        <Navbar />
-        <div className="body-content pt-5 pb-5">
-          <main className="container pt-4 mt-5">{children}</main>
-        </div>
+
+        {/* Footer */}
         <Footer />
       </body>
     </html>

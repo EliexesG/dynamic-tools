@@ -1,8 +1,5 @@
 import "./tarjetaContacto.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
 export default function TarjetaContacto({
   titulo,
   especialidad,
@@ -33,9 +30,9 @@ export default function TarjetaContacto({
                     : `mailto:${contacto.detalle}`
                 }
               >
-                <FontAwesomeIcon
+                {/* <FontAwesomeIcon
                   icon={contacto.tipo.includes("Cel") ? faPhone : faEnvelope}
-                />{" "}
+                />{" "} */}
                 {`${contacto.tipo}: ${contacto.detalle}`}
               </a>
             </p>

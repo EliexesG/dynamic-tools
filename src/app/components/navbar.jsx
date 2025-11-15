@@ -1,128 +1,129 @@
 "use client";
 
-import "./navbar.css";
-
 import Imagen from "./Imagen";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faHandshakeAngle,
-  faScrewdriverWrench,
-  faUsers,
-  faComment,
-  faImage,
-} from "@fortawesome/free-solid-svg-icons";
-
 import Link from "next/link";
 
-import { useRef } from "react";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/app/components/ui/navigation-menu";
+
+import {
+  User,
+  Contact,
+  Image,
+  Handshake,
+  ToolCase,
+  Menu,
+  House,
+} from "lucide-react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const collapseDiv = useRef(null);
-  const collapseButton = useRef(null);
+  const opcionesMenu = [
+    { href: "/", icono: House, titulo: "Inicio" },
+    { href: "/servicios", icono: Handshake, titulo: "Servicios" },
+    { href: "/maquinaria", icono: ToolCase, titulo: "Maquinaria" },
+    { href: "/galeria", icono: Image, titulo: "Galería" },
+    { href: "/nosotros", icono: User, titulo: "Nosotros" },
+    { href: "/contactanos", icono: Contact, titulo: "Contactanos" },
+  ];
 
-  const handleCollapse = (e) => {
-    collapseDiv.current.classList.remove("show", "collapse");
-    collapseDiv.current.classList.add("collapsing");
-    collapseButton.current.classList.add("collapsed");
-    collapseButton.current.setAttribute("aria-expanded", false);
-    collapseDiv.current.classList.remove("collapsing");
-    collapseDiv.current.classList.add("collapse");
-  };
+  const currentURL = usePathname();
+  const tamannoMinimo = 850;
+  const [esMobile, setEsMobile] = useState(false);
+
+  useEffect(() => setEsMobile(window.innerWidth < tamannoMinimo), []);
+
+  window?.addEventListener("resize", () => {
+    setEsMobile(window.innerWidth < tamannoMinimo);
+  });
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary position-fixed w-100 top-0 z-3 bg-gradient">
-      <div className="container-fluid">
+    <nav className="fixed top-0 z-50 w-full bg-primary text-primary-foreground shadow-sm">
+      <div className="flex items-center justify-between h-16 px-4 mx-auto">
+        {/* Logo */}
         <Link
-          className="navbar-brand align-items-center"
           href="/"
-          onClick={handleCollapse}
+          className="flex items-center space-x-2 hover:opacity-90 transition"
         >
           <Imagen
-            src={"/images/logos/small_size_logo.png"}
-            alt="brand-logo"
+            src="/images/logos/small_size_logo.png"
+            alt="A&M Dynamic Tools S.A. Logo"
             width={55}
             height={49}
             className="me-2 rounded"
           />
-          <span>A&M Dynamic Tools S.A.</span>
+          <span className="text-lg font-medium">A&M Dynamic Tools S.A.</span>
         </Link>
-        <button
-          ref={collapseButton}
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarOpciones"
-          aria-controls="navbarOpciones"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div
-          className="collapse navbar-collapse"
-          id="navbarOpciones"
-          ref={collapseDiv}
-        >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                aria-current="page"
-                href="/"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faHouse} /> Inicio
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/servicios"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/maquinaria"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/galeria"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faImage} /> Galería
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/nosotros"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faUsers} /> Nosotros
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/contactanos"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faComment} /> Contactanos
-              </Link>
-            </li>
-          </ul>
-        </div>
+
+        {/* Menu options for desktop */}
+        {!esMobile && (
+          <NavigationMenu>
+            <NavigationMenuList>
+              {opcionesMenu.map((opcion, i) => {
+                const isActive = currentURL === opcion.href;
+                const Icon = opcion.icono;
+
+                return (
+                  <NavigationMenuLink
+                    key={i}
+                    asChild
+                    className={isActive ? "bg-secondary" : ""}
+                  >
+                    <Link
+                      href={opcion.href}
+                      className="flex flex-row items-center transition group/navbar-link"
+                      onClick={(e) => e.currentTarget.blur()}
+                    >
+                      <Icon
+                        size={16}
+                        className={
+                          "text-white group-hover/navbar-link:text-black"
+                        }
+                      />
+                      <span className="ms-2">{opcion.titulo}</span>
+                    </Link>
+                  </NavigationMenuLink>
+                );
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+
+        {/* Mobile menu button */}
+        {esMobile && (
+          <NavigationMenu
+            className={"[&_div.absolute]:left-auto [&_div.absolute]:right-0"}
+          >
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-primary text-primary-foreground">
+                  <Menu />
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="rounded shadow-lg">
+                  {opcionesMenu.map((opcion, i) => (
+                    <NavigationMenuLink key={i} asChild>
+                      <Link
+                        href={opcion.href}
+                        className="flex flex-row items-center gap-2 px-3 py-2"
+                        onClick={(e) => e.currentTarget.blur()}
+                      >
+                        <opcion.icono size={16} />
+                        {opcion.titulo}
+                      </Link>
+                    </NavigationMenuLink>
+                  ))}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
       </div>
     </nav>
   );

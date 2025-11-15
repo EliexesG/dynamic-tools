@@ -1,9 +1,6 @@
 "use client";
 
 import "./tarjetaServicio.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function TarjetaServicio({ titulo, descripcion }) {
@@ -33,12 +30,12 @@ export default function TarjetaServicio({ titulo, descripcion }) {
           </p>
         </div>
         <div className="col-md-2 d-flex align-items-center justify-content-center">
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faArrowDown}
             className={`fs-4 ms-1 ${
               flechaHaciaArriba ? "arrow_up" : "arrow_down"
             }`}
-          />
+          /> */}
           <button
             className={`border-0 bg-light bg-opacity-10 ${
               tuercaGira ? "icon_spin" : "icon_start_position"
@@ -46,7 +43,7 @@ export default function TarjetaServicio({ titulo, descripcion }) {
             onClick={handleMostrarTexto}
             aria-label="expandir"
           >
-            <FontAwesomeIcon icon={faGear} className="fs-1 icon" />
+            {/* <FontAwesomeIcon icon={faGear} className="fs-1 icon" /> */}
           </button>
         </div>
       </div>

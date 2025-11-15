@@ -3,8 +3,6 @@ import "./tarjetaMaquinariaInicio.css";
 import CarouselMaquinaria from "./carouselMaquinaria";
 
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Imagen from "@/app/components/Imagen";
 
 export default function TarjetaMaquinariaInicio({
@@ -45,7 +43,7 @@ export default function TarjetaMaquinariaInicio({
             className="btn btn-secondary text-white w-100"
             href={"/maquinaria"}
           >
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más
+            {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más */}
           </Link>
         </div>
       </div>

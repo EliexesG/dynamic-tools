@@ -9,23 +9,20 @@ import { contactosInfo } from "@/lib/data";
 import TarjetaMaquinariaInicio from "./maquinaria/components/tarjetaMaquinariaInicio";
 
 import TarjetaServicioInicio from "./servicios/components/tarjetaServicioInicio";
-import InformacionPlana from "./nosotros/components/informacionPlana";
+import InformacionPlana from "./components/informacionPlana";
 import Link from "next/link";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
     <>
-      <div className="mb-4 w-100 d-flex justify-content-center border-bottom border-primary pb-2">
+      {/* <div className="mb-4 w-100 d-flex justify-content-center border-bottom border-primary pb-2">
         <Imagen
           alt={"Logo Completo"}
           src={"/images/logos/full_size_logo.jpeg"}
           height={80}
           width={180}
         />
-      </div>
+      </div> */}
       <TituloPagina
         url={"/images/inicio/inicio_page.jpg"}
         titulo={"A&M Dynamic Tools S.A."}
@@ -48,7 +45,7 @@ export default function Home() {
           .join("|")}
       />
       <Link className="btn btn-secondary text-white mb-4" href={"/nosotros"}>
-        <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más
+        {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más */}
       </Link>
       <hr className="mb-4"></hr>
       <InformacionPlana
@@ -93,7 +90,7 @@ export default function Home() {
           className="btn btn-secondary text-white mb-4"
           href={"/contactanos"}
         >
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> */}
         </Link>
       </div>
     </>

@@ -2,9 +2,6 @@
 
 import "./tarjetaMaquinaria.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExpand } from "@fortawesome/free-solid-svg-icons";
-
 import Imagen from "@/app/components/Imagen";
 import { useState, useEffect } from "react";
 
@@ -52,7 +49,7 @@ export default function TarjetaMaquina({ titulo, descripcion, imagenes }) {
             className="btn btn-secondary text-white"
             onClick={handleMostrarImagenesCompleto}
           >
-            <FontAwesomeIcon icon={faExpand} />
+            {/* <FontAwesomeIcon icon={faExpand} /> */}
             <span className="ms-2 fw-bold">
               {mostrarImagenesCompleto ? "Minimizar" : "Maximizar"}
             </span>

@@ -1,11 +1,4 @@
 import "./tarjetaServicioInicio.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandshakeAngle,
-  faArrowUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons";
-
 import Link from "next/link";
 
 export default function TarjetaServicioInicio({
@@ -18,7 +11,7 @@ export default function TarjetaServicioInicio({
       <div className="card p-3 shadow tarjetaServicioInicio rounded-4">
         <div className="card-header bg-gradient">
           <h3 className="card-title text-primary fw-bold text-center">
-            <FontAwesomeIcon icon={faHandshakeAngle} />
+            {/* <FontAwesomeIcon icon={faHandshakeAngle} /> */}
             {` ${titulo}`}
           </h3>
         </div>
@@ -30,7 +23,7 @@ export default function TarjetaServicioInicio({
             className="btn btn-secondary text-white w-100"
             href={"/servicios"}
           >
-            <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más
+            {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más */}
           </Link>
         </div>
       </div>
