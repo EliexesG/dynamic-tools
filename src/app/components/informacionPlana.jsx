@@ -8,7 +8,7 @@ export default function InformacionPlana({
     <section className={`mb-4 ${className}`}>
       <h2
         id={id}
-        className="text-center p-3 rounded bg-primary text-white font-bold mb-4 text-2xl"
+        className="text-center p-3 rounded text-white font-bold mb-4 text-2xl bg-gradient-to-r from-primary to-gray-800"
       >
         {titulo}
       </h2>
@@ -18,7 +18,7 @@ export default function InformacionPlana({
             <p
               className={`${
                 index === 0
-                  ? "font-bold text-center text-xl border-secondary mb-3"
+                  ? "font-bold text-center text-xl border-b-1 border-secondary mb-3 py-1"
                   : "text-justify"
               }`}
               key={index}

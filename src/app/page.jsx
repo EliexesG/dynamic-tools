@@ -1,5 +1,4 @@
 import TituloPagina from "./components/tituloPagina";
-import Imagen from "./components/Imagen";
 
 import { nosotrosInfo } from "@/lib/data";
 import { serviciosInfo } from "@/lib/data";
@@ -12,27 +11,27 @@ import TarjetaServicioInicio from "./servicios/components/tarjetaServicioInicio"
 import InformacionPlana from "./components/informacionPlana";
 import Link from "next/link";
 
+import { Button } from "./components/ui/button";
+import { LucideEye, MailIcon } from "lucide-react";
+
 export default function Home() {
   return (
-    <>
-      {/* <div className="mb-4 w-100 d-flex justify-content-center border-bottom border-primary pb-2">
-        <Imagen
-          alt={"Logo Completo"}
-          src={"/images/logos/full_size_logo.jpeg"}
-          height={80}
-          width={180}
-        />
-      </div> */}
+    <main>
+      {/* Titulo de la pagina */}
       <TituloPagina
         url={"/images/inicio/inicio_page.jpg"}
         titulo={"A&M Dynamic Tools S.A."}
         texto={"Taller de Ingeniería Mecánica en Precisión"}
       />
+
+      {/* que hacemos */}
       <InformacionPlana
         id="quehacemos"
         titulo={nosotrosInfo.informacionQueHacemos.titulo}
         descripcion={nosotrosInfo.informacionQueHacemos.descripcion}
       />
+
+      {/* quienes somos */}
       <InformacionPlana
         id="quienesSomos"
         titulo={nosotrosInfo.informacionPrincipal.titulo.replace(
@@ -44,16 +43,23 @@ export default function Home() {
           .slice(0, 3)
           .join("|")}
       />
-      <Link className="btn btn-secondary text-white mb-4" href={"/nosotros"}>
-        {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más */}
+      <Link href={"/nosotros"} className="ms-2">
+        <Button className="text-white" variant="secondary">
+          <LucideEye></LucideEye>
+          Ver Más
+        </Button>
       </Link>
-      <hr className="mb-4"></hr>
+
+      <hr className="mb-4 mt-4"></hr>
+
+      {/* Los servicios que se ofrecen */}
       <InformacionPlana
         id="servicios"
         titulo={serviciosInfo.titulo}
         descripcion={serviciosInfo.descripcionInicio}
       />
-      <div className="row">
+
+      <div className="grid md:grid-cols-3 gap-4">
         {serviciosInfo.servicios.slice(0, 3).map((servicio, index) => (
           <TarjetaServicioInicio
             className="mb-4 col-md-4"
@@ -63,36 +69,44 @@ export default function Home() {
           />
         ))}
       </div>
-      <hr className="mb-4"></hr>
+
+      <hr className="mb-4 mt-4"></hr>
+
+      {/* Maquinaria */}
       <InformacionPlana
         id="maquinaria"
         titulo={maquinariaInfo.titulo}
         descripcion={maquinariaInfo.descripcionInicio}
       />
-      <div className="row">
+      <div className="grid md:grid-cols-3 gap-4">
         {maquinariaInfo.maquinas.slice(0, 3).map((maquina, index) => (
           <TarjetaMaquinariaInicio
             className="mb-4 col-md-4"
             key={index}
             maquina={maquina}
-            idNumero={index}
           />
         ))}
       </div>
-      <hr className="mb-4"></hr>
+
+      <hr className="mb-4 mt-4"></hr>
+
+      {/* Contactenos */}
       <InformacionPlana
-        id="maquinaria"
+        id="contactenos"
         titulo={contactosInfo.titulo}
         descripcion={contactosInfo.descripcionInicio}
       />
-      <div className="d-flex justify-content-center">
+      <div className="flex flex-row justify-center w-full mb-4">
         <Link
-          className="btn btn-secondary text-white mb-4"
+          className="btn btn-secondary text-white"
           href={"/contactanos"}
         >
           {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> */}
+          <Button variant="secondary" className="text-white text-lg">
+            <MailIcon></MailIcon>
+          </Button>
         </Link>
       </div>
-    </>
+    </main>
   );
 }

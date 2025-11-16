@@ -1,4 +1,18 @@
-import "./tarjetaServicioInicio.css";
+import { Button } from "@/app/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/app/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/app/components/ui/tooltip";
+import { HandshakeIcon, LucideEye } from "lucide-react";
 import Link from "next/link";
 
 export default function TarjetaServicioInicio({
@@ -7,26 +21,35 @@ export default function TarjetaServicioInicio({
   className,
 }) {
   return (
-    <article className={className}>
-      <div className="card p-3 shadow tarjetaServicioInicio rounded-4">
-        <div className="card-header bg-gradient">
-          <h3 className="card-title text-primary fw-bold text-center">
-            {/* <FontAwesomeIcon icon={faHandshakeAngle} /> */}
-            {` ${titulo}`}
-          </h3>
-        </div>
-        <div className="card-body">
-          <p className="card-text">{descripcion}</p>
-        </div>
-        <div className="card-footer">
-          <Link
-            className="btn btn-secondary text-white w-100"
-            href={"/servicios"}
-          >
-            {/* <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más */}
+    <Card className={"w-full " + className}>
+      <CardHeader className="grid-cols-1!">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <CardTitle className="flex items-center gap-2">
+              <HandshakeIcon></HandshakeIcon>
+              <p className="w-full overflow-hidden text-ellipsis mb-0 whitespace-nowrap">
+                {titulo}
+              </p>
+            </CardTitle>
+          </TooltipTrigger>
+          <TooltipContent>{titulo}</TooltipContent>
+        </Tooltip>
+      </CardHeader>
+      <CardContent>
+        <p className="w-full max-h-[4.5em] text-ellipsis line-clamp-3">
+          {descripcion}
+        </p>
+      </CardContent>
+      <CardFooter>
+        <CardAction>
+          <Link href={"./servicios"}>
+            <Button variant="secondary" className="text-white">
+              <LucideEye></LucideEye>
+              Ver Más
+            </Button>
           </Link>
-        </div>
-      </div>
-    </article>
+        </CardAction>
+      </CardFooter>
+    </Card>
   );
 }
