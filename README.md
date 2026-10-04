@@ -1,45 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# A&M Dynamic Tools S.A. — Sitio web
 
-## Getting Started
+Sitio corporativo de **A&M Dynamic Tools S.A.**, un taller de ingeniería
+mecánica en precisión. Construido con [Next.js](https://nextjs.org/) 15 (App
+Router) y React 19, con estilos basados en Bootstrap 5 y Sass.
 
-First, run the development server:
+## Requisitos previos
+
+- Node.js 18.18 o superior
+- npm (incluido con Node.js)
+
+## Instalación
+
+```bash
+npm install
+```
+
+## Variables de entorno
+
+Copia la plantilla y completa los valores reales. **Nunca** subas secretos al
+repositorio.
+
+```bash
+cp .env.example .env.local
+```
+
+| Variable | Obligatoria | Uso |
+| --- | --- | --- |
+| `URL_BASE` | Sí | URL base del sitio. La usan `src/app/layout.jsx` (`metadataBase`), `src/app/sitemap.js` y `src/app/robots.js`. Sin ella la app falla al arrancar/compilar con `Invalid URL`. Ejemplo: `https://dynamictoolscr.com` (en local: `http://localhost:3000`). |
+| `GOOGLE_VERIFICATION` | No | Token de verificación de Google Search Console (`metadata.verification`). |
+| `SMTP_USER`, `SMTP_PASS`, `SMTP_SERVICE` | No | Credenciales SMTP de Nodemailer usadas por el formulario de contacto (`src/config/nodemailer.js` y `src/app/api/contacto/route.js`). Si no se configuran, el formulario no podrá enviar correos. `SMTP_SERVICE` es `gmail` por defecto. |
+| `CONTACT_RECIPIENT_EMAIL`, `CONTACT_CC_EMAIL`, `CONTACT_FROM_EMAIL` | No | Direcciones usadas por el correo de contacto (por ahora definidas en `src/config/nodemailer.js`). |
+
+## Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en el navegador. La página se
+recarga automáticamente al editar los archivos.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Compilación y producción
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Estructura del proyecto
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+src/
+├─ app/                 # Rutas del App Router
+│  ├─ layout.jsx        # Layout raíz: metadatos, Navbar, Footer, Toaster
+│  ├─ page.jsx          # Inicio
+│  ├─ nosotros/         # Nosotros
+│  ├─ servicios/        # Servicios
+│  ├─ maquinaria/       # Maquinaria
+│  ├─ galeria/          # Galería de imágenes y videos
+│  ├─ contactanos/      # Contacto + formulario
+│  ├─ not-found.jsx     # Página 404 personalizada
+│  ├─ api/contacto/     # Route Handler POST del formulario
+│  ├─ robots.js         # robots.txt
+│  └─ sitemap.js        # sitemap.xml
+├─ components/          # Navbar, Footer, BarraContacto, etc.
+├─ config/              # Configuración de Nodemailer
+└─ lib/                 # Datos del sitio, helpers de API y validación
+```
 
 ## `public/` — NO PARKING
 
-`public/` is for assets that ship to production (site images, favicons, fonts),
-owned by the site design. **Never stage large binaries here** (design source
-files, installers, videos, PSDs, 5 MB+ images). Anything dropped into `public/`
-gets served to every visitor and ships with every deploy.
+`public/` es para assets que se sirven en producción (imágenes del sitio,
+favicons, fuentes) y son parte del diseño. **Nunca** subas binarios grandes aquí
+(fuentes de diseño, instaladores, videos, PSDs, imágenes de más de 5 MB).
+Todo lo que se coloca en `public/` se sirve a cada visitante y viaja en cada
+despliegue.
 
-- If a file is only for development, docs, or team exchange: keep it out of the repo.
-- Optimize images before committing (they ship to users on every page load).
-- If it is not needed at runtime, do not put it in `public/`.
+- Si un archivo es solo para desarrollo, documentación o intercambio interno: mantenlo fuera del repositorio.
+- Optimiza las imágenes antes de subirlas (se envían en cada carga de página).
+- Si no se usa en tiempo de ejecución, no lo pongas en `public/`.

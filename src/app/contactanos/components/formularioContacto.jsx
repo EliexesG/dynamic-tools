@@ -10,6 +10,20 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { ConvertirArchivosToAdjuntos } from "@/lib/utils";
 
+const MensajeErrorEnvio = (envio) => {
+  if (envio && envio.code === "RATE_LIMITED") {
+    return envio.retryAfter
+      ? `Demasiadas solicitudes. Inténtalo de nuevo en ${envio.retryAfter} segundos.`
+      : "Demasiadas solicitudes, inténtalo más tarde.";
+  }
+
+  return (
+    envio?.error ||
+    envio?.message ||
+    "No se pudo enviar la solicitud, inténtalo más tarde"
+  );
+};
+
 export default function FormularioContacto() {
   const schemaFormulario = yup.object().shape({
     tipoSolicitud: yup.number().min(1, "Debe seleccionar el tipo de solicitud"),
@@ -73,25 +87,22 @@ export default function FormularioContacto() {
     try {
       const envio = await EnviarCorreo(data);
 
-      if (envio.status === 200) {
+      if (envio.ok) {
         toast.success("Se ha enviado la solicitud correctamente", {
           id: idToast,
         });
-      } else if (envio.status === 400) {
-        toast.error("Error al enviar solicitud, intente más tarde", {
-          id: idToast,
-        });
+        setTipoSolicitud(-1);
+        actions.resetForm();
+        return;
       }
+
+      toast.error(MensajeErrorEnvio(envio), { id: idToast });
     } catch (err) {
       console.log(err);
-      toast.error("Error al enviar solicitud, intente más tarde", {
+      toast.error("No se pudo enviar la solicitud, inténtalo más tarde", {
         id: idToast,
       });
     }
-
-    setTipoSolicitud(-1);
-
-    actions.resetForm();
   };
 
   return (

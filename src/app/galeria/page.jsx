@@ -4,6 +4,15 @@ import TituloPagina from "../components/tituloPagina";
 import GaleriaImagenes from "./components/galeriaImagenes";
 import GaleriaVideos from "./components/galeriaVideos";
 
+export const metadata = {
+  title: "Galería",
+  description:
+    "Página referente a la galería de imágenes y videos de los trabajos y proyectos de A&M Dynamic Tools S.A.",
+  alternates: {
+    canonical: "/galeria",
+  },
+};
+
 export default function Galeria() {
   return (
     <>
