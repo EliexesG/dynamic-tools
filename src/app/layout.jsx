@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import BarraContacto from "./components/barraContacto";
 import ImportBsJS from "./components/importBsJS";
 
 const baseURL = process.env.URL_BASE;
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           <main className="container pt-4 mt-5">{children}</main>
         </div>
         <Footer />
+        <BarraContacto />
       </body>
     </html>
   );

@@ -11,10 +11,14 @@ import {
   faScrewdriverWrench,
   faUsers,
   faComment,
+  faCommentDots,
   faImage,
+  faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Link from "next/link";
+
+import { contactoDirecto } from "@/lib/data";
 
 import { useRef } from "react";
 
@@ -118,10 +122,29 @@ export default function Navbar() {
                 href="/contactanos"
                 onClick={handleCollapse}
               >
-                <FontAwesomeIcon icon={faComment} /> Contactanos
+                <FontAwesomeIcon icon={faComment} /> Contáctanos
               </Link>
             </li>
           </ul>
+          <div className="d-none d-lg-flex align-items-center gap-2 pb-2 pb-lg-0">
+            <a
+              className="btn btn-sm btn-secondary text-white"
+              href={contactoDirecto.telefonoHref}
+              aria-label={`Llamar al ${contactoDirecto.telefono}`}
+            >
+              <FontAwesomeIcon icon={faPhone} aria-hidden="true" /> Llamar
+            </a>
+            <a
+              className="btn btn-sm btn-outline-light"
+              href={contactoDirecto.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Escribir por WhatsApp"
+            >
+              <FontAwesomeIcon icon={faCommentDots} aria-hidden="true" />{" "}
+              WhatsApp
+            </a>
+          </div>
         </div>
       </div>
     </nav>

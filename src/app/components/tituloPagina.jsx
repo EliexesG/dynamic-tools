@@ -12,6 +12,7 @@ export default function TituloPagina({ url, titulo, texto }) {
           alt={titulo}
           height={3000}
           width={3000}
+          sizes="100vw"
           className="rounded bg-dark"
         />
         <h1 id="tituloPaginaTitulo" className="text-center">

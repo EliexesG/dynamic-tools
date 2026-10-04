@@ -1,6 +1,6 @@
 export const contactosInfo = {
   urlImagenPresentacion: "/images/contactanos/contactanos_page.png",
-  titulo: "Contactanos",
+  titulo: "Contáctanos",
   descripcion: "En este apartado podrás encontrar todos nuestros contactos",
   descripcionInicio: "Para contactarnos da click aquí",
   contactos: [
@@ -26,6 +26,12 @@ export const contactosInfo = {
       ],
     },
   ],
+};
+
+export const contactoDirecto = {
+  telefono: "8923 1003",
+  telefonoHref: "tel:+50689231003",
+  whatsappHref: "https://wa.me/50689231003",
 };
 
 export const serviciosInfo = {
@@ -194,9 +200,9 @@ export const maquinariaInfo = {
     },
     {
       id: 8,
-      titulo: "Cierra Horizontal",
+      titulo: "Sierra Horizontal",
       descripcion:
-        "La cierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.",
+        "La sierra horizontal es una máquina utilizada para realizar cortes horizontales en diversos materiales.",
       imagenes: [
         { id: 1, url: "/images/maquinaria/maquinaria_cierra_horizontal.jpg" },
       ],
@@ -233,7 +239,7 @@ export const nosotrosInfo = {
   informacionQueHacemos: {
     titulo: "¿Que Hacemos?",
     descripcion:
-      "Somos una empresa encargada de un taller de presición.|Damos soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, naumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad.",
+      "Somos una empresa encargada de un taller de precisión.|Damos soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado e integración de sistemas hidráulicos, neumáticos y control eléctrico, representando nuestra marca con valores de confianza, responsabilidad e integridad.",
   },
   informacionValores: {
     titulo: "Los Valores que nos Caracterizan",

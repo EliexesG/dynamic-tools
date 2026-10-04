@@ -30,6 +30,7 @@ export default function TarjetaMaquinariaInicio({
                 alt={"Imagen de maquina"}
                 height={300}
                 width={1000}
+                sizes="(max-width: 767.98px) 100vw, 33vw"
               />
             )}
           </div>

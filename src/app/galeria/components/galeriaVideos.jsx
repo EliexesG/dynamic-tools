@@ -38,7 +38,7 @@ export default function GaleriaVideos({ videos }) {
       <div
         id="galeriaVideos"
         className="carousel slide carousel-fade"
-        data-mdb-ride="carousel"
+        data-bs-ride="carousel"
       >
         <div className="carousel-indicators">
           {videos.map((video) => (
@@ -61,8 +61,8 @@ export default function GaleriaVideos({ videos }) {
         <button
           className="carousel-control-prev"
           type="button"
-          data-mdb-target="#galeriaVideos"
-          data-mdb-slide="prev"
+          data-bs-target="#galeriaVideos"
+          data-bs-slide="prev"
         >
           <span
             className="carousel-control-prev-icon"
@@ -73,8 +73,8 @@ export default function GaleriaVideos({ videos }) {
         <button
           className="carousel-control-next"
           type="button"
-          data-mdb-target="#galeriaVideos"
-          data-mdb-slide="next"
+          data-bs-target="#galeriaVideos"
+          data-bs-slide="next"
         >
           <span
             className="carousel-control-next-icon"

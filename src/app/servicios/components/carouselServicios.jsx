@@ -92,6 +92,7 @@ export default function CarouselServicios({ galeria }) {
                 height={1000}
                 width={1000}
                 alt={`imagen ${imagen.id}`}
+                sizes="(max-width: 767.98px) 100vw, 60vw"
                 className="d-block rounded-4 mt-3"
               />
             </div>

@@ -4,8 +4,33 @@ import {
   mailOptionsClliente,
   mailOptionsCorporativo,
 } from "@/config/nodemailer";
+import {
+  attachmentContentType,
+  checkAttachments,
+  checkRateLimit,
+  escapeHtml,
+  escapeHtmlMultiline,
+  getClientIp,
+  sanitizeFilename,
+  sanitizeHeader,
+  sanitizeText,
+  validateContactPayload,
+} from "@/lib/contacto";
 
-const generarContenidoCorporativo = async ({ cuerpo }) => {
+const errorResponse = (status, code, message, field) => {
+  return NextResponse.json(
+    {
+      response: "error",
+      status,
+      error: message,
+      code,
+      ...(field ? { field } : {}),
+    },
+    { status }
+  );
+};
+
+const generarContenidoCorporativo = ({ cuerpo }) => {
   var html = `<!DOCTYPE html>
     <html>
     <head>
@@ -28,6 +53,7 @@ const generarContenidoCorporativo = async ({ cuerpo }) => {
         td, th {
           border: 1px solid #ddd;
           padding: 8px; 
+          white-space: pre-wrap;
         }
         
         tr:nth-child(even) {
@@ -43,19 +69,19 @@ const generarContenidoCorporativo = async ({ cuerpo }) => {
       <table>
         <tr>
           <td>Correo del cliente</td> 
-          <td>${cuerpo.correo}</td>
+          <td>${escapeHtml(cuerpo.correo)}</td>
         </tr>
         <tr>
           <td>Tipo</td>
-          <td>${cuerpo.tipo}</td> 
+          <td>${escapeHtml(cuerpo.tipo)}</td> 
         </tr>
         <tr>
           <td>Petición</td>
-          <td>${cuerpo.peticion}</td>
+          <td>${escapeHtmlMultiline(cuerpo.peticion)}</td>
         </tr>
         <tr>
           <td>Fecha</td>
-          <td>${cuerpo.fecha}</td>
+          <td>${escapeHtml(cuerpo.fecha)}</td>
         </tr>
       </table>
       
@@ -68,7 +94,7 @@ const generarContenidoCorporativo = async ({ cuerpo }) => {
   };
 };
 
-const generarContenidoCliente = async ({ cuerpo }) => {
+const generarContenidoCliente = ({ cuerpo }) => {
   var html = `<!DOCTYPE html>
     <html>
     <head>
@@ -89,9 +115,9 @@ const generarContenidoCliente = async ({ cuerpo }) => {
         <p>Recibimos su petición con los siguientes detalles:</p>
     
         <ul>
-          <li>Correo: <strong>${cuerpo.correo}</strong></li> 
-          <li>Tipo de petición: <strong>${cuerpo.tipo}</strong></li>
-          <li>Petición: <strong>${cuerpo.peticion}</strong></li>
+          <li>Correo: <strong>${escapeHtml(cuerpo.correo)}</strong></li> 
+          <li>Tipo de petición: <strong>${escapeHtml(cuerpo.tipo)}</strong></li>
+          <li>Petición: <strong>${escapeHtmlMultiline(cuerpo.peticion)}</strong></li>
         </ul>
     
         <p>Estamos procesando su solicitud y nos pondremos en contacto pronto.</p>
@@ -112,22 +138,80 @@ const generarContenidoCliente = async ({ cuerpo }) => {
 };
 
 export async function POST(req) {
-  var data = await req.json();
-  var MailOptionsCorporativo = mailOptionsCorporativo();
-  var MailOptionsCliente = mailOptionsClliente(data.cuerpo.correo);
+  const ip = getClientIp(req.headers);
+  const limit = checkRateLimit(ip);
+
+  if (!limit.allowed) {
+    return NextResponse.json(
+      {
+        response: "error",
+        status: 429,
+        error: "Demasiadas solicitudes, intente más tarde",
+        code: "RATE_LIMITED",
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(limit.retryAfterSeconds) },
+      }
+    );
+  }
+
+  let data;
 
   try {
-    const ContenidoCorporativo = await generarContenidoCorporativo(data);
-    const ContenidoCliente = await generarContenidoCliente(data);
+    data = await req.json();
+  } catch {
+    return errorResponse(400, "INVALID_JSON", "Cuerpo de la solicitud inválido");
+  }
 
-    var attachments = data.adjuntos ? data.adjuntos : null;
+  const validation = await validateContactPayload(data);
+
+  if (!validation.ok) {
+    return errorResponse(400, "VALIDATION_ERROR", validation.message, validation.field);
+  }
+
+  const attachmentsCheck = checkAttachments(data.adjuntos);
+
+  if (!attachmentsCheck.ok) {
+    return errorResponse(
+      attachmentsCheck.status,
+      attachmentsCheck.code,
+      attachmentsCheck.message,
+      attachmentsCheck.field
+    );
+  }
+
+  const cuerpo = {
+    correo: sanitizeHeader(data.cuerpo.correo),
+    tipo: sanitizeHeader(data.cuerpo.tipo),
+    peticion: sanitizeText(data.cuerpo.peticion),
+    fecha: sanitizeHeader(data.cuerpo.fecha),
+  };
+
+  const asunto = sanitizeHeader(data.asunto);
+
+  const attachments = Array.isArray(data.adjuntos)
+    ? data.adjuntos.map((adjunto) => ({
+        filename: sanitizeFilename(adjunto.filename),
+        content: adjunto.content,
+        encoding: "base64",
+        contentType: attachmentContentType(adjunto.filename),
+      }))
+    : null;
+
+  try {
+    var MailOptionsCorporativo = mailOptionsCorporativo();
+    var MailOptionsCliente = mailOptionsClliente(cuerpo.correo);
+
+    const ContenidoCorporativo = generarContenidoCorporativo({ cuerpo });
+    const ContenidoCliente = generarContenidoCliente({ cuerpo });
 
     //Se envía correo a la empresa
     await Transporter.sendMail({
       ...MailOptionsCorporativo,
       ...ContenidoCorporativo,
       ...(attachments && { attachments }),
-      subject: data.asunto,
+      subject: asunto,
     });
 
     //Se envía correo al cliente
@@ -142,10 +226,11 @@ export async function POST(req) {
       { status: 200 }
     );
   } catch (error) {
-    console.log(error);
-    return NextResponse.json(
-      { response: "error", status: 400 },
-      { status: 400 }
+    console.error("contacto: fallo al enviar el correo", error?.message ?? error);
+    return errorResponse(
+      502,
+      "SEND_FAILED",
+      "No se pudo enviar la solicitud, intente más tarde"
     );
   }
 }

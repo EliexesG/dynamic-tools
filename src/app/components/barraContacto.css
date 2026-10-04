@@ -1,0 +1,11 @@
+.barraContacto {
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.barraContacto-espaciador {
+  height: calc(56px + env(safe-area-inset-bottom, 0px));
+}

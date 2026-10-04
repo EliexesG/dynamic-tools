@@ -3,7 +3,7 @@
 
 $theme-colors: (
   primary: #004651,
-  secondary: #00a181,
+  secondary: #007a62,
   success: #198754,
   info: #0dcaf0,
   warning: #ffc107,
@@ -13,3 +13,14 @@ $theme-colors: (
 );
 
 @import "bootstrap";
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

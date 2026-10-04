@@ -93,7 +93,11 @@ export default function Home() {
           className="btn btn-secondary text-white mb-4"
           href={"/contactanos"}
         >
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+          <FontAwesomeIcon
+            icon={faArrowUpRightFromSquare}
+            aria-hidden="true"
+          />{" "}
+          Contáctanos
         </Link>
       </div>
     </>

@@ -67,6 +67,7 @@ export default function TarjetaMaquina({ titulo, descripcion, imagenes }) {
               src={imagen.url}
               width={1600}
               height={1201}
+              sizes="(max-width: 575.98px) 100vw, (max-width: 991.98px) 50vw, 25vw"
             />
           ))}
         </div>

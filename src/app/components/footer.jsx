@@ -69,7 +69,7 @@ export default function Footer() {
                     aria-current="page"
                     href="/contactanos"
                   >
-                    <FontAwesomeIcon icon={faComment} /> Contactanos
+                    <FontAwesomeIcon icon={faComment} /> Contáctanos
                   </Link>
                 </p>
               </div>
@@ -89,7 +89,7 @@ export default function Footer() {
           </section>
         </div>
         <div className="text-center p-3">
-          © 2023 Copyright:
+          © {new Date().getFullYear()} Copyright:
           <span className="text-white"> A&M Dynamic Tools S.A.</span>
         </div>
       </footer>
