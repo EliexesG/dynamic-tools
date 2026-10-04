@@ -21,10 +21,9 @@ export default function Contacto() {
         titulo={contactosInfo.titulo}
         texto={contactosInfo.descripcion}
       />
-      <section className="row mb-4">
+      <section className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
         {contactosInfo.contactos.map((contacto, index) => (
           <TarjetaContacto
-            className="col-md-4 mb-4"
             key={index}
             titulo={contacto.titulo}
             contactos={contacto.contactos}

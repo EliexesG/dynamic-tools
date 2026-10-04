@@ -12,8 +12,10 @@ import TarjetaServicioInicio from "./servicios/components/tarjetaServicioInicio"
 import InformacionPlana from "./nosotros/components/informacionPlana";
 import Link from "next/link";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { SquareArrowOutUpRight } from "lucide-react";
+
+const botonSecundario =
+  "inline-flex items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2 font-medium text-white transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 export const metadata = {
   title: "A&M Dynamic Tools S.A.",
@@ -25,7 +27,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <div className="mb-4 w-100 d-flex justify-content-center border-bottom border-primary pb-2">
+      <div className="mb-6 flex w-full justify-center border-b border-primary pb-2">
         <Imagen
           alt={"Logo Completo"}
           src={"/images/logos/full_size_logo.jpeg"}
@@ -54,55 +56,53 @@ export default function Home() {
           .slice(0, 3)
           .join("|")}
       />
-      <Link className="btn btn-secondary text-white mb-4" href={"/nosotros"}>
-        <FontAwesomeIcon icon={faArrowUpRightFromSquare} /> Ver más
-      </Link>
-      <hr className="mb-4"></hr>
+      <div className="mb-14 text-center">
+        <Link className={botonSecundario} href={"/nosotros"}>
+          <SquareArrowOutUpRight aria-hidden="true" className="size-5" />
+          {" Ver más"}
+        </Link>
+      </div>
+      <hr className="my-14 border-t border-border" />
       <InformacionPlana
         id="servicios"
         titulo={serviciosInfo.titulo}
         descripcion={serviciosInfo.descripcionInicio}
       />
-      <div className="row">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {serviciosInfo.servicios.slice(0, 3).map((servicio, index) => (
           <TarjetaServicioInicio
-            className="mb-4 col-md-4"
             key={index}
             titulo={servicio.titulo}
             descripcion={servicio.descripcion}
           />
         ))}
       </div>
-      <hr className="mb-4"></hr>
+      <hr className="my-14 border-t border-border" />
       <InformacionPlana
         id="maquinaria"
         titulo={maquinariaInfo.titulo}
         descripcion={maquinariaInfo.descripcionInicio}
       />
-      <div className="row">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {maquinariaInfo.maquinas.slice(0, 3).map((maquina, index) => (
           <TarjetaMaquinariaInicio
-            className="mb-4 col-md-4"
             key={index}
             maquina={maquina}
             idNumero={index}
           />
         ))}
       </div>
-      <hr className="mb-4"></hr>
+      <hr className="my-14 border-t border-border" />
       <InformacionPlana
-        id="maquinaria"
+        id="contactos"
         titulo={contactosInfo.titulo}
         descripcion={contactosInfo.descripcionInicio}
       />
-      <div className="d-flex justify-content-center">
-        <Link
-          className="btn btn-secondary text-white mb-4"
-          href={"/contactanos"}
-        >
-          <FontAwesomeIcon
-            icon={faArrowUpRightFromSquare}
+      <div className="flex justify-center">
+        <Link className={botonSecundario} href={"/contactanos"}>
+          <SquareArrowOutUpRight
             aria-hidden="true"
+            className="size-5"
           />{" "}
           Contáctanos
         </Link>

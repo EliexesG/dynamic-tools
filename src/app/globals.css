@@ -1,0 +1,194 @@
+/*
+ * Global stylesheet + brand token contract — dynamic-tools
+ * Migration: Bootstrap 5 -> Tailwind v4 (plan SOL-47, foundation task SOL-51).
+ *
+ * This file is the single source of truth for brand tokens, adopted verbatim
+ * from the frozen design-system token sheet (SOL-50 §11). Components must
+ * reference these tokens (e.g. `bg-primary`, `text-secondary`, `outline-ring`)
+ * and must not hardcode brand hex values.
+ *
+ * Bootstrap has been fully removed (carousel/deps milestone, SOL-56): the
+ * `custom.scss` import is gone, so the rules in `@layer base` below are the
+ * effective defaults for links, focus and body.
+ */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand primitives (never collapse into shadcn semantics) ---- */
+  --color-primary-50:  #f2f7f8;
+  --color-primary-100: #ddecee;
+  --color-primary-200: #b9dadf;
+  --color-primary-300: #8dc5ce;
+  --color-primary-400: #5bb5c2;
+  --color-primary-500: #2ea5b8;
+  --color-primary-600: #148c9f;
+  --color-primary-700: #037586;
+  --color-primary-800: #005d6b;
+  --color-primary-900: #004651;
+  --color-primary-950: #003138;
+  --color-primary: #004651; /* DEFAULT */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary-50:  #f2f8f7;
+  --color-secondary-100: #ddeeeb;
+  --color-secondary-200: #b9dfd8;
+  --color-secondary-300: #8bd0c2;
+  --color-secondary-400: #57c7b0;
+  --color-secondary-500: #25c1a2;
+  --color-secondary-600: #0a9e81;
+  --color-secondary-700: #007a62;
+  --color-secondary-800: #00614e;
+  --color-secondary-900: #004c3d;
+  --color-secondary-950: #003329;
+  --color-secondary: #007a62; /* DEFAULT */
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent: #00a181; /* deliberate extension, non-text */
+  --color-accent-foreground: #ffffff;
+  --color-accent-soft: #e6f5f1;
+
+  /* ---- Neutrals & functional ---- */
+  --color-surface: #ffffff;
+  --color-surface-muted: #f2f7f6;
+  --color-surface-inset: #e8f0ee;
+  --color-ink: #0f1c1a;
+  --color-ink-muted: #4f6360;
+  --color-border: #d7e3e0;
+  --color-input: #6f8f89;
+  --color-ring: #007a62;
+  --color-ring-dark: #5eead4;
+  --color-danger: #b42318;
+  --color-danger-foreground: #ffffff;
+  --color-success: #0f7a52;
+  --color-warning: #8a5a00;
+
+  /*
+   * Normalized link colors (board decision 2, Iris condition 4). Kept as
+   * aliases of the brand action/primary hues so the base layer stays stable
+   * while Bootstrap is present. Contrast on white:
+   *   link  #007a62 on #ffffff = 5.3:1  (AA for normal text, >= 4.5:1)
+   *   hover #004651 on #ffffff = 10.5:1
+   */
+  --color-link: #007a62;
+  --color-link-hover: #004651;
+
+  /* ---- Typography ---- */
+  --font-sans: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.1;
+  --text-eyebrow--letter-spacing: 0.05em;
+  --text-eyebrow--font-weight: 500;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.4;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.6;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.35;
+  --text-h3--font-weight: 700;
+  --text-h2: 1.5rem;
+  --text-h2--line-height: 1.25;
+  --text-h2--font-weight: 700;
+  --text-h1: 2rem;
+  --text-h1--line-height: 1.2;
+  --text-h1--font-weight: 700;
+  --text-display: 3rem;
+  --text-display--line-height: 1.1;
+  --text-display--font-weight: 700;
+
+  /* ---- Spacing rhythm ---- */
+  --spacing-section: 3.5rem;
+  --spacing-section-sm: 2.25rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-gutter-sm: 1rem;
+  --spacing-navbar: 4rem;
+  --spacing-quickbar: 3.5rem;
+  --container-content: 72rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  /* ---- Elevation ---- */
+  --shadow-xs: 0 1px 2px 0 rgb(15 28 26 / 0.06);
+  --shadow-sm: 0 1px 3px 0 rgb(15 28 26 / 0.08), 0 1px 2px -1px rgb(15 28 26 / 0.06);
+  --shadow-md: 0 4px 8px -2px rgb(15 28 26 / 0.10), 0 2px 4px -2px rgb(15 28 26 / 0.06);
+  --shadow-lg: 0 12px 24px -8px rgb(15 28 26 / 0.16), 0 4px 8px -4px rgb(15 28 26 / 0.08);
+  --shadow-xl: 0 24px 48px -16px rgb(15 28 26 / 0.24);
+  --shadow-focus: 0 0 0 3px rgb(0 122 98 / 0.35);
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---- Breakpoints (Tailwind v4 defaults, documented) ---- */
+  --breakpoint-sm: 40rem; /* 640px */
+  --breakpoint-md: 48rem; /* 768px */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: 96rem; /* 1536px */
+}
+
+/*
+ * Normalized link + focus colors, declared in the `base` layer. With Bootstrap
+ * gone these are the effective element defaults for the whole site. Tailwind
+ * utility classes (e.g. `text-white`) live in the later `utilities` layer and
+ * always win over these element rules.
+ */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: var(--color-link);
+    text-underline-offset: 0.25em;
+  }
+
+  a:hover {
+    color: var(--color-link-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* On primary (dark teal) surfaces the light ring is used instead */
+  .bg-primary :focus-visible,
+  .on-dark :focus-visible {
+    outline-color: var(--color-ring-dark);
+  }
+}
+
+/*
+ * Motion reset — preserved from `custom.scss` (accessibility / WCAG 2.2.2).
+ * Unlayered so it keeps winning over Bootstrap while both are present.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

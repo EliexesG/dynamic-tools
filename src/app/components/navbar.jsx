@@ -4,146 +4,119 @@ import "./navbar.css";
 
 import Imagen from "./Imagen";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faHouse,
-  faHandshakeAngle,
-  faScrewdriverWrench,
-  faUsers,
-  faComment,
-  faCommentDots,
-  faImage,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+  House,
+  HeartHandshake,
+  Wrench,
+  Users,
+  MessageCircle,
+  MessageCircleMore,
+  Image as ImageIcon,
+  Phone,
+} from "lucide-react";
 
 import Link from "next/link";
 
 import { contactoDirecto } from "@/lib/data";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+const enlaces = [
+  { href: "/", icon: House, label: "Inicio", ariaCurrent: true },
+  { href: "/servicios", icon: HeartHandshake, label: "Servicios" },
+  { href: "/maquinaria", icon: Wrench, label: "Maquinaria" },
+  { href: "/galeria", icon: ImageIcon, label: "Galería" },
+  { href: "/nosotros", icon: Users, label: "Nosotros" },
+  { href: "/contactanos", icon: MessageCircle, label: "Contáctanos" },
+];
 
 export default function Navbar() {
-  const collapseDiv = useRef(null);
-  const collapseButton = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleCollapse = (e) => {
-    collapseDiv.current.classList.remove("show", "collapse");
-    collapseDiv.current.classList.add("collapsing");
-    collapseButton.current.classList.add("collapsed");
-    collapseButton.current.setAttribute("aria-expanded", false);
-    collapseDiv.current.classList.remove("collapsing");
-    collapseDiv.current.classList.add("collapse");
-  };
+  const closeMenu = useCallback(() => setIsOpen(false), []);
+  const toggleMenu = useCallback(() => setIsOpen((open) => !open), []);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary position-fixed w-100 top-0 z-3 bg-gradient">
-      <div className="container-fluid">
+    <nav className="fixed inset-x-0 top-0 z-40 h-navbar bg-primary text-white">
+      <div className="mx-auto flex h-full w-full max-w-content items-center justify-between px-gutter">
         <Link
-          className="navbar-brand align-items-center"
+          className="flex shrink-0 items-center transition-transform duration-200 ease-out-soft hover:scale-[1.03] motion-reduce:hover:scale-100"
           href="/"
-          onClick={handleCollapse}
+          onClick={closeMenu}
         >
           <Imagen
             src={"/images/logos/small_size_logo.png"}
             alt="brand-logo"
-            width={55}
-            height={49}
+            width={44}
+            height={39}
             className="me-2 rounded"
           />
-          <span>A&M Dynamic Tools S.A.</span>
+          <span className="whitespace-nowrap text-body font-medium text-white">
+            A&M Dynamic Tools S.A.
+          </span>
         </Link>
         <button
-          ref={collapseButton}
-          className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarOpciones"
+          className="navbar-toggler inline-flex size-11 items-center justify-center rounded-md text-white lg:hidden"
           aria-controls="navbarOpciones"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-expanded={isOpen}
+          aria-label={
+            isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
+          }
+          onClick={toggleMenu}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse"
+          className={`navbar-menu${isOpen ? " navbar-menu--open" : ""}`}
           id="navbarOpciones"
-          ref={collapseDiv}
         >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                aria-current="page"
-                href="/"
-                onClick={handleCollapse}
+          <div className="navbar-menu__inner">
+            <ul className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-0.5 min-[1360px]:gap-1">
+              {enlaces.map(({ href, icon: Icono, label, ariaCurrent }) => (
+                <li key={href}>
+                  <Link
+                    className="nav-link flex items-center gap-2 rounded-md px-2 py-2 text-small font-medium text-white/90 transition-colors hover:text-white min-[1360px]:px-3 min-[1360px]:text-body"
+                    aria-current={ariaCurrent ? "page" : undefined}
+                    href={href}
+                    onClick={closeMenu}
+                  >
+                    <Icono aria-hidden="true" className="size-5" /> {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-2 flex items-center gap-2 pb-2 lg:mt-0 lg:ml-auto lg:pb-0">
+              <a
+                className="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-secondary px-3 font-medium text-white transition-colors hover:bg-primary-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring-dark"
+                href={contactoDirecto.telefonoHref}
+                aria-label={`Llamar al ${contactoDirecto.telefono}`}
               >
-                <FontAwesomeIcon icon={faHouse} /> Inicio
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/servicios"
-                onClick={handleCollapse}
+                <Phone aria-hidden="true" className="size-5" />
+                <span className="lg:hidden min-[1360px]:inline">Llamar</span>
+              </a>
+              <a
+                className="inline-flex h-9 items-center justify-center gap-2 rounded-lg border border-white/40 px-3 font-medium text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring-dark"
+                href={contactoDirecto.whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Escribir por WhatsApp"
               >
-                <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/maquinaria"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/galeria"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faImage} /> Galería
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/nosotros"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faUsers} /> Nosotros
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className="nav-link"
-                href="/contactanos"
-                onClick={handleCollapse}
-              >
-                <FontAwesomeIcon icon={faComment} /> Contáctanos
-              </Link>
-            </li>
-          </ul>
-          <div className="d-none d-lg-flex align-items-center gap-2 pb-2 pb-lg-0">
-            <a
-              className="btn btn-sm btn-secondary text-white"
-              href={contactoDirecto.telefonoHref}
-              aria-label={`Llamar al ${contactoDirecto.telefono}`}
-            >
-              <FontAwesomeIcon icon={faPhone} aria-hidden="true" /> Llamar
-            </a>
-            <a
-              className="btn btn-sm btn-outline-light"
-              href={contactoDirecto.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Escribir por WhatsApp"
-            >
-              <FontAwesomeIcon icon={faCommentDots} aria-hidden="true" />{" "}
-              WhatsApp
-            </a>
+                <MessageCircleMore aria-hidden="true" className="size-5" />
+                <span className="lg:hidden min-[1360px]:inline">WhatsApp</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

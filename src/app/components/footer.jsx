@@ -1,98 +1,45 @@
-import "./footer.css";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faHandshakeAngle,
-  faScrewdriverWrench,
-  faUsers,
-  faComment,
-} from "@fortawesome/free-solid-svg-icons";
+import { House, HeartHandshake, Wrench, Users, MessageCircle } from "lucide-react";
 
 import Link from "next/link";
 
+const enlaces = [
+  { href: "/", icon: House, label: "Inicio" },
+  { href: "/servicios", icon: HeartHandshake, label: "Servicios" },
+  { href: "/maquinaria", icon: Wrench, label: "Maquinaria" },
+  { href: "/nosotros", icon: Users, label: "Nosotros" },
+  { href: "/contactanos", icon: MessageCircle, label: "Contáctanos" },
+];
+
 export default function Footer() {
   return (
-    <div className="footer mt-auto w-100">
-      <footer className="text-center text-white bg-primary bg-gradient">
-        <div className="container d-block">
-          <section className="mt-5">
-            <div className="row text-center d-flex justify-content-center pt-5">
-              <div className="col-md-2">
-                <p className="text-uppercase font-weight-bold">
-                  <Link
-                    className="text-decoration-none text-white-50 footer-link"
-                    aria-current="page"
-                    href="/"
-                  >
-                    <FontAwesomeIcon icon={faHouse} /> Inicio
-                  </Link>
-                </p>
-              </div>
-              <div className="col-md-2">
-                <p className="text-uppercase font-weight-bold">
-                  <Link
-                    className="text-decoration-none text-white-50 footer-link"
-                    aria-current="page"
-                    href="/servicios"
-                  >
-                    <FontAwesomeIcon icon={faHandshakeAngle} /> Servicios
-                  </Link>
-                </p>
-              </div>
-              <div className="col-md-2">
-                <p className="text-uppercase font-weight-bold">
-                  <Link
-                    className="text-decoration-none text-white-50 footer-link"
-                    aria-current="page"
-                    href="/maquinaria"
-                  >
-                    <FontAwesomeIcon icon={faScrewdriverWrench} /> Maquinaria
-                  </Link>
-                </p>
-              </div>
-              <div className="col-md-2">
-                <p className="text-uppercase font-weight-bold">
-                  <Link
-                    className="text-decoration-none text-white-50 footer-link"
-                    aria-current="page"
-                    href="/nosotros"
-                  >
-                    <FontAwesomeIcon icon={faUsers} /> Nosotros
-                  </Link>
-                </p>
-              </div>
-              <div className="col-md-2">
-                <p className="text-uppercase font-weight-bold">
-                  <Link
-                    className="text-decoration-none text-white-50 footer-link"
-                    aria-current="page"
-                    href="/contactanos"
-                  >
-                    <FontAwesomeIcon icon={faComment} /> Contáctanos
-                  </Link>
-                </p>
-              </div>
-            </div>
-          </section>
-          <hr className="my-2" />
-          <section className="mb-2 mt-4">
-            <div className="row d-flex justify-content-center">
-              <div className="col-lg-8">
-                <p>
-                  Somos una empresa encargada de un taller de precisión que da
-                  soporte de ingeniería a clientes en los campos de diseño
-                  mecánico, metalmecánica, mecanizado, etc.
-                </p>
-              </div>
-            </div>
-          </section>
-        </div>
-        <div className="text-center p-3">
-          © {new Date().getFullYear()} Copyright:
-          <span className="text-white"> A&M Dynamic Tools S.A.</span>
-        </div>
-      </footer>
-    </div>
+    <footer className="mt-auto w-full bg-primary text-white">
+      <div className="mx-auto w-full max-w-6xl px-6">
+        <nav aria-label="Navegación del pie de página" className="pt-8">
+          <ul className="grid grid-cols-1 gap-4 text-center sm:grid-cols-2 lg:grid-cols-5">
+            {enlaces.map(({ href, icon: Icono, label }) => (
+              <li key={href}>
+                <Link
+                  className="inline-flex items-center gap-2 font-bold uppercase text-white/80 transition-colors hover:text-white"
+                  href={href}
+                >
+                  <Icono aria-hidden="true" className="size-5" />
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <hr className="my-2 border-white/15" />
+        <p className="mx-auto mt-6 mb-2 max-w-3xl text-center">
+          Somos una empresa encargada de un taller de precisión que da soporte
+          de ingeniería a clientes en los campos de diseño mecánico,
+          metalmecánica, mecanizado, etc.
+        </p>
+      </div>
+      <p className="text-center p-3">
+        © {new Date().getFullYear()} Copyright:
+        <span className="text-white"> A&M Dynamic Tools S.A.</span>
+      </p>
+    </footer>
   );
 }

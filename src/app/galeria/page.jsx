@@ -22,7 +22,7 @@ export default function Galeria() {
         texto={galeriaInfo.descripcion}
       />
       <GaleriaImagenes imagenes={galeriaInfo.imagenes} />
-      <hr className="mb-4 mt-4" />
+      <hr className="my-6 border-t border-gray-200" />
       <GaleriaVideos videos={galeriaInfo.videos} />
     </>
   );

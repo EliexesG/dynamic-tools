@@ -11,7 +11,7 @@
 }
 
 .galeriaGridItem:focus-visible {
-  outline: 3px solid var(--bs-primary, #0d6efd);
+  outline: 3px solid var(--color-ring);
   outline-offset: 3px;
 }
 
@@ -128,7 +128,7 @@
   color: #f1f1f1;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 639.98px) {
   .galeriaMiniatura {
     height: 240px;
   }

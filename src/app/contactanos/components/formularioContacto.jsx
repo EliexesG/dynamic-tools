@@ -1,6 +1,5 @@
 "use client";
 
-import "./formularioContacto.css";
 import { EnviarCorreo } from "@/lib/api";
 
 import { Formik } from "formik";
@@ -23,6 +22,11 @@ const MensajeErrorEnvio = (envio) => {
     "No se pudo enviar la solicitud, inténtalo más tarde"
   );
 };
+
+const controlBase =
+  "w-full rounded-lg border bg-white px-3 py-2 text-black shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1";
+const controlNormal = "border-gray-300";
+const controlError = "border-red-500";
 
 export default function FormularioContacto() {
   const schemaFormulario = yup.object().shape({
@@ -106,118 +110,153 @@ export default function FormularioContacto() {
   };
 
   return (
-    <div className="card p-3">
-      <div className="card-header">
-        <h2 className="text-center fw-bold card-title">Deja tu Información</h2>
-        <p className="text-center fw-bold mb-4 card-text">
+    <div className="rounded-xl bg-white p-4 shadow-md sm:p-6">
+      <div className="mb-6 text-center">
+        <h2 className="text-2xl font-bold">Deja tu Información</h2>
+        <p className="font-bold text-gray-700">
           Nos pondremos en contacto con usted
         </p>
       </div>
-      <div className="card-body">
-        <Formik
-          initialValues={{
-            tipoSolicitud: 0,
-            correo: "",
-            peticion: "",
-          }}
-          onSubmit={(values, actions) => {
-            handleEnviarCorreo(values, actions);
-          }}
-          validationSchema={schemaFormulario}
-        >
-          {({ handleSubmit, values, handleChange, errors, touched }) => (
-            <form id="formularioContacto" onSubmit={handleSubmit}>
-              <div className="row mb-4">
-                <div className="col-md-6 mb-4">
-                  <label htmlFor="tipoSolicitud" className="form-label">
-                    Tipo de Solicitud
-                  </label>
-                  <select
-                    name="tipoSolicitud"
-                    id="tipoSolicitud"
-                    className={`form-select shadow ${
-                      errors.tipoSolicitud && touched.tipoSolicitud
-                        ? "border-danger"
-                        : ""
-                    }`}
-                    value={values.tipoSolicitud}
-                    onChange={(e) => {
-                      handleChange(e);
-                      handleTipoSolicitud(e, values);
-                    }}
+      <Formik
+        initialValues={{
+          tipoSolicitud: 0,
+          correo: "",
+          peticion: "",
+        }}
+        onSubmit={(values, actions) => {
+          handleEnviarCorreo(values, actions);
+        }}
+        validationSchema={schemaFormulario}
+      >
+        {({ handleSubmit, values, handleChange, errors, touched }) => (
+          <form id="formularioContacto" onSubmit={handleSubmit} noValidate>
+            <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="tipoSolicitud"
+                  className="mb-1 block font-medium"
+                >
+                  Tipo de Solicitud
+                </label>
+                <select
+                  name="tipoSolicitud"
+                  id="tipoSolicitud"
+                  className={`${controlBase} ${
+                    errors.tipoSolicitud && touched.tipoSolicitud
+                      ? controlError
+                      : controlNormal
+                  }`}
+                  value={values.tipoSolicitud}
+                  onChange={(e) => {
+                    handleChange(e);
+                    handleTipoSolicitud(e, values);
+                  }}
+                  aria-invalid={Boolean(
+                    errors.tipoSolicitud && touched.tipoSolicitud
+                  )}
+                  aria-describedby={
+                    errors.tipoSolicitud && touched.tipoSolicitud
+                      ? "tipoSolicitud-error"
+                      : undefined
+                  }
+                >
+                  {opcionesSelect.map((opcion) => (
+                    <option key={opcion.value} value={opcion.value}>
+                      {opcion.texto}
+                    </option>
+                  ))}
+                </select>
+                {errors.tipoSolicitud && touched.tipoSolicitud && (
+                  <p
+                    id="tipoSolicitud-error"
+                    className="mt-1 text-sm text-red-600"
                   >
-                    {opcionesSelect.map((opcion) => (
-                      <option key={opcion.value} value={opcion.value}>
-                        {opcion.texto}
-                      </option>
-                    ))}
-                  </select>
-                  {errors.tipoSolicitud && touched.tipoSolicitud && (
-                    <p className="text-danger">{errors.tipoSolicitud}</p>
-                  )}
-                </div>
-                <div className="col-md-6 mb-4">
-                  <label htmlFor="correo" className="form-label">
-                    Correo
-                  </label>
-                  <input
-                    name="correo"
-                    type="text"
-                    id="correo"
-                    className={`form-control shadow ${
-                      errors.correo && touched.correo ? "border-danger" : ""
-                    }`}
-                    placeholder="alguien@dominio.com"
-                    value={values.correo}
-                    onChange={handleChange}
-                  />
-                  {errors.correo && touched.correo && (
-                    <p className="text-danger">{errors.correo}</p>
-                  )}
-                </div>
-                <div className="col-md-12 mb-4">
-                  <label htmlFor="peticion" className="form-label">
-                    Petición
-                  </label>
-                  <textarea
-                    name="peticion"
-                    id="peticion"
-                    className={`form-control shadow ${
-                      errors.peticion && touched.peticion ? "border-danger" : ""
-                    }`}
-                    placeholder="Información acerca de..."
-                    value={values.peticion}
-                    onChange={handleChange}
-                  ></textarea>
-                  {errors.peticion && touched.peticion && (
-                    <p className="text-danger">{errors.peticion}</p>
-                  )}
-                </div>
-                {tipoSolicitud == 2 && (
-                  <div className="col-md-12 mb-4">
-                    <label htmlFor="archivo" className="form-label">
-                      Adjunte Archivos
-                    </label>
-                    <input
-                      type="file"
-                      name="archivos"
-                      id="archivos"
-                      multiple
-                      className="form-control shadow"
-                      onChange={async (e) => {
-                        await handleArchivo(e);
-                      }}
-                    ></input>
-                  </div>
+                    {errors.tipoSolicitud}
+                  </p>
                 )}
               </div>
-              <button type="submit" className="btn btn-secondary text-white">
-                Enviar
-              </button>
-            </form>
-          )}
-        </Formik>
-      </div>
+              <div>
+                <label htmlFor="correo" className="mb-1 block font-medium">
+                  Correo
+                </label>
+                <input
+                  name="correo"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  id="correo"
+                  className={`${controlBase} ${
+                    errors.correo && touched.correo ? controlError : controlNormal
+                  }`}
+                  placeholder="alguien@dominio.com"
+                  value={values.correo}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.correo && touched.correo)}
+                  aria-describedby={
+                    errors.correo && touched.correo ? "correo-error" : undefined
+                  }
+                />
+                {errors.correo && touched.correo && (
+                  <p id="correo-error" className="mt-1 text-sm text-red-600">
+                    {errors.correo}
+                  </p>
+                )}
+              </div>
+              <div className="md:col-span-2">
+                <label htmlFor="peticion" className="mb-1 block font-medium">
+                  Petición
+                </label>
+                <textarea
+                  name="peticion"
+                  id="peticion"
+                  className={`${controlBase} min-h-[150px] ${
+                    errors.peticion && touched.peticion
+                      ? controlError
+                      : controlNormal
+                  }`}
+                  placeholder="Información acerca de..."
+                  value={values.peticion}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.peticion && touched.peticion)}
+                  aria-describedby={
+                    errors.peticion && touched.peticion
+                      ? "peticion-error"
+                      : undefined
+                  }
+                ></textarea>
+                {errors.peticion && touched.peticion && (
+                  <p id="peticion-error" className="mt-1 text-sm text-red-600">
+                    {errors.peticion}
+                  </p>
+                )}
+              </div>
+              {tipoSolicitud == 2 && (
+                <div className="md:col-span-2">
+                  <label htmlFor="archivos" className="mb-1 block font-medium">
+                    Adjunte Archivos
+                  </label>
+                  <input
+                    type="file"
+                    name="archivos"
+                    id="archivos"
+                    multiple
+                    className={`${controlBase} ${controlNormal}`}
+                    onChange={async (e) => {
+                      await handleArchivo(e);
+                    }}
+                  ></input>
+                </div>
+              )}
+            </div>
+            <button
+              type="submit"
+              className="rounded-md bg-secondary px-5 py-2 font-medium text-white transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              Enviar
+            </button>
+          </form>
+        )}
+      </Formik>
     </div>
   );
 }

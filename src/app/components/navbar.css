@@ -1,18 +1,92 @@
-.navbar-brand {
-  transition: all 0.2s ease-in-out;
-}
-
-.navbar-brand:hover {
-  transform: scale(1.03);
-}
-
 nav {
   opacity: 0.98;
-  border-bottom-left-radius: 0.375rem !important;
-  border-bottom-right-radius: 0.375rem !important;
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
 }
 
-.navbar-brand span {
-  position: relative;
-  bottom: -1.5px;
+/* Mobile toggle icon (hamburger), drawn in CSS so no icon font is needed. */
+.navbar-toggler-icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+/* State-driven collapse menu (replaces the Bootstrap JS collapse). Animate
+   with grid-template-rows so no element height has to be measured, and hide
+   collapsed content from the tab order. */
+.navbar-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.3s ease,
+    visibility 0s linear 0.3s;
+}
+
+.navbar-menu--open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  transition:
+    grid-template-rows 0.3s ease,
+    visibility 0s linear 0s;
+}
+
+.navbar-menu__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Mobile/tablet: the expanded menu is a full-width panel anchored directly
+   below the fixed navbar. Without this it stays a flex item inside the 4rem
+   navbar row and is centered/clipped there, so the links overlap page content
+   with no background (regression from the Bootstrap `.navbar-collapse`). */
+@media (max-width: 63.999rem) {
+  .navbar-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+  }
+
+  .navbar-menu--open {
+    background-color: var(--color-primary);
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .navbar-menu__inner {
+    padding: 0 var(--spacing-gutter) var(--spacing-gutter);
+  }
+}
+
+/* Desktop (Tailwind `lg` = 1024px): menu always visible as a row. */
+@media (min-width: 64rem) {
+  .navbar-menu {
+    display: flex;
+    grid-template-rows: none;
+    visibility: visible;
+    transition: none;
+    flex-grow: 1;
+    margin-left: 1rem;
+  }
+
+  .navbar-menu__inner {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    min-height: auto;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-menu {
+    transition: none;
+  }
 }

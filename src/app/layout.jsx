@@ -1,5 +1,4 @@
-import "./custom.scss";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+import "./globals.css";
 
 import { Roboto } from "next/font/google";
 import { Toaster } from "react-hot-toast";
@@ -7,10 +6,13 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import BarraContacto from "./components/barraContacto";
-import ImportBsJS from "./components/importBsJS";
 
 const baseURL = process.env.URL_BASE;
-const font = Roboto({ subsets: ["latin"], weight: "400", display: "swap" });
+const font = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 export const metadata = {
   title: {
@@ -35,13 +37,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body style={font.style}>
-        <ImportBsJS />
         <div>
           <Toaster position="top-center" reverseOrder={false} />
         </div>
         <Navbar />
-        <div className="body-content pt-5 pb-5">
-          <main className="container pt-4 mt-5">{children}</main>
+        <div className="pt-navbar pb-section-sm">
+          <main className="mx-auto w-full max-w-content px-gutter py-6">
+            {children}
+          </main>
         </div>
         <Footer />
         <BarraContacto />

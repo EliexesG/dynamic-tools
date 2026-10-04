@@ -314,5 +314,11 @@ export const galeriaInfo = {
     { id: 22, url: "/images/galeria/imagenes/galeria_22.jpg" },
     { id: 23, url: "/images/galeria/imagenes/galeria_23.jpg" },
   ],
-  videos: [{ id: 1, url: "/images/galeria/videos/galeria_video_1.mp4" }],
+  videos: [
+    {
+      id: 1,
+      url: "/images/galeria/videos/galeria_video_1.mp4",
+      poster: "/images/galeria/videos/galeria_video_1_poster.jpg",
+    },
+  ],
 };

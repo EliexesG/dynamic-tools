@@ -5,8 +5,8 @@ import "./galeriaImagenes.css";
 import Imagen from "@/app/components/Imagen";
 
 const GRID_SIZES =
-  "(max-width: 575.98px) 100vw, (max-width: 991.98px) 50vw, 33vw";
-const LIGHTBOX_SIZES = "(max-width: 992px) 100vw, 992px";
+  "(max-width: 639.98px) 100vw, (max-width: 1023.98px) 50vw, 33vw";
+const LIGHTBOX_SIZES = "(max-width: 1024px) 100vw, 1024px";
 const ZOOM_MAX = 3;
 const ZOOM_STEP = 0.5;
 const SWIPE_MIN = 50;
@@ -192,14 +192,14 @@ export default function GaleriaImagenes({ imagenes }) {
 
   return (
     <section>
-      <h2 className="text-center p-3 rounded bg-primary text-white fw-bold mb-5">
+      <h2 className="mb-12 rounded-md bg-primary p-4 text-center font-bold text-white">
         Imágenes (Trabajos)
       </h2>
-      <div className="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3 bg-light">
+      <div className="grid grid-cols-1 gap-y-6 bg-gray-50 sm:grid-cols-2 md:grid-cols-3">
         {imagenes.map((imagen, indice) => {
           const alt = obtenerAlt(imagen);
           return (
-            <div className="col" key={imagen.id}>
+            <div key={imagen.id}>
               <button
                 type="button"
                 className="galeriaGridItem"
@@ -232,7 +232,7 @@ export default function GaleriaImagenes({ imagenes }) {
             <span className="galeriaLightboxContador" aria-live="polite">
               {indiceActivo + 1} / {total}
             </span>
-            <div className="d-flex gap-2">
+            <div className="flex gap-2">
               <button
                 type="button"
                 className="galeriaLightboxBoton"

@@ -8,13 +8,16 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="text-center py-5">
-      <p className="display-1 fw-bold mb-0 text-primary">404</p>
-      <h1 className="fw-bold mb-3">Página no encontrada</h1>
+    <div className="py-16 text-center">
+      <p className="mb-0 text-7xl leading-none font-bold text-primary">404</p>
+      <h1 className="mb-3 font-bold">Página no encontrada</h1>
       <p className="mb-4">
         Lo sentimos, la página que buscas no existe o fue movida.
       </p>
-      <Link className="btn btn-secondary text-white" href="/">
+      <Link
+        className="inline-block rounded-md bg-secondary px-4 py-2 font-medium text-white transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        href="/"
+      >
         Volver al inicio
       </Link>
     </div>

@@ -1,87 +1,84 @@
 "use client";
 
-import "./galeriaVideos.css";
+import { useState } from "react";
 
-const Indicador = ({ video }) => {
-  return (
-    <>
-      {video.id === 1 && (
-        <button
-          key={video.id}
-          type="button"
-          data-bs-target="#galeriaVideos"
-          data-bs-slide-to={video.id - 1}
-          className="active"
-          aria-current="true"
-          aria-label={`Slide ${video.id}`}
-        ></button>
-      )}
-      {video.id !== 1 && (
-        <button
-          key={video.id}
-          type="button"
-          data-bs-target="#galeriaVideos"
-          data-bs-slide-to={video.id - 1}
-          aria-label={`Slide ${video.id}`}
-        ></button>
-      )}
-    </>
-  );
-};
+import Imagen from "@/app/components/Imagen";
 
+/*
+ * Single-player video gallery (token sheet SOL-50 §12.11).
+ *
+ * The old Bootstrap fade carousel kept every hidden slide mounted, so a video
+ * left playing in a non-visible slide bled its audio. Here exactly one
+ * <video> is mounted at a time: changing the selection remounts the player via
+ * `key`, which stops and tears down the outgoing element. No autoplay.
+ */
 export default function GaleriaVideos({ videos }) {
+  const [indice, setIndice] = useState(0);
+  const total = videos?.length ?? 0;
+
+  if (total === 0) {
+    return null;
+  }
+
+  const activo = videos[indice];
+
   return (
     <section>
-      <h2 className="text-center p-3 rounded bg-primary text-white fw-bold mb-5">
+      <h2 className="mb-12 rounded-md bg-primary p-4 text-center font-bold text-white">
         Videos (Trabajos)
       </h2>
-      <div
-        id="galeriaVideos"
-        className="carousel slide carousel-fade"
-        data-bs-ride="carousel"
-      >
-        <div className="carousel-indicators">
-          {videos.map((video) => (
-            <Indicador key={video.id} video={video} />
-          ))}
-        </div>
+      <div className="mx-auto w-full max-w-4xl">
+        <video
+          key={activo.id ?? activo.url}
+          className="aspect-video w-full rounded-xl bg-black object-contain text-white"
+          controls
+          playsInline
+          preload="metadata"
+          poster={activo.poster}
+        >
+          <source src={activo.url} type="video/mp4" />
+          Tu navegador no soporta la reproducción de video.
+        </video>
 
-        <div className="carousel-inner h-100 w-100 bg-black">
-          {videos.map((video) => (
-            <div
-              key={video.id}
-              className={`carousel-item ${video.id === 1 ? "active" : ""}`}
-            >
-              <video className="img-fluid video" controls={true}>
-                <source src={video.url} type="video/mp4" />
-              </video>
-            </div>
-          ))}
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#galeriaVideos"
-          data-bs-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#galeriaVideos"
-          data-bs-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="visually-hidden">Next</span>
-        </button>
+        {total > 1 && (
+          <ul className="mt-4 flex gap-3 overflow-x-auto">
+            {videos.map((video, i) => (
+              <li key={video.id ?? video.url ?? i}>
+                <button
+                  type="button"
+                  onClick={() => setIndice(i)}
+                  aria-label={`Ver video ${i + 1}`}
+                  aria-current={i === indice ? "true" : undefined}
+                  className={`block w-28 overflow-hidden rounded-md transition-shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
+                    i === indice
+                      ? "ring-2 ring-secondary"
+                      : "ring-1 ring-border hover:ring-secondary/60"
+                  }`}
+                >
+                  {video.poster ? (
+                    <Imagen
+                      src={video.poster}
+                      alt=""
+                      width={320}
+                      height={180}
+                      sizes="112px"
+                      className="aspect-video w-full object-cover"
+                    />
+                  ) : (
+                    <video
+                      className="aspect-video w-full object-cover"
+                      muted
+                      preload="metadata"
+                      aria-hidden="true"
+                    >
+                      <source src={video.url} type="video/mp4" />
+                    </video>
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

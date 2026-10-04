@@ -1,13 +1,13 @@
-import "./page.css";
-
 import { serviciosInfo, galeriaInfo } from "@/lib/data";
 import TarjetaServicio from "./components/tarjetaServicio";
 import CarouselServicios from "./components/carouselServicios";
 import TituloPagina from "../components/tituloPagina";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+
+const botonSecundario =
+  "inline-flex items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2 font-medium text-white transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 export const metadata = {
   title: "Servicios",
@@ -26,15 +26,12 @@ export default function Servicios() {
         titulo={serviciosInfo.titulo}
         texto={serviciosInfo.descripcion}
       />
-      <div className="text-center mb-4">
-        <Link
-          href="/galeria"
-          className="text-decoration-none btn-secondary btn text-white p-3"
-        >
-          <FontAwesomeIcon icon={faImage} /> Ver Galería
+      <div className="mb-14 text-center">
+        <Link href="/galeria" className={botonSecundario}>
+          <ImageIcon aria-hidden="true" className="size-5" /> Ver Galería
         </Link>
       </div>
-      <section className="mb-4">
+      <section className="mb-14">
         {serviciosInfo.servicios.map((servicio, index) => (
           <TarjetaServicio
             key={index}
@@ -43,20 +40,20 @@ export default function Servicios() {
           />
         ))}
       </section>
-      <hr className="mb-4 mt4" />
+      <hr className="my-14 border-t border-border" />
       <section id="imagenes">
-        <h2 className="text-center fw-bold">Galería</h2>
-        <p className="text-center fw-bold mb-4">
-          Ejemplos de trabajos realizados en el taller {"("}
+        <h2 className="text-center text-h2 font-bold text-ink">Galería</h2>
+        <p className="mt-3 text-center font-semibold text-ink-muted">
+          Ejemplos de trabajos realizados en el taller
+        </p>
+        <div className="mt-4 mb-6 text-center">
           <Link
-            className="rounded-4 text-decoration-none bg-primary p-1 text-white fw-bold ps-2 pe-2"
-            id="verMasGaleria"
+            className="inline-flex items-center rounded-full bg-primary px-3 py-1 font-bold text-white no-underline transition-colors hover:bg-secondary"
             href="/galeria"
           >
             Ver más
           </Link>
-          {")"}
-        </p>
+        </div>
         <CarouselServicios galeria={galeriaInfo.imagenes.slice(0, 5)} />
       </section>
     </>

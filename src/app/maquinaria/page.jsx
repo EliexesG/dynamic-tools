@@ -19,7 +19,7 @@ export default function Maquinaria() {
         titulo={maquinariaInfo.titulo}
         texto={maquinariaInfo.descripcion}
       />
-      <div className="ps-2 pe-2">
+      <div className="px-2">
         {maquinariaInfo.maquinas.map((maquina, index) => (
           <section key={index}>
             <TarjetaMaquina
