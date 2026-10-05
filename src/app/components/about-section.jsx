@@ -33,20 +33,24 @@ export default function AboutSection({
         className="mx-auto mt-3 h-1 w-16 rounded-full bg-secondary"
         aria-hidden="true"
       />
-      {/* Paragraphs — first line as lead, rest as justified body */}
+      {/* Paragraphs — split on `|`; segments are trimmed so the copy
+          constants are free to use multi-line template literals */}
       <article className="mt-6">
-        {description.split("|").map((paragraph, index) => (
-          <p
-            key={index}
-            className={
-              index === 0
-                ? "mb-4 border-b border-secondary pb-2 text-center text-body-lg font-semibold"
-                : "mb-4 text-justify text-body last:mb-0"
-            }
-          >
-            {paragraph}
-          </p>
-        ))}
+        {description
+          .split("|")
+          .map((paragraph) => paragraph.trim())
+          .map((paragraph, index) => (
+            <p
+              key={index}
+              className={
+                index === 0
+                  ? "mb-4 border-b border-secondary pb-2 text-center text-body-lg font-semibold"
+                  : "mb-4 text-justify text-body last:mb-0"
+              }
+            >
+              {paragraph}
+            </p>
+          ))}
       </article>
     </section>
   );

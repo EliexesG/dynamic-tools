@@ -38,7 +38,8 @@ const COLLAPSED_MAX_HEIGHT = 78;
 export default function ExpandableText({ text, className }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
-  const [expandedMaxHeight, setExpandedMaxHeight] = useState(COLLAPSED_MAX_HEIGHT);
+  const [expandedMaxHeight, setExpandedMaxHeight] =
+    useState(COLLAPSED_MAX_HEIGHT);
   const textRef = useRef(null);
   const textId = useId();
 
@@ -101,7 +102,9 @@ export default function ExpandableText({ text, className }) {
       <p
         id={textId}
         ref={textRef}
-        style={{ maxHeight: isExpanded ? expandedMaxHeight : COLLAPSED_MAX_HEIGHT }}
+        style={{
+          maxHeight: isExpanded ? expandedMaxHeight : COLLAPSED_MAX_HEIGHT,
+        }}
         className="overflow-hidden text-justify text-body text-ink transition-[max-height] duration-300 ease-out-soft"
       >
         {text}

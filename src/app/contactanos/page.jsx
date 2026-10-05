@@ -2,7 +2,7 @@ import ContactCard from "./components/contact-card";
 import ContactForm from "./components/contact-form";
 import PageTitle from "../components/page-title";
 
-import { contactosInfo } from "@/lib/data";
+import { contacts } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata = pageMetadata({
@@ -23,20 +23,20 @@ export const metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      {/* Page hero — title banner from data.js */}
+      {/* Page hero — title banner from contact imagery */}
       <PageTitle
-        imageSrc={contactosInfo.urlImagenPresentacion}
-        title={contactosInfo.titulo}
-        subtitle={contactosInfo.descripcion}
+        imageSrc="/images/contactanos/contactanos_page.png"
+        title="Contáctanos"
+        subtitle="En este apartado podrás encontrar todos nuestros contactos"
       />
       {/* Contact card grid — one card per contact entry in data.js */}
       <section className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-        {contactosInfo.contactos.map((entry) => (
+        {contacts.map((contact) => (
           <ContactCard
-            key={entry.titulo}
-            title={entry.titulo}
-            specialty={entry.especialidad}
-            contacts={entry.contactos}
+            key={contact.title}
+            title={contact.title}
+            specialty={contact.specialty}
+            contacts={contact.contacts}
           />
         ))}
       </section>

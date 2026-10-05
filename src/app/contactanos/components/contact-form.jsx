@@ -125,7 +125,11 @@ export default function ContactForm() {
       fecha: timestamp,
     };
 
-    const payload = { asunto: subject, cuerpo: body, adjuntos: attachments ?? null };
+    const payload = {
+      asunto: subject,
+      cuerpo: body,
+      adjuntos: attachments ?? null,
+    };
 
     console.log(payload);
 

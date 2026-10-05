@@ -1,5 +1,3 @@
-import { serviciosInfo, galeriaInfo } from "@/lib/data";
-import { pageMetadata } from "@/lib/page-metadata";
 import ServiceCard from "./components/service-card";
 import GalleryCarousel from "@/app/components/gallery-carousel";
 import PageTitle from "../components/page-title";
@@ -9,6 +7,9 @@ import Link from "next/link";
 
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
+
+import { galleryMedia, services } from "@/lib/data";
+import { pageMetadata } from "@/lib/page-metadata";
 
 /** Gallery preview cap — aligned with the AGENTS preview rule. */
 const PREVIEW_IMAGE_LIMIT = 3;
@@ -30,11 +31,11 @@ export const metadata = pageMetadata({
 export default function ServicesPage() {
   return (
     <>
-      {/* Page hero — title banner from data.js */}
+      {/* Page hero — title banner from services imagery */}
       <PageTitle
-        imageSrc={serviciosInfo.urlImagenPresentacion}
-        title={serviciosInfo.titulo}
-        subtitle={serviciosInfo.descripcion}
+        imageSrc="/images/servicios/servicios_page.jpg"
+        title="Servicios"
+        subtitle="En este apartado podrás encontrar todos los servicios que ofrecemos"
       />
       {/* CTA to the full gallery */}
       <div className="mb-14 text-center">
@@ -46,11 +47,11 @@ export default function ServicesPage() {
       </div>
       {/* Service cards — stable keys from the service title */}
       <section className="mb-14">
-        {serviciosInfo.servicios.map((servicio) => (
+        {services.map((servicio) => (
           <ServiceCard
-            key={servicio.titulo}
-            title={servicio.titulo}
-            description={servicio.descripcion}
+            key={servicio.title}
+            title={servicio.title}
+            description={servicio.description}
           />
         ))}
       </section>
@@ -71,7 +72,7 @@ export default function ServicesPage() {
           </Badge>
         </div>
         <GalleryCarousel
-          items={galeriaInfo.imagenes.slice(0, PREVIEW_IMAGE_LIMIT)}
+          items={galleryMedia.images.slice(0, PREVIEW_IMAGE_LIMIT)}
           ariaLabel="Galería de imágenes de servicios"
           allowFullscreen
         />

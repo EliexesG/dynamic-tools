@@ -21,12 +21,12 @@ const PREVIEW_IMAGE_LIMIT = 3;
  * "Ver más" link to the machinery listing. Built from `ui/` card parts.
  *
  * @param {Object}  props             Component props.
- * @param {Object}  props.machine     Machinery entry from `src/lib/data.js`: `{ titulo, descripcion, imagenes[] }` (data-shape contract — keys stay Spanish).
+ * @param {Object}  props.machine     Machinery entry: `{ title, description, images[] }` (entity contract from `src/lib/data.js`).
  * @param {string}  [props.className] Extra classes for the outer article wrapper.
  * @returns {JSX.Element} The home preview card.
  */
 export default function MachinePreviewCard({ machine, className }) {
-  const { titulo: title, descripcion: description, imagenes: images } = machine;
+  const { title, description, images } = machine;
 
   return (
     <article className={className}>

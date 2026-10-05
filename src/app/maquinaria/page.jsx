@@ -1,7 +1,8 @@
-import { maquinariaInfo } from "@/lib/data";
-import { pageMetadata } from "@/lib/page-metadata";
 import MachineCard from "./components/machine-card";
 import PageTitle from "../components/page-title";
+
+import { machines } from "@/lib/data";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata = pageMetadata({
   title: "Maquinaria",
@@ -21,20 +22,20 @@ export const metadata = pageMetadata({
 export default function MachineryPage() {
   return (
     <>
-      {/* Page hero — title banner from data.js */}
+      {/* Page hero — title banner from machinery imagery */}
       <PageTitle
-        imageSrc={maquinariaInfo.urlImagenPresentacion}
-        title={maquinariaInfo.titulo}
-        subtitle={maquinariaInfo.descripcion}
+        imageSrc="/images/maquinaria/maquinaria_page.jpg"
+        title="Maquinaria"
+        subtitle="En este apartado podrás encontrar los equipos con los que contamos"
       />
       {/* Machine cards — one section per entry; stable keys from the title */}
       <div className="px-2">
-        {maquinariaInfo.maquinas.map((maquina) => (
-          <section key={maquina.titulo}>
+        {machines.map((maquina) => (
+          <section key={maquina.title}>
             <MachineCard
-              title={maquina.titulo}
-              description={maquina.descripcion}
-              images={maquina.imagenes}
+              title={maquina.title}
+              description={maquina.description}
+              images={maquina.images}
             />
           </section>
         ))}

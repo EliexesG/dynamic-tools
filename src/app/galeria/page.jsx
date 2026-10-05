@@ -1,9 +1,9 @@
-import { galeriaInfo } from "@/lib/data";
-import { pageMetadata } from "@/lib/page-metadata";
-
 import PageTitle from "../components/page-title";
 import ImagesGallery from "./components/gallery-images";
 import GalleryVideos from "./components/gallery-videos";
+
+import { galleryMedia } from "@/lib/data";
+import { pageMetadata } from "@/lib/page-metadata";
 
 export const metadata = pageMetadata({
   title: "Galería",
@@ -23,18 +23,18 @@ export const metadata = pageMetadata({
 export default function GalleryPage() {
   return (
     <>
-      {/* Page hero — title banner from data.js */}
+      {/* Page hero — title banner from gallery imagery */}
       <PageTitle
-        imageSrc={galeriaInfo.urlImagenPresentacion}
-        title={galeriaInfo.titulo}
-        subtitle={galeriaInfo.descripcion}
+        imageSrc="/images/galeria/galeria_page.jpg"
+        title="Galería"
+        subtitle="En este apartado podrás encontrar nuestra galería de presentación"
       />
       {/* Images gallery — thumbnails grid with lightbox viewer */}
-      <ImagesGallery images={galeriaInfo.imagenes} />
+      <ImagesGallery images={galleryMedia.images} />
       {/* Divider before the videos section */}
       <hr className="my-6 border-t border-border" />
       {/* Videos gallery — single-player playlist */}
-      <GalleryVideos videos={galeriaInfo.videos} />
+      <GalleryVideos videos={galleryMedia.videos} />
     </>
   );
 }

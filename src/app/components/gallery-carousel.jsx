@@ -256,7 +256,9 @@ export default function GalleryCarousel({
       aria-label={ariaLabel}
       tabIndex={0}
       onKeyDown={handleKeyDown}
-      className={isFullscreen ? "flex h-full w-full min-h-0 flex-col" : className}
+      className={
+        isFullscreen ? "flex h-full w-full min-h-0 flex-col" : className
+      }
       data-carousel
     >
       {imageStage(isFullscreen)}

@@ -28,11 +28,17 @@ export default function ContactCard({ title, specialty, contacts }) {
     <Card className="h-full gap-0 border-0 overflow-hidden shadow-md transition-transform duration-200 ease-in-out hover:scale-[1.03] motion-reduce:hover:scale-100">
       {/* Teal header band — white heading text over the primary color */}
       <CardHeader className="bg-primary px-4 py-3 gap-0">
-        <CardTitle asChild className="text-center text-2xl text-white font-bold">
+        <CardTitle
+          asChild
+          className="text-center text-2xl text-white font-bold"
+        >
           <h2>{title}</h2>
         </CardTitle>
         {specialty !== "N/A" && (
-          <CardDescription asChild className="text-center text-xl text-white font-bold">
+          <CardDescription
+            asChild
+            className="text-center text-xl text-white font-bold"
+          >
             <h3>{specialty}</h3>
           </CardDescription>
         )}
@@ -44,17 +50,17 @@ export default function ContactCard({ title, specialty, contacts }) {
             <a
               className="inline-flex items-center gap-2 rounded-md no-underline transition-colors hover:text-ink-muted"
               href={
-                contact.tipo.includes("Cel")
-                  ? `tel:+506${contact.detalle.replace(" ", "")}`
-                  : `mailto:${contact.detalle}`
+                contact.type.includes("Cel")
+                  ? `tel:+506${contact.detail.replace(" ", "")}`
+                  : `mailto:${contact.detail}`
               }
             >
-              {contact.tipo.includes("Cel") ? (
+              {contact.type.includes("Cel") ? (
                 <Phone aria-hidden="true" className="size-5" />
               ) : (
                 <Mail aria-hidden="true" className="size-5" />
               )}{" "}
-              {`${contact.tipo}: ${contact.detalle}`}
+              {`${contact.type}: ${contact.detail}`}
             </a>
           </p>
         ))}

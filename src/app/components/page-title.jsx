@@ -6,7 +6,7 @@ import Image from "./image";
  * bottom divider. Lives once at the top of every page; no local state.
  *
  * @param {Object}  props           Component props.
- * @param {string}  props.imageSrc  Hero image URL (e.g. `info.urlImagenPresentacion`).
+ * @param {string}  props.imageSrc  Hero image URL (inline in each page).
  * @param {string}  props.title     Heading text (Spanish, becomes both the visual `h1` and the image `alt`).
  * @param {string}  props.subtitle  Description line under the heading (Spanish).
  * @returns {JSX.Element} The hero markup ending with its bottom divider.

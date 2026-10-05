@@ -6,7 +6,7 @@ import { MessageCircleMore, Phone, Menu, X } from "lucide-react";
 
 import Link from "next/link";
 
-import { contactoDirecto } from "@/lib/data";
+import { directContact } from "@/lib/data";
 import { navbarLinks } from "@/lib/site-navigation";
 
 import { useState } from "react";
@@ -85,15 +85,15 @@ export default function Navbar() {
               `shrink-0` keeps buttons whole if links ever overflow */}
           <div className="ml-auto flex shrink-0 items-center gap-2">
             <ContactAction
-              href={contactoDirecto.telefonoHref}
-              aria-label={`Llamar al ${contactoDirecto.telefono}`}
+              href={directContact.telefonoHref}
+              aria-label={`Llamar al ${directContact.telefono}`}
             >
               <Phone aria-hidden="true" className="size-5" />
               <span className="hidden min-[1360px]:inline">Llamar</span>
             </ContactAction>
             <ContactAction
               whatsapp
-              href={contactoDirecto.whatsappHref}
+              href={directContact.whatsappHref}
               aria-label="Escribir por WhatsApp"
             >
               <MessageCircleMore aria-hidden="true" className="size-5" />
@@ -163,8 +163,8 @@ export default function Navbar() {
               <SheetClose asChild>
                 <ContactAction
                   className="flex-1"
-                  href={contactoDirecto.telefonoHref}
-                  aria-label={`Llamar al ${contactoDirecto.telefono}`}
+                  href={directContact.telefonoHref}
+                  aria-label={`Llamar al ${directContact.telefono}`}
                 >
                   <Phone aria-hidden="true" className="size-5" /> Llamar
                 </ContactAction>
@@ -173,7 +173,7 @@ export default function Navbar() {
                 <ContactAction
                   whatsapp
                   className="flex-1"
-                  href={contactoDirecto.whatsappHref}
+                  href={directContact.whatsappHref}
                   aria-label="Escribir por WhatsApp"
                 >
                   <MessageCircleMore aria-hidden="true" className="size-5" />{" "}
