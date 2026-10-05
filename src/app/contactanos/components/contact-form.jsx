@@ -1,6 +1,6 @@
 "use client";
 
-import { EnviarCorreo } from "@/lib/api";
+import { sendContactRequest } from "@/lib/api";
 
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -27,7 +27,7 @@ import { Alert, AlertDescription } from "@/app/components/ui/alert";
 /**
  * Builds the toast message for a failed submission response.
  *
- * @param {Object} [response] Payload returned by `EnviarCorreo` on failure.
+ * @param {Object} [response] Payload returned by `sendContactRequest` on failure.
  * @param {string} [response.code] Error code (e.g. `RATE_LIMITED`).
  * @param {number} [response.retryAfter] Seconds the client should wait before retrying.
  * @param {string} [response.error] Server-provided error text.
@@ -136,7 +136,7 @@ export default function ContactForm() {
     const toastId = toast.loading("Enviando Solicitud...");
 
     try {
-      const response = await EnviarCorreo(payload);
+      const response = await sendContactRequest(payload);
 
       if (response.ok) {
         toast.success("Se ha enviado la solicitud correctamente", {
