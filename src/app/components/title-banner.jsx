@@ -1,4 +1,4 @@
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/cn-utils";
 
 /**
  * Reusable heading banner: a teal (`bg-primary`) band with bold white text
