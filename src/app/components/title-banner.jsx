@@ -28,7 +28,7 @@ export default function TitleBanner({
     <Tag
       id={id}
       className={cn(
-        "rounded-lg bg-primary px-4 py-3 text-center font-bold text-white",
+        "rounded-lg bg-primary px-4 py-3 text-center font-bold text-white!",
         className,
       )}
       {...props}
