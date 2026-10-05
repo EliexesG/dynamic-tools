@@ -1,92 +1,127 @@
 import { nosotrosInfo } from "@/lib/data";
+import { pageMetadata } from "@/lib/page-metadata";
 
-import TituloPagina from "../components/tituloPagina";
-import InformacionPlana from "./components/informacionPlana";
-import TarjetaInformacion from "./components/tarjetaInformacion";
+import PageTitle from "../components/page-title";
+import AboutSection from "@/app/components/about-section";
+import ValueCard from "./components/value-card";
 
 import { HeartHandshake, Users, Eye, Map, MapPin } from "lucide-react";
 
-const botonBase =
-  "inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium text-white transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
-const botonSecundario = `${botonBase} bg-secondary hover:bg-primary`;
-const botonPrimario = `${botonBase} bg-primary hover:bg-secondary`;
+import { Button } from "@/app/components/ui/button";
 
-const enlaces = [
-  { href: "#quienesSomos", icon: Users, label: "Quienes Somos", clase: botonSecundario },
-  { href: "#valores", icon: HeartHandshake, label: "Valores", clase: botonPrimario },
-  { href: "#vision", icon: Eye, label: "Visión", clase: botonSecundario },
-  { href: "#mision", icon: Map, label: "Misión", clase: botonPrimario },
-  { href: "#ubicacion", icon: MapPin, label: "Ubicación", clase: botonSecundario },
+// In-page anchor nav — variants alternate to visually pair the entries
+const anchorLinks = [
+  {
+    href: "#who-we-are",
+    icon: Users,
+    label: "Quienes Somos",
+    variant: "secondary",
+  },
+  {
+    href: "#values",
+    icon: HeartHandshake,
+    label: "Valores",
+    variant: "default",
+  },
+  { href: "#vision", icon: Eye, label: "Visión", variant: "secondary" },
+  { href: "#mission", icon: Map, label: "Misión", variant: "default" },
+  { href: "#location", icon: MapPin, label: "Ubicación", variant: "secondary" },
 ];
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Nosotros",
   description:
-    "Pagina referente a informacion acerca de nosotros como empresa A&M Dynamic Tools S.A.",
-  alternates: {
-    canonical: "/nosotros",
-  },
-};
+    "Página referente a la información sobre nosotros en A&M Dynamic Tools S.A.",
+  path: "/nosotros",
+});
 
-export default function Nosotros() {
+/**
+ * About page: page hero, anchor button row, company facts as about
+ * sections, values card grid and the location column with the embedded
+ * map. Server component; the only interactive markup is anchor links and
+ * the embedded iframe (no client islands needed).
+ *
+ * Security note: the map iframe HTML comes exclusively from `src/lib/data.js`
+ * (internal, reviewed content) — never from user input.
+ *
+ * @param {Object} props Component props. This component takes no props.
+ * @returns {JSX.Element} The nosotros page content.
+ */
+export default function AboutPage() {
   return (
     <>
-      <TituloPagina
-        url={nosotrosInfo.urlImagenPresentacion}
-        titulo={"Nosotros"}
-        texto={
+      {/* Page hero — title banner from data.js */}
+      <PageTitle
+        imageSrc={nosotrosInfo.urlImagenPresentacion}
+        title={"Nosotros"}
+        subtitle={
           "En este apartado podrás encontrar toda la información sobre nosotros"
         }
       />
-      <div id="botones" className="mb-14 flex flex-wrap justify-center gap-2">
-        {enlaces.map(({ href, icon: Icono, label, clase }) => (
-          <a key={href} href={href} className={clase}>
-            <Icono aria-hidden="true" className="size-5" /> {label}
-          </a>
+      {/* Anchor buttons — jump to each about section */}
+      <div
+        id="anchor-buttons"
+        className="mb-14 flex flex-wrap justify-center gap-2"
+      >
+        {anchorLinks.map(({ href, icon: Icon, label, variant }) => (
+          <Button
+            asChild
+            key={href}
+            variant={variant}
+            className="hover:bg-primary"
+          >
+            <a href={href}>
+              <Icon aria-hidden="true" className="size-5" /> {label}
+            </a>
+          </Button>
         ))}
       </div>
-      <InformacionPlana
-        id="quienesSomos"
-        titulo={nosotrosInfo.informacionPrincipal.titulo}
-        descripcion={nosotrosInfo.informacionPrincipal.descripcion}
+      {/* About sections — anchor-backed content from data.js */}
+      <AboutSection
+        anchorId="who-we-are"
+        title={nosotrosInfo.informacionPrincipal.titulo}
+        description={nosotrosInfo.informacionPrincipal.descripcion}
       />
       <hr className="my-14 border-t border-border" />
-      <InformacionPlana
-        id="valores"
-        titulo={nosotrosInfo.informacionValores.titulo}
-        descripcion={nosotrosInfo.informacionValores.descripcion}
+      <AboutSection
+        anchorId="values"
+        title={nosotrosInfo.informacionValores.titulo}
+        description={nosotrosInfo.informacionValores.descripcion}
       />
+      {/* Values — stable keys from the value title */}
       <section className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {nosotrosInfo.informacionValores.valores.map((valor, index) => (
-          <TarjetaInformacion
-            key={index}
-            titulo={valor.titulo}
-            descripcion={valor.descripcion}
+        {nosotrosInfo.informacionValores.valores.map((valor) => (
+          <ValueCard
+            key={valor.titulo}
+            title={valor.titulo}
+            description={valor.descripcion}
           />
         ))}
       </section>
       <hr className="my-14 border-t border-border" />
-      <InformacionPlana
-        id="vision"
-        titulo={nosotrosInfo.informacionVision.titulo}
-        descripcion={nosotrosInfo.informacionVision.descripcion}
+      <AboutSection
+        anchorId="vision"
+        title={nosotrosInfo.informacionVision.titulo}
+        description={nosotrosInfo.informacionVision.descripcion}
       />
       <hr className="my-14 border-t border-border" />
-      <InformacionPlana
-        id="mision"
-        titulo={nosotrosInfo.informacionMision.titulo}
-        descripcion={nosotrosInfo.informacionMision.descripcion}
+      <AboutSection
+        anchorId="mission"
+        title={nosotrosInfo.informacionMision.titulo}
+        description={nosotrosInfo.informacionMision.descripcion}
       />
       <hr className="my-14 border-t border-border" />
+      {/* Location — about section beside the embedded map */}
       <section className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <InformacionPlana
-          id="ubicacion"
-          titulo={nosotrosInfo.informacionUbicacion.titulo}
-          descripcion={nosotrosInfo.informacionUbicacion.descripcion}
+        <AboutSection
+          anchorId="location"
+          title={nosotrosInfo.informacionUbicacion.titulo}
+          description={nosotrosInfo.informacionUbicacion.descripcion}
         />
+        {/* Map — iframe HTML from data.js (trusted, internal only) */}
         <div
           title="mapa"
-          className="flex min-h-[300px] items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-muted [&_iframe]:h-full [&_iframe]:min-h-[300px] [&_iframe]:w-full"
+          className="flex min-h-75 items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-muted [&_iframe]:h-full [&_iframe]:min-h-75 [&_iframe]:w-full"
           dangerouslySetInnerHTML={{
             __html: nosotrosInfo.informacionUbicacion.html,
           }}
