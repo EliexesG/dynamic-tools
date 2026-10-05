@@ -1,5 +1,3 @@
-import { primaryContact } from "@/lib/primary-contact";
-
 /**
  * Submits a contact request to the site's own API route and normalizes the
  * response into a single result shape for the form layer.

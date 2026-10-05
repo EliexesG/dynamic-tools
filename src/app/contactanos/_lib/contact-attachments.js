@@ -5,7 +5,7 @@
  *
  * Output shape: `{ filename, content (base64), encoding: "base64" }[]` —
  * a Nodemailer-style attachment item, validated/sanitized later on the
- * server (size/extension checks in `app/api/contacto/_lib/contact-validation.js`).
+ * server (size/extension checks in `app/api/contacto/_lib/contact-attachment-validation.js`).
  *
  * Note: this is a per-file byte loop (no chunking, no btoa-on-large-input
  * shortcuts) — attachment size limits are enforced upstream in the form

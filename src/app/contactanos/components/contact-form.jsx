@@ -1,13 +1,13 @@
 "use client";
 
-import { sendContactRequest } from "@/lib/api-manager";
+import { sendContactRequest } from "../_lib/contact-api";
 
 import { Formik } from "formik";
 import * as yup from "yup";
 import toast from "react-hot-toast";
 
 import { useState } from "react";
-import { convertFilesToAttachments } from "@/lib/attachment-utils";
+import { convertFilesToAttachments } from "../_lib/contact-attachments";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -60,7 +60,8 @@ const errorAlertClasses = "mt-1 border-destructive/30 px-3 py-2";
  * Field names (`tipoSolicitud`, `correo`, `peticion`) and the POST payload
  * shape are the API contract with `/api/contacto` — rename those keys only
  * together with the endpoint, never as a UI tweak. Client-side validation
- * is UX-only: the server domain (`route.js` `_lib/contact-validation.js`)
+ * is UX-only: the server domain (`route.js` + `_lib/contact-dto.js` and
+ * `_lib/contact-attachment-validation.js`)
  * is authoritative — keep the mirrored rules (correo/peticion/tipo) in sync
  * here, and do NOT share/import the server modules from this island.
  *

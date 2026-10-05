@@ -1,14 +1,21 @@
 /**
- * Entity data only — the business data that actually changes with the
+ * Entity data only — arrays of business data that actually change with the
  * operation (services, machinery, contacts, values, gallery media).
  *
- * Page copy (titles, heroes, about paragraphs) does NOT live here: each
- * page declares its own "Page copy" const block — see `data-copy-plan.md`.
+ * Page copy (titles, heroes, about paragraphs) does NOT live here: each page
+ * writes its copy inline in the JSX it renders. The primary contact (email,
+ * phone/WhatsApp) lives in `src/lib/primary-contact.js` as a simple literal
+ * object.
  *
  * Sentinel contract: a `contacts[].contacts[].type` of `"Cel"` renders as a
  * `tel:+506…` link (see `contact-card.jsx`); any other type renders as
  * `mailto:`. Type/detail are data-shape keys — rename only together with
  * the card that consumes them.
+ */
+/**
+ * Contact directory rendered by /contactanos (one card per entry; card
+ * bodies list the `contacts[]` methods; the company card carries the
+ * corporate Email, person cards the personal Cels).
  */
 export const contacts = [
   {
@@ -34,12 +41,10 @@ export const contacts = [
   },
 ];
 
-export const directContact = {
-  telephone: "8923 1003",
-  telephoneHref: "tel:+50689231003",
-  whatsappHref: "https://wa.me/50689231003",
-};
-
+/**
+ * Service list rendered as expandable cards on /servicios (full set) and
+ * preview cards on the home page (`.slice(0, 3)`).
+ */
 export const services = [
   {
     id: 1,
@@ -104,6 +109,11 @@ export const services = [
   },
 ];
 
+/**
+ * Machinery list: one detail card per machine on /maquinaria (the machine
+ * gallery reads `images[]` inside `machine-card`), preview cards on the
+ * home page (`.slice(0, 3)`).
+ */
 export const machines = [
   {
     id: 1,
@@ -242,37 +252,41 @@ export const companyValues = [
   },
 ];
 
-export const galleryMedia = {
-  images: [
-    { id: 1, url: "/images/galeria/imagenes/galeria_1.jpg" },
-    { id: 2, url: "/images/galeria/imagenes/galeria_2.jpg" },
-    { id: 3, url: "/images/galeria/imagenes/galeria_3.jpg" },
-    { id: 4, url: "/images/galeria/imagenes/galeria_4.jpg" },
-    { id: 5, url: "/images/galeria/imagenes/galeria_5.jpg" },
-    { id: 6, url: "/images/galeria/imagenes/galeria_6.jpg" },
-    { id: 7, url: "/images/galeria/imagenes/galeria_7.jpg" },
-    { id: 8, url: "/images/galeria/imagenes/galeria_8.jpg" },
-    { id: 9, url: "/images/galeria/imagenes/galeria_9.jpg" },
-    { id: 10, url: "/images/galeria/imagenes/galeria_10.jpg" },
-    { id: 11, url: "/images/galeria/imagenes/galeria_11.jpg" },
-    { id: 12, url: "/images/galeria/imagenes/galeria_12.jpg" },
-    { id: 13, url: "/images/galeria/imagenes/galeria_13.jpg" },
-    { id: 14, url: "/images/galeria/imagenes/galeria_14.jpg" },
-    { id: 15, url: "/images/galeria/imagenes/galeria_15.jpg" },
-    { id: 16, url: "/images/galeria/imagenes/galeria_16.jpg" },
-    { id: 17, url: "/images/galeria/imagenes/galeria_17.jpg" },
-    { id: 18, url: "/images/galeria/imagenes/galeria_18.jpg" },
-    { id: 19, url: "/images/galeria/imagenes/galeria_19.jpg" },
-    { id: 20, url: "/images/galeria/imagenes/galeria_20.jpg" },
-    { id: 21, url: "/images/galeria/imagenes/galeria_21.jpg" },
-    { id: 22, url: "/images/galeria/imagenes/galeria_22.jpg" },
-    { id: 23, url: "/images/galeria/imagenes/galeria_23.jpg" },
-  ],
-  videos: [
-    {
-      id: 1,
-      url: "/images/galeria/videos/galeria_video_1.mp4",
-      poster: "/images/galeria/videos/galeria_video_1_poster.jpg",
-    },
-  ],
-};
+/**
+ * Gallery images (full set on /galeria grid; /servicios previews the first
+ * three through the shared carousel).
+ */
+export const galleryImages = [
+  { id: 1, url: "/images/galeria/imagenes/galeria_1.jpg" },
+  { id: 2, url: "/images/galeria/imagenes/galeria_2.jpg" },
+  { id: 3, url: "/images/galeria/imagenes/galeria_3.jpg" },
+  { id: 4, url: "/images/galeria/imagenes/galeria_4.jpg" },
+  { id: 5, url: "/images/galeria/imagenes/galeria_5.jpg" },
+  { id: 6, url: "/images/galeria/imagenes/galeria_6.jpg" },
+  { id: 7, url: "/images/galeria/imagenes/galeria_7.jpg" },
+  { id: 8, url: "/images/galeria/imagenes/galeria_8.jpg" },
+  { id: 9, url: "/images/galeria/imagenes/galeria_9.jpg" },
+  { id: 10, url: "/images/galeria/imagenes/galeria_10.jpg" },
+  { id: 11, url: "/images/galeria/imagenes/galeria_11.jpg" },
+  { id: 12, url: "/images/galeria/imagenes/galeria_12.jpg" },
+  { id: 13, url: "/images/galeria/imagenes/galeria_13.jpg" },
+  { id: 14, url: "/images/galeria/imagenes/galeria_14.jpg" },
+  { id: 15, url: "/images/galeria/imagenes/galeria_15.jpg" },
+  { id: 16, url: "/images/galeria/imagenes/galeria_16.jpg" },
+  { id: 17, url: "/images/galeria/imagenes/galeria_17.jpg" },
+  { id: 18, url: "/images/galeria/imagenes/galeria_18.jpg" },
+  { id: 19, url: "/images/galeria/imagenes/galeria_19.jpg" },
+  { id: 20, url: "/images/galeria/imagenes/galeria_20.jpg" },
+  { id: 21, url: "/images/galeria/imagenes/galeria_21.jpg" },
+  { id: 22, url: "/images/galeria/imagenes/galeria_22.jpg" },
+  { id: 23, url: "/images/galeria/imagenes/galeria_23.jpg" },
+];
+
+/** Gallery videos with poster thumbnails — single-player playlist on /galeria. */
+export const galleryVideos = [
+  {
+    id: 1,
+    url: "/images/galeria/videos/galeria_video_1.mp4",
+    poster: "/images/galeria/videos/galeria_video_1_poster.jpg",
+  },
+];
