@@ -37,7 +37,7 @@ export default function MachinePreviewCard({ machine, className }) {
             <h3>{title}</h3>
           </CardTitle>
         </CardHeader>
-        <CardContent className="px-0 flex-1 flex flex-col">
+        <CardContent className="px-0 pb-4 flex-1 flex flex-col">
           {/* Machine gallery — shared mini carousel, capped at PREVIEW_IMAGE_LIMIT */}
           <GalleryCarousel
             items={images.slice(0, PREVIEW_IMAGE_LIMIT)}
