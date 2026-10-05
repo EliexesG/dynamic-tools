@@ -14,10 +14,11 @@
 @layer theme, base, components, utilities;
 
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
   /* ---- Brand primitives (never collapse into shadcn semantics) ---- */
-  --color-primary-50:  #f2f7f8;
+  --color-primary-50: #f2f7f8;
   --color-primary-100: #ddecee;
   --color-primary-200: #b9dadf;
   --color-primary-300: #8dc5ce;
@@ -31,7 +32,7 @@
   --color-primary: #004651; /* DEFAULT */
   --color-primary-foreground: #ffffff;
 
-  --color-secondary-50:  #f2f8f7;
+  --color-secondary-50: #f2f8f7;
   --color-secondary-100: #ddeeeb;
   --color-secondary-200: #b9dfd8;
   --color-secondary-300: #8bd0c2;
@@ -75,7 +76,8 @@
   --color-link-hover: #004651;
 
   /* ---- Typography ---- */
-  --font-sans: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans:
+    "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-eyebrow: 0.75rem;
@@ -119,9 +121,12 @@
 
   /* ---- Elevation ---- */
   --shadow-xs: 0 1px 2px 0 rgb(15 28 26 / 0.06);
-  --shadow-sm: 0 1px 3px 0 rgb(15 28 26 / 0.08), 0 1px 2px -1px rgb(15 28 26 / 0.06);
-  --shadow-md: 0 4px 8px -2px rgb(15 28 26 / 0.10), 0 2px 4px -2px rgb(15 28 26 / 0.06);
-  --shadow-lg: 0 12px 24px -8px rgb(15 28 26 / 0.16), 0 4px 8px -4px rgb(15 28 26 / 0.08);
+  --shadow-sm:
+    0 1px 3px 0 rgb(15 28 26 / 0.08), 0 1px 2px -1px rgb(15 28 26 / 0.06);
+  --shadow-md:
+    0 4px 8px -2px rgb(15 28 26 / 0.1), 0 2px 4px -2px rgb(15 28 26 / 0.06);
+  --shadow-lg:
+    0 12px 24px -8px rgb(15 28 26 / 0.16), 0 4px 8px -4px rgb(15 28 26 / 0.08);
   --shadow-xl: 0 24px 48px -16px rgb(15 28 26 / 0.24);
   --shadow-focus: 0 0 0 3px rgb(0 122 98 / 0.35);
 
@@ -138,12 +143,45 @@
 }
 
 /*
+ * shadcn/ui semantic aliases — every value is a reference to the brand token
+ * contract above (nothing re-defines a hex value, so the brand schema stays
+ * frozen). These give shadcn-generated components their `bg-background`,
+ * `bg-card`, `bg-muted`, `text-muted-foreground`, `bg-destructive`, etc.
+ * utilities without any visual drift. Radius scale was not duplicated either:
+ * the `--radius-sm/md/lg` tokens above already match the shadcn contract.
+ *
+ * `@theme inline` is required so Tailwind emits `var(--color-surface)` (etc.)
+ * instead of trying to resolve the reference at build time.
+ */
+@theme inline {
+  --color-background: var(--color-surface);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-surface);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-surface);
+  --color-popover-foreground: var(--color-ink);
+  --color-muted: var(--color-surface-muted);
+  --color-muted-foreground: var(--color-ink-muted);
+  --color-destructive: var(--color-danger);
+  --color-destructive-foreground: var(--color-danger-foreground);
+}
+
+/*
  * Normalized link + focus colors, declared in the `base` layer. With Bootstrap
  * gone these are the effective element defaults for the whole site. Tailwind
  * utility classes (e.g. `text-white`) live in the later `utilities` layer and
  * always win over these element rules.
  */
 @layer base {
+  /*
+   * shadcn/ui convention: elements default to the brand border color, and
+   * unstyled outlines (e.g. Radix components) get a soft brand ring. The
+   * explicit `:focus-visible` rule below still wins for custom focus styles.
+   */
+  * {
+    @apply border-border outline-ring/50;
+  }
+
   :root {
     color-scheme: light;
   }
