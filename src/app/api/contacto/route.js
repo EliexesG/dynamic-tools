@@ -1,145 +1,46 @@
 import { NextResponse } from "next/server";
 import {
   Transporter,
-  mailOptionsClliente,
-  mailOptionsCorporativo,
-} from "@/config/nodemailer";
+  mailOptionsClient,
+  mailOptionsCorporate,
+  corporateContactEmail,
+  clientContactEmail,
+} from "./_lib/contact-mailer";
 import {
   attachmentContentType,
   checkAttachments,
-  checkRateLimit,
-  escapeHtml,
-  escapeHtmlMultiline,
-  getClientIp,
+} from "./_lib/contact-attachment-validation";
+import { validateContactPayload } from "./_lib/contact-dto";
+import { checkRateLimit, getClientIp } from "../_lib/rate-limit";
+import { errorResponse, successResponse } from "../_lib/response";
+import {
   sanitizeFilename,
   sanitizeHeader,
   sanitizeText,
-  validateContactPayload,
-} from "@/lib/contacto";
+} from "./_lib/contact-sanitization";
 
-const errorResponse = (status, code, message, field) => {
-  return NextResponse.json(
-    {
-      response: "error",
-      status,
-      error: message,
-      code,
-      ...(field ? { field } : {}),
-    },
-    { status }
-  );
-};
-
-const generarContenidoCorporativo = ({ cuerpo }) => {
-  var html = `<!DOCTYPE html>
-    <html>
-    <head>
-      <style>
-        body {
-          font-family: Arial, sans-serif;
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        
-        h1, h2 {
-          color: #333;
-        }
-        
-        table {
-          border-collapse: collapse; 
-          width: 100%;
-        }
-        
-        td, th {
-          border: 1px solid #ddd;
-          padding: 8px; 
-          white-space: pre-wrap;
-        }
-        
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
-        }
-      </style>
-    </head>
-    
-    <body>
-    
-      <h1>Detalles de la petición</h1>
-      
-      <table>
-        <tr>
-          <td>Correo del cliente</td> 
-          <td>${escapeHtml(cuerpo.correo)}</td>
-        </tr>
-        <tr>
-          <td>Tipo</td>
-          <td>${escapeHtml(cuerpo.tipo)}</td> 
-        </tr>
-        <tr>
-          <td>Petición</td>
-          <td>${escapeHtmlMultiline(cuerpo.peticion)}</td>
-        </tr>
-        <tr>
-          <td>Fecha</td>
-          <td>${escapeHtml(cuerpo.fecha)}</td>
-        </tr>
-      </table>
-      
-    </body>
-    </html>`;
-
-  return {
-    text: `Detalles de la petición:\n\nCorreo del Cliente: ${cuerpo.correo}\n\nTipo: ${cuerpo.tipo}\n\nPetición: ${cuerpo.peticion}\n\nFecha: ${cuerpo.fecha}`,
-    html,
-  };
-};
-
-const generarContenidoCliente = ({ cuerpo }) => {
-  var html = `<!DOCTYPE html>
-    <html>
-    <head>
-      <title>Confirmación de petición</title>
-      <style>
-      </style>
-    </head>
-    <body>
-    
-      <header>
-        <h1>Gracias por su petición!</h1>
-      </header>
-    
-      <main>
-    
-        <p>Estimado/a Cliente</p>
-    
-        <p>Recibimos su petición con los siguientes detalles:</p>
-    
-        <ul>
-          <li>Correo: <strong>${escapeHtml(cuerpo.correo)}</strong></li> 
-          <li>Tipo de petición: <strong>${escapeHtml(cuerpo.tipo)}</strong></li>
-          <li>Petición: <strong>${escapeHtmlMultiline(cuerpo.peticion)}</strong></li>
-        </ul>
-    
-        <p>Estamos procesando su solicitud y nos pondremos en contacto pronto.</p>
-    
-      </main>
-    
-      <footer>
-        <p>&copy; 2023 A&M Dynamic Tools S.A.</p>
-      </footer>
-    
-    </body>
-    </html>`;
-
-  return {
-    text: `Estimado/a Cliente\nRecibimos su petición con los siguientes detalles:\n\nCorreo: ${cuerpo.correo}\nTipo de petición: ${cuerpo.tipo}\nPetición: ${cuerpo.peticion}\n\nEstamos procesando su solicitud y nos pondremos en contacto pronto\n\n© 2023 A&M Dynamic Tools S.A.`,
-    html,
-  };
-};
-
+/**
+ * POST /api/contacto — the site's single inbound HTTP entry point.
+ *
+ * Pipeline (all steps BE-side): rate limit (per client IP) → payload
+ * validation (yup contract) → attachment checks (count, size, MIME and
+ * magic-byte signature) → two emails via the SMTP transport (corporate
+ * copy + customer auto-reply) → `{ ok: true }`.
+ *
+ * Every failure returns a structured JSON error descriptor
+ * (`{ code, message, field? }`) with the matching HTTP status (400/413/415/
+ * 429/500) so the form layer can toast a specific, Spanish-language reason.
+ *
+ * @param {Request} req Incoming POST request (JSON body, see the contract in `_lib/contact-dto.js`).
+ * @returns {Promise<Response>} JSON response (`NextResponse`) described above.
+ */
 export async function POST(req) {
+  // 1. Identify the caller (client IP from proxy headers) and apply the
+  //    5/10min rate limit — rejections carry a `Retry-After` header. The
+  //    key is namespaced with the route scope so every endpoint owns its
+  //    own bucket in the shared limiter.
   const ip = getClientIp(req.headers);
-  const limit = checkRateLimit(ip);
+  const limit = checkRateLimit(`contacto:${ip}`);
 
   if (!limit.allowed) {
     return NextResponse.json(
@@ -152,35 +53,50 @@ export async function POST(req) {
       {
         status: 429,
         headers: { "Retry-After": String(limit.retryAfterSeconds) },
-      }
+      },
     );
   }
 
+  // 2. Parse the JSON body defensively (non-JSON bodies get a 400).
   let data;
 
   try {
     data = await req.json();
   } catch {
-    return errorResponse(400, "INVALID_JSON", "Cuerpo de la solicitud inválido");
+    return errorResponse(
+      400,
+      "INVALID_JSON",
+      "Cuerpo de la solicitud inválido",
+    );
   }
 
+  // 3. Validate the request against the yup DTO contract (`contact-dto.js`).
   const validation = await validateContactPayload(data);
 
   if (!validation.ok) {
-    return errorResponse(400, "VALIDATION_ERROR", validation.message, validation.field);
+    return errorResponse(
+      400,
+      "VALIDATION_ERROR",
+      validation.message,
+      validation.field,
+    );
   }
 
-  const attachmentsCheck = checkAttachments(data.adjuntos);
+  // 4. Validate the attachment list (count/size/MIME/magic-byte signatures —
+  //    `contact-attachment-validation.js`).
+  const attachmentsCheck = await checkAttachments(data.adjuntos);
 
   if (!attachmentsCheck.ok) {
     return errorResponse(
       attachmentsCheck.status,
       attachmentsCheck.code,
       attachmentsCheck.message,
-      attachmentsCheck.field
+      attachmentsCheck.field,
     );
   }
 
+  // 5. Sanitize every field that lands in an email template (headers get
+  //    newline-collapsed, body text gets control chars stripped).
   const cuerpo = {
     correo: sanitizeHeader(data.cuerpo.correo),
     tipo: sanitizeHeader(data.cuerpo.tipo),
@@ -190,6 +106,8 @@ export async function POST(req) {
 
   const asunto = sanitizeHeader(data.asunto);
 
+  // 6. Shape the Nodemailer attachments (sanitized filename + server-side
+  //    MIME guess per extension).
   const attachments = Array.isArray(data.adjuntos)
     ? data.adjuntos.map((adjunto) => ({
         filename: sanitizeFilename(adjunto.filename),
@@ -199,38 +117,40 @@ export async function POST(req) {
       }))
     : null;
 
+  // 7. Send both emails through the SMTP transport — corporate copy first,
+  //    then the customer auto-reply; any failure surfaces as a 502.
   try {
-    var MailOptionsCorporativo = mailOptionsCorporativo();
-    var MailOptionsCliente = mailOptionsClliente(cuerpo.correo);
+    var mailOptionsCorporate = mailOptionsCorporate();
+    var mailOptionsClient = mailOptionsClient(cuerpo.correo);
 
-    const ContenidoCorporativo = generarContenidoCorporativo({ cuerpo });
-    const ContenidoCliente = generarContenidoCliente({ cuerpo });
+    const corporateContent = corporateContactEmail({ cuerpo });
+    const clientContent = clientContactEmail({ cuerpo });
 
     //Se envía correo a la empresa
     await Transporter.sendMail({
-      ...MailOptionsCorporativo,
-      ...ContenidoCorporativo,
+      ...mailOptionsCorporate,
+      ...corporateContent,
       ...(attachments && { attachments }),
       subject: asunto,
     });
 
     //Se envía correo al cliente
     await Transporter.sendMail({
-      ...MailOptionsCliente,
-      ...ContenidoCliente,
+      ...mailOptionsClient,
+      ...clientContent,
       subject: "A&M Dynamic Tools S.A. | Contacto",
     });
 
-    return NextResponse.json(
-      { response: "success", status: 200 },
-      { status: 200 }
-    );
+    return successResponse(200);
   } catch (error) {
-    console.error("contacto: fallo al enviar el correo", error?.message ?? error);
+    console.error(
+      "contacto: fallo al enviar el correo",
+      error?.message ?? error,
+    );
     return errorResponse(
       502,
       "SEND_FAILED",
-      "No se pudo enviar la solicitud, intente más tarde"
+      "No se pudo enviar la solicitud, intente más tarde",
     );
   }
 }
