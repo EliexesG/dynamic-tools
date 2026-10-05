@@ -5,7 +5,6 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@/app/components/ui/button";
-import { cn } from "@/lib/utils";
 
 /** Collapsed height in px: 3 lines of `text-body` (1rem × 1.625 ≈ 26px each). */
 const COLLAPSED_MAX_HEIGHT = 78;

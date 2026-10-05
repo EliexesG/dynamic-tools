@@ -7,7 +7,7 @@ import * as yup from "yup";
 import toast from "react-hot-toast";
 
 import { useState } from "react";
-import { ConvertirArchivosToAdjuntos } from "@/lib/utils";
+import { convertFilesToAttachments } from "@/lib/attachments";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -88,7 +88,7 @@ export default function ContactForm() {
 
   /**
    * Base64-encodes the picked files into the wire format expected by the
-   * endpoint (see `ConvertirArchivosToAdjuntos` in `src/lib/utils.js`).
+   * endpoint (see `convertFilesToAttachments` in `src/lib/attachments.js`).
    *
    * @param {React.ChangeEvent<HTMLInputElement>} event File input change event.
    * @returns {Promise<void>}
@@ -96,7 +96,7 @@ export default function ContactForm() {
   const handleFiles = async (event) => {
     const files = event.target.files;
 
-    const encodedAttachments = await ConvertirArchivosToAdjuntos(files);
+    const encodedAttachments = await convertFilesToAttachments(files);
 
     setAttachments(encodedAttachments);
   };

@@ -43,7 +43,7 @@ Corporate site for A&M Dynamic Tools S.A. — Next.js 15 (App Router) + React 19
 
 ## Contact form pipeline
 
-Form (Formik + yup, `contact-form.jsx`) → attachments base64-encoded client-side (`ConvertirArchivosToAdjuntos` in `src/lib/utils.js`) → `POST /api/contacto` (`src/app/api/contacto/route.js`) → validation/sanitization in `src/lib/contacto.js` → two Nodemailer emails (corporate copy + client auto-reply). The POST payload keys (`asunto`, `cuerpo.correo`, `cuerpo.peticion`, `cuerpo.tipo`, `cuerpo.fecha`, `adjuntos`) are the API contract with `src/lib/contacto.js` — never rename them as a pure UI refactor.
+Form (Formik + yup, `contact-form.jsx`) → attachments base64-encoded client-side (`convertFilesToAttachments` in `src/lib/attachments.js`) → `POST /api/contacto` (`src/app/api/contacto/route.js`) → validation/sanitization in `src/lib/contacto.js` → two Nodemailer emails (corporate copy + client auto-reply). The POST payload keys (`asunto`, `cuerpo.correo`, `cuerpo.peticion`, `cuerpo.tipo`, `cuerpo.fecha`, `adjuntos`) are the API contract with `src/lib/contacto.js` — never rename them as a pure UI refactor.
 
 - Rate limit: 5 requests / 10 min per IP via an **in-memory** Map (clears on dev-server restart). When testing the endpoint repeatedly, restart `npm run dev` after hitting 429.
 - Attachment limits (max 10 files, 5 MB each, allowed extensions/signatures) are constants in `src/lib/contacto.js`.
