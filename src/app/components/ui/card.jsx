@@ -29,9 +29,10 @@ function CardHeader({ className, ...props }) {
   );
 }
 
-function CardTitle({ className, ...props }) {
+function CardTitle({ asChild = false, className, ...props }) {
+  const Comp = asChild ? Slot.Root : "div";
   return (
-    <div
+    <Comp
       data-slot="card-title"
       className={cn("leading-none font-semibold", className)}
       {...props}
@@ -39,9 +40,10 @@ function CardTitle({ className, ...props }) {
   );
 }
 
-function CardDescription({ className, ...props }) {
+function CardDescription({ asChild = false, className, ...props }) {
+  const Comp = asChild ? Slot.Root : "div";
   return (
-    <div
+    <Comp
       data-slot="card-description"
       className={cn("text-sm text-muted-foreground", className)}
       {...props}
