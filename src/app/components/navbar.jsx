@@ -81,15 +81,15 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          {/* Contact actions */}
-          <div className="ml-auto flex items-center gap-2">
+          {/* Contact actions — icon-only below 1360px, full label at 1360px+;
+              `shrink-0` keeps buttons whole if links ever overflow */}
+          <div className="ml-auto flex shrink-0 items-center gap-2">
             <ContactAction
               href={contactoDirecto.telefonoHref}
               aria-label={`Llamar al ${contactoDirecto.telefono}`}
             >
               <Phone aria-hidden="true" className="size-5" />
               <span className="hidden min-[1360px]:inline">Llamar</span>
-              <span className="min-[1360px]:hidden">Llamar</span>
             </ContactAction>
             <ContactAction
               whatsapp
@@ -98,7 +98,6 @@ export default function Navbar() {
             >
               <MessageCircleMore aria-hidden="true" className="size-5" />
               <span className="hidden min-[1360px]:inline">WhatsApp</span>
-              <span className="min-[1360px]:hidden">WhatsApp</span>
             </ContactAction>
           </div>
         </div>
