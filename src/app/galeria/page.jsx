@@ -2,14 +2,19 @@ import PageTitle from "../components/page-title";
 import ImagesGallery from "./components/gallery-images";
 import GalleryVideos from "./components/gallery-videos";
 
-import { galleryMedia } from "@/lib/data";
+import { galleryImages, galleryVideos } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
+
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/galeria/galeria_page.jpg";
 
 export const metadata = pageMetadata({
   title: "Galería",
   description:
     "Página referente a la galería de imágenes y videos de los trabajos y proyectos de A&M Dynamic Tools S.A.",
   path: "/galeria",
+  image: heroImage,
 });
 
 /**
@@ -25,16 +30,16 @@ export default function GalleryPage() {
     <>
       {/* Page hero — title banner from gallery imagery */}
       <PageTitle
-        imageSrc="/images/galeria/galeria_page.jpg"
+        imageSrc={heroImage}
         title="Galería"
         subtitle="En este apartado podrás encontrar nuestra galería de presentación"
       />
       {/* Images gallery — thumbnails grid with lightbox viewer */}
-      <ImagesGallery images={galleryMedia.images} />
+      <ImagesGallery images={galleryImages} />
       {/* Divider before the videos section */}
       <hr className="my-6 border-t border-border" />
       {/* Videos gallery — single-player playlist */}
-      <GalleryVideos videos={galleryMedia.videos} />
+      <GalleryVideos videos={galleryVideos} />
     </>
   );
 }

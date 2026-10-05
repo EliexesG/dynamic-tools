@@ -13,9 +13,14 @@ import ServicePreviewCard from "./servicios/components/service-preview-card";
 import { machines, services } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
 
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/inicio/inicio_page.jpg";
+
 export const metadata = pageMetadata({
   description: "Taller de Ingeniería Mecánica en Precisión",
   path: "/",
+  image: heroImage,
 });
 
 /**
@@ -45,7 +50,7 @@ export default function Home() {
       </div>
       {/* Page hero — title banner from home imagery */}
       <PageTitle
-        imageSrc="/images/inicio/inicio_page.jpg"
+        imageSrc={heroImage}
         title="A&M Dynamic Tools S.A."
         subtitle="Taller de Ingeniería Mecánica en Precisión"
       />

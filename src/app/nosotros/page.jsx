@@ -29,11 +29,16 @@ const anchorLinks = [
   { href: "#location", icon: MapPin, label: "Ubicación", variant: "secondary" },
 ];
 
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/nosotros/nosotros_page.jpg";
+
 export const metadata = pageMetadata({
   title: "Nosotros",
   description:
     "Página referente a la información sobre nosotros en A&M Dynamic Tools S.A.",
   path: "/nosotros",
+  image: heroImage,
 });
 
 /**
@@ -54,7 +59,7 @@ export default function AboutPage() {
     <>
       {/* Page hero — title banner from about imagery */}
       <PageTitle
-        imageSrc="/images/nosotros/nosotros_page.jpg"
+        imageSrc={heroImage}
         title="Nosotros"
         subtitle="En este apartado podrás encontrar toda la información sobre nosotros"
       />

@@ -3,11 +3,16 @@ import Link from "next/link";
 import { Button } from "@/app/components/ui/button";
 
 // Page-not-found metadata — intentionally NOT built with `pageMetadata`:
-// a 404 route has no canonical URL to declare, so `alternates` is omitted.
+// a 404 route has no canonical URL to declare, so `alternates` is omitted,
+// and it must never be indexed.
 export const metadata = {
   title: "Página no encontrada",
   description:
     "La página que buscas no existe o fue movida. Vuelve al inicio de A&M Dynamic Tools S.A.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 /**

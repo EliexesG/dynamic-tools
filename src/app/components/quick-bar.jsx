@@ -1,6 +1,6 @@
 import { Phone, MessageCircleMore } from "lucide-react";
 
-import { directContact } from "@/lib/data";
+import { primaryContact } from "@/lib/primary-contact";
 
 import ContactAction from "@/app/components/contact-actions";
 
@@ -24,9 +24,9 @@ export default function QuickBar() {
       >
         <ContactAction
           className="flex-1"
-          href={directContact.telefonoHref}
+          href={primaryContact.telephoneHref}
           size="lg"
-          aria-label={`Llamar al ${directContact.telefono}`}
+          aria-label={`Llamar al ${primaryContact.telephone}`}
         >
           <Phone aria-hidden="true" className="size-5" /> Llamar
         </ContactAction>
@@ -34,7 +34,7 @@ export default function QuickBar() {
           className="flex-1"
           size="lg"
           whatsapp
-          href={directContact.whatsappHref}
+          href={primaryContact.whatsappHref}
           aria-label="Escribir por WhatsApp"
         >
           <MessageCircleMore aria-hidden="true" className="size-5" /> WhatsApp

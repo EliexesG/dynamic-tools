@@ -4,11 +4,16 @@ import PageTitle from "../components/page-title";
 import { machines } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
 
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/maquinaria/maquinaria_page.jpg";
+
 export const metadata = pageMetadata({
   title: "Maquinaria",
   description:
     "Página referente a la información de las máquinas con las que contamos en A&M Dynamic Tools S.A.",
   path: "/maquinaria",
+  image: heroImage,
 });
 
 /**
@@ -24,7 +29,7 @@ export default function MachineryPage() {
     <>
       {/* Page hero — title banner from machinery imagery */}
       <PageTitle
-        imageSrc="/images/maquinaria/maquinaria_page.jpg"
+        imageSrc={heroImage}
         title="Maquinaria"
         subtitle="En este apartado podrás encontrar los equipos con los que contamos"
       />

@@ -5,6 +5,8 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "/",
+      // The contact endpoint is POST-only (no crawlable content).
+      disallow: ["/api/"],
     },
     sitemap: `${baseURL}/sitemap.xml`,
   };

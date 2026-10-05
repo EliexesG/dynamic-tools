@@ -8,17 +8,22 @@ import Link from "next/link";
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
 
-import { galleryMedia, services } from "@/lib/data";
+import { galleryImages, services } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
 
 /** Gallery preview cap — aligned with the AGENTS preview rule. */
 const PREVIEW_IMAGE_LIMIT = 3;
+
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/servicios/servicios_page.jpg";
 
 export const metadata = pageMetadata({
   title: "Servicios",
   description:
     "Página referente a la información de nuestros servicios en A&M Dynamic Tools S.A.",
   path: "/servicios",
+  image: heroImage,
 });
 
 /**
@@ -33,7 +38,7 @@ export default function ServicesPage() {
     <>
       {/* Page hero — title banner from services imagery */}
       <PageTitle
-        imageSrc="/images/servicios/servicios_page.jpg"
+        imageSrc={heroImage}
         title="Servicios"
         subtitle="En este apartado podrás encontrar todos los servicios que ofrecemos"
       />
@@ -72,7 +77,7 @@ export default function ServicesPage() {
           </Badge>
         </div>
         <GalleryCarousel
-          items={galleryMedia.images.slice(0, PREVIEW_IMAGE_LIMIT)}
+          items={galleryImages.slice(0, PREVIEW_IMAGE_LIMIT)}
           ariaLabel="Galería de imágenes de servicios"
           allowFullscreen
         />

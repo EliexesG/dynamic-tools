@@ -5,11 +5,16 @@ import PageTitle from "../components/page-title";
 import { contacts } from "@/lib/data";
 import { pageMetadata } from "@/lib/page-metadata";
 
+// Hero image at module scope — shared by `metadata` (OG image) and the
+// `<PageTitle>` markup below (component-scoped consts can't reach it).
+const heroImage = "/images/contactanos/contactanos_page.png";
+
 export const metadata = pageMetadata({
   title: "Contáctanos",
   description:
     "Página referente a la información de nuestros contactos de A&M Dynamic Tools S.A.",
   path: "/contactanos",
+  image: heroImage,
 });
 
 /**
@@ -25,7 +30,7 @@ export default function ContactPage() {
     <>
       {/* Page hero — title banner from contact imagery */}
       <PageTitle
-        imageSrc="/images/contactanos/contactanos_page.png"
+        imageSrc={heroImage}
         title="Contáctanos"
         subtitle="En este apartado podrás encontrar todos nuestros contactos"
       />
