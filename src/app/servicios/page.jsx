@@ -1,60 +1,80 @@
 import { serviciosInfo, galeriaInfo } from "@/lib/data";
-import TarjetaServicio from "./components/tarjetaServicio";
-import CarouselServicios from "./components/carouselServicios";
-import TituloPagina from "../components/tituloPagina";
+import { pageMetadata } from "@/lib/page-metadata";
+import ServiceCard from "./components/service-card";
+import GalleryCarousel from "@/app/components/gallery-carousel";
+import PageTitle from "../components/page-title";
 
 import { Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 
-const botonSecundario =
-  "inline-flex items-center justify-center gap-2 rounded-lg bg-secondary px-4 py-2 font-medium text-white transition-colors hover:bg-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+import { Badge } from "@/app/components/ui/badge";
+import { Button } from "@/app/components/ui/button";
 
-export const metadata = {
+/** Gallery preview cap — aligned with the AGENTS preview rule. */
+const PREVIEW_IMAGE_LIMIT = 3;
+
+export const metadata = pageMetadata({
   title: "Servicios",
   description:
-    "Pagina referente a informacion acerca de nuestros servicios como empresa A&M Dynamic Tools S.A.",
-  alternates: {
-    canonical: "/servicios",
-  },
-};
+    "Página referente a la información de nuestros servicios en A&M Dynamic Tools S.A.",
+  path: "/servicios",
+});
 
-export default function Servicios() {
+/**
+ * Services page: page hero, service cards (expandable descriptions) and an
+ * image gallery preview linking to the full gallery page.
+ *
+ * @param {Object} props Component props. This component takes no props.
+ * @returns {JSX.Element} The servicios page content.
+ */
+export default function ServicesPage() {
   return (
     <>
-      <TituloPagina
-        url={serviciosInfo.urlImagenPresentacion}
-        titulo={serviciosInfo.titulo}
-        texto={serviciosInfo.descripcion}
+      {/* Page hero — title banner from data.js */}
+      <PageTitle
+        imageSrc={serviciosInfo.urlImagenPresentacion}
+        title={serviciosInfo.titulo}
+        subtitle={serviciosInfo.descripcion}
       />
+      {/* CTA to the full gallery */}
       <div className="mb-14 text-center">
-        <Link href="/galeria" className={botonSecundario}>
-          <ImageIcon aria-hidden="true" className="size-5" /> Ver Galería
-        </Link>
+        <Button asChild variant="secondary">
+          <Link href="/galeria">
+            <ImageIcon aria-hidden="true" className="size-5" /> Ver Galería
+          </Link>
+        </Button>
       </div>
+      {/* Service cards — stable keys from the service title */}
       <section className="mb-14">
-        {serviciosInfo.servicios.map((servicio, index) => (
-          <TarjetaServicio
-            key={index}
-            titulo={servicio.titulo}
-            descripcion={servicio.descripcion}
+        {serviciosInfo.servicios.map((servicio) => (
+          <ServiceCard
+            key={servicio.titulo}
+            title={servicio.titulo}
+            description={servicio.descripcion}
           />
         ))}
       </section>
       <hr className="my-14 border-t border-border" />
+      {/* Gallery preview — capped at PREVIEW_IMAGE_LIMIT (full set in /galeria) */}
       <section id="imagenes">
         <h2 className="text-center text-h2 font-bold text-ink">Galería</h2>
         <p className="mt-3 text-center font-semibold text-ink-muted">
           Ejemplos de trabajos realizados en el taller
         </p>
         <div className="mt-4 mb-6 text-center">
-          <Link
-            className="inline-flex items-center rounded-full bg-primary px-3 py-1 font-bold text-white no-underline transition-colors hover:bg-secondary"
-            href="/galeria"
+          <Badge
+            asChild
+            variant="default"
+            className="px-3 py-1 font-bold [a&]:hover:bg-secondary"
           >
-            Ver más
-          </Link>
+            <Link href="/galeria">Ver más</Link>
+          </Badge>
         </div>
-        <CarouselServicios galeria={galeriaInfo.imagenes.slice(0, 5)} />
+        <GalleryCarousel
+          items={galeriaInfo.imagenes.slice(0, PREVIEW_IMAGE_LIMIT)}
+          ariaLabel="Galería de imágenes de servicios"
+          allowFullscreen
+        />
       </section>
     </>
   );
