@@ -2,61 +2,73 @@
 
 import { useState } from "react";
 
-import Imagen from "@/app/components/Imagen";
+import Image from "@/app/components/image";
+import TitleBanner from "@/app/components/title-banner";
 
-/*
- * Single-player video gallery (token sheet SOL-50 §12.11).
+/**
+ * Videos gallery: single-player playlist with a thumbnail selector strip.
  *
- * The old Bootstrap fade carousel kept every hidden slide mounted, so a video
- * left playing in a non-visible slide bled its audio. Here exactly one
- * <video> is mounted at a time: changing the selection remounts the player via
- * `key`, which stops and tears down the outgoing element. No autoplay.
+ * This is deliberately NOT a carousel. Embla (the `ui/carousel` engine)
+ * keeps every slide mounted, so a video left playing on a non-visible slide
+ * would bleed its audio — the exact bug the old Bootstrap fade carousel
+ * caused. Exactly one `<video>` is mounted at a time: changing the selection
+ * remounts the player via `key`, which stops and tears down the outgoing
+ * element. No autoplay.
+ *
+ * User-visible text stays Spanish (site language contract).
+ *
+ * @param {Object}  props         Component props.
+ * @param {Array}   props.videos  Gallery items: `{ id, url, poster? }` (data contract from `src/lib/data.js`).
+ * @returns {JSX.Element|null} The videos section, or `null` when the list is empty.
  */
-export default function GaleriaVideos({ videos }) {
-  const [indice, setIndice] = useState(0);
+export default function GalleryVideos({ videos }) {
+  const [activeIndex, setActiveIndex] = useState(0);
   const total = videos?.length ?? 0;
 
   if (total === 0) {
     return null;
   }
 
-  const activo = videos[indice];
+  const active = videos[activeIndex];
 
   return (
     <section>
-      <h2 className="mb-12 rounded-md bg-primary p-4 text-center font-bold text-white">
+      {/* Section banner — teal band, mirrored from the images gallery */}
+      <TitleBanner className="mb-12 rounded-md p-4">
         Videos (Trabajos)
-      </h2>
-      <div className="mx-auto w-full max-w-4xl">
+      </TitleBanner>
+      {/* Active player — remounted per selection (`key`) to avoid audio bleed */}
+      <div className="mx-auto w-full">
         <video
-          key={activo.id ?? activo.url}
+          key={active.id ?? active.url}
           className="aspect-video w-full rounded-xl bg-black object-contain text-white"
           controls
           playsInline
           preload="metadata"
-          poster={activo.poster}
+          poster={active.poster}
         >
-          <source src={activo.url} type="video/mp4" />
+          <source src={active.url} type="video/mp4" />
           Tu navegador no soporta la reproducción de video.
         </video>
 
+        {/* Thumbnail selector strip — opens the corresponding video */}
         {total > 1 && (
           <ul className="mt-4 flex gap-3 overflow-x-auto">
             {videos.map((video, i) => (
               <li key={video.id ?? video.url ?? i}>
                 <button
                   type="button"
-                  onClick={() => setIndice(i)}
+                  onClick={() => setActiveIndex(i)}
                   aria-label={`Ver video ${i + 1}`}
-                  aria-current={i === indice ? "true" : undefined}
+                  aria-current={i === activeIndex ? "true" : undefined}
                   className={`block w-28 overflow-hidden rounded-md transition-shadow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring ${
-                    i === indice
+                    i === activeIndex
                       ? "ring-2 ring-secondary"
                       : "ring-1 ring-border hover:ring-secondary/60"
                   }`}
                 >
                   {video.poster ? (
-                    <Imagen
+                    <Image
                       src={video.poster}
                       alt=""
                       width={320}
