@@ -1,81 +1,107 @@
-# A&M Dynamic Tools S.A. — Sitio web
+# A&M Dynamic Tools S.A. — Corporate website
 
-Sitio corporativo de **A&M Dynamic Tools S.A.**, un taller de ingeniería
-mecánica en precisión. Construido con [Next.js](https://nextjs.org/) 15 (App
-Router) y React 19, con estilos basados en Bootstrap 5 y Sass.
+Corporate site for **A&M Dynamic Tools S.A.**, a precision mechanical
+engineering workshop. Built with [Next.js](https://nextjs.org/) 15 (App
+Router) and React 19, styled with Tailwind CSS v4 and
+[shadcn/ui](https://ui.shadcn.com/) primitives.
 
-## Requisitos previos
+All user-facing content is in Spanish (`lang="es"`); code (identifiers,
+files, comments) and repository docs are in English. Route folder names
+(`/nosotros`, `/galeria`, …) stay Spanish — they are user-facing URLs.
 
-- Node.js 18.18 o superior
-- npm (incluido con Node.js)
+## Prerequisites
 
-## Instalación
+- Node.js 18.18 or higher
+- npm (included with Node.js)
+
+## Installation
 
 ```bash
 npm install
 ```
 
-## Variables de entorno
+## Environment variables
 
-Copia la plantilla y completa los valores reales. **Nunca** subas secretos al
-repositorio.
+Copy the template and fill in the real values. **Never** commit secrets to
+the repository.
 
 ```bash
 cp .env.example .env.local
 ```
 
-| Variable | Obligatoria | Uso |
+| Variable | Required | Usage |
 | --- | --- | --- |
-| `URL_BASE` | Sí | URL base del sitio. La usan `src/app/layout.jsx` (`metadataBase`), `src/app/sitemap.js` y `src/app/robots.js`. Sin ella la app falla al arrancar/compilar con `Invalid URL`. Ejemplo: `https://dynamictoolscr.com` (en local: `http://localhost:3000`). |
-| `GOOGLE_VERIFICATION` | No | Token de verificación de Google Search Console (`metadata.verification`). |
-| `SMTP_USER`, `SMTP_PASS`, `SMTP_SERVICE` | No | Credenciales SMTP de Nodemailer usadas por el formulario de contacto (`src/config/nodemailer.js` y `src/app/api/contacto/route.js`). Si no se configuran, el formulario no podrá enviar correos. `SMTP_SERVICE` es `gmail` por defecto. |
-| `CONTACT_RECIPIENT_EMAIL`, `CONTACT_CC_EMAIL`, `CONTACT_FROM_EMAIL` | No | Direcciones usadas por el correo de contacto (por ahora definidas en `src/config/nodemailer.js`). |
+| `URL_BASE` | Yes | Base URL of the site. Used by `src/app/layout.jsx` (`metadataBase`), `src/app/sitemap.js` and `src/app/robots.js`. Without it the app crashes at boot/build with `Invalid URL`. Example: `https://dynamictoolscr.com` (locally: `http://localhost:3000`). |
+| `GOOGLE_VERIFICATION` | No | Google Search Console verification token (`metadata.verification` in `src/app/layout.jsx`). |
+| `SMTP_USER`, `SMTP_PASS`, `SMTP_SERVICE` | No | Nodemailer SMTP credentials used by the contact form (`src/app/api/contacto/_lib/contact-mailer.js`). Without them the form cannot send email. `SMTP_SERVICE` defaults to `gmail`. The legacy `USER`/`PASS` names were renamed because they collide with the POSIX shell variable. |
+| `CONTACT_RECIPIENT_EMAIL`, `CONTACT_CC_EMAIL`, `CONTACT_FROM_EMAIL` | No | Placeholders only — the contact addresses are currently hardcoded in `src/app/api/contacto/_lib/contact-mailer.js`, so changing these variables has no effect yet. |
 
-## Desarrollo
+## Development
 
 ```bash
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000) en el navegador. La página se
-recarga automáticamente al editar los archivos.
+Open [http://localhost:3000](http://localhost:3000) in the browser. The page
+reloads automatically when files are edited.
 
-## Compilación y producción
+## Build and production
 
 ```bash
 npm run build
 npm run start
 ```
 
-## Estructura del proyecto
+There are no tests and no CI in this repository: verification is
+`npm run lint` + `npm run build`.
+
+## Project structure
 
 ```
 src/
-├─ app/                 # Rutas del App Router
-│  ├─ layout.jsx        # Layout raíz: metadatos, Navbar, Footer, Toaster
-│  ├─ page.jsx          # Inicio
+├─ app/                 # App Router routes and the app shell
+│  ├─ layout.jsx        # Root layout: metadata, Navbar, Footer, Toaster
+│  ├─ page.jsx          # Home (route "/"; nav label "Inicio")
+│  ├─ globals.css       # Tailwind v4 theme: brand tokens + shadcn aliases
 │  ├─ nosotros/         # Nosotros
 │  ├─ servicios/        # Servicios
 │  ├─ maquinaria/       # Maquinaria
-│  ├─ galeria/          # Galería de imágenes y videos
-│  ├─ contactanos/      # Contacto + formulario
-│  ├─ not-found.jsx     # Página 404 personalizada
-│  ├─ api/contacto/     # Route Handler POST del formulario
+│  ├─ galeria/          # Gallery: images and videos
+│  ├─ contactanos/      # Contact page + form
+│  │  ├─ components/    # contact-form.jsx, contact-card.jsx
+│  │  └─ _lib/          # contact-api.js, contact-attachments.js
+│  ├─ components/       # Shared app-shell and domain components
+│  │  └─ ui/            # CLI-generated shadcn/ui primitives only
+│  ├─ api/
+│  │  ├─ _lib/          # Shared BE utilities: rate-limit.js, response.js
+│  │  └─ contacto/      # POST Route Handler for the contact form
+│  │     └─ _lib/       # BE service layer: dto, attachment validation,
+│  │                    #   sanitization, mailer (transport + templates)
+│  ├─ not-found.jsx     # Custom 404
 │  ├─ robots.js         # robots.txt
 │  └─ sitemap.js        # sitemap.xml
-├─ components/          # Navbar, Footer, BarraContacto, etc.
-├─ config/              # Configuración de Nodemailer
-└─ lib/                 # Datos del sitio, helpers de API y validación
+└─ lib/                 # Cross-feature frontend libs
+   ├─ cn.js             # Class composer
+   ├─ data.js           # Entity data: services, machines, contacts…
+   ├─ page-metadata.js  # Shared metadata helper
+   ├─ primary-contact.js
+   └─ site-navigation.js
 ```
+
+`_lib/` folders are Next.js
+[private folders](https://nextjs.org/docs/app/building-your-application/routing/private-folders):
+their modules are implementation details of the feature next to them and
+must only be imported from within that feature.
 
 ## `public/` — NO PARKING
 
-`public/` es para assets que se sirven en producción (imágenes del sitio,
-favicons, fuentes) y son parte del diseño. **Nunca** subas binarios grandes aquí
-(fuentes de diseño, instaladores, videos, PSDs, imágenes de más de 5 MB).
-Todo lo que se coloca en `public/` se sirve a cada visitante y viaja en cada
-despliegue.
+`public/` holds assets served in production (site images, favicons, fonts)
+that are part of the design. **Never** commit large binaries here
+(design fonts, installers, videos, PSDs, images over 5 MB). Everything in
+`public/` is shipped to every visitor and travels in every deployment.
 
-- Si un archivo es solo para desarrollo, documentación o intercambio interno: mantenlo fuera del repositorio.
-- Optimiza las imágenes antes de subirlas (se envían en cada carga de página).
-- Si no se usa en tiempo de ejecución, no lo pongas en `public/`.
+- If a file is development-only, documentation or internal exchange: keep it
+  out of the repository.
+- Optimize images before uploading them (each one is downloaded on every page
+  load).
+- If it is not used at runtime, do not put it in `public/`.
