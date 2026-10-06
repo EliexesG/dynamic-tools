@@ -7,8 +7,8 @@
  */
 export const primaryContact = {
   email: "dynamictoolscr@gmail.com",
-  telephone: "8923 1003",
-  telephoneE164: "+50689231003",
-  telephoneHref: "tel:+50689231003",
-  whatsappHref: "https://wa.me/50689231003",
+  telephone: "8989 3653",
+  telephoneE164: "+50689893653",
+  telephoneHref: "tel:+50689893653",
+  whatsappHref: "https://wa.me/50689893653",
 };
