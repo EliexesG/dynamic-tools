@@ -217,6 +217,46 @@ export const machines = [
       { id: 1, url: "/images/maquinaria/maquinaria_area_soldadura.jpg" },
     ],
   },
+  {
+    id: 10,
+    title: "Sistema de Escurrido y Filtrado Móvil",
+    description:
+      "Sistema de escurrido y filtrado con estructura superior de base de malla perforada de alta precisión para la separación rápida de fluidos y viruta, bandeja colectora inferior deslizante con asas ergonómicas y base rodante con 4 ruedas industriales de alta resistencia. Dimensiones referenciales: 726 x 600 x 520 mm, fabricados a medida e inserción en barriles estándar de planta. Su fondo con lámina perforada filtrado vertical por gravedad, recupera la mayoría del aceite de corte atrapado en la viruta, generando un ahorro económico y un menor impacto ambiental al evitar desechar el aceite recuperado.",
+    images: [
+      {
+        id: 1,
+        url: "/images/maquinaria/maquinaria_sistema_escurrido_filtrado_1.jpg",
+      },
+      {
+        id: 2,
+        url: "/images/maquinaria/maquinaria_sistema_escurrido_filtrado_2.jpg",
+      },
+    ],
+  },
+  {
+    id: 11,
+    title: "Canastillas Cilíndricas de Acero Inoxidable para Lavado",
+    description:
+      "Canastillas cilíndricas de malla metálica en acero inoxidable con refuerzos perimetrales y asas superiores robustas para una manipulación segura con guantes o ganchos. Optimizadas para el flujo de líquidos en tinas de ultrasonido y desengrase.",
+    images: [
+      {
+        id: 1,
+        url: "/images/maquinaria/maquinaria_canastillas_lavado.jpg",
+      },
+    ],
+  },
+  {
+    id: 12,
+    title: "Estaciones de Trabajo y Ensamble en Acero Inoxidable",
+    description:
+      "Estaciones de trabajo ergonómicas y robustas, diseñadas a medida para líneas de ensamble, inspección de calidad, áreas limpias o procesos industriales que requieren superficies higiénicas, duraderas y de fácil limpieza. Estructura de acero inoxidable de alta resistencia y estabilidad, con plancha superior pulida resistente a la corrosión, impactos y agentes químicos, sistema de iluminación integrado protegido para óptima visibilidad en la zona de trabajo, y conectividad eléctrica con canalización y salidas integradas en el bastidor para herramientas o equipos de medición.",
+    images: [
+      {
+        id: 1,
+        url: "/images/maquinaria/maquinaria_estacion_trabajo_ensamble.jpg",
+      },
+    ],
+  },
 ];
 
 /** Company values — consumed only by /nosotros (ValueCard grid). */
