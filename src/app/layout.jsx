@@ -15,7 +15,7 @@ import { primaryContact } from "@/lib/primary-contact";
 const baseURL = process.env.URL_BASE;
 const siteName = "A&M Dynamic Tools S.A.";
 const siteDescription =
-  "Somos una empresa encargada de un taller de precisión que da soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado, etc";
+  "Somos una empresa encargada de un taller de precisión que da soporte de ingeniería a clientes en los campos de diseño mecánico, metalmecánica, mecanizado, etc. PYME certificada en Costa Rica (ID: 960285)";
 
 const font = Roboto({
   subsets: ["latin"],
@@ -81,6 +81,16 @@ const organizationSchema = {
     "@type": "PostalAddress",
     addressCountry: "CR",
   },
+  // PYME Costa Rica accreditation (documents in docs/; seal rendered on the
+  // home banner as `/images/logos/pyme_badge.png`).
+  description: `${siteDescription}.`,
+  identifier: [
+    {
+      "@type": "PropertyValue",
+      name: "PYME Costa Rica",
+      value: "ID: 960285",
+    },
+  ],
 };
 
 /**

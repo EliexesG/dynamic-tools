@@ -2,7 +2,7 @@ const baseURL = process.env.URL_BASE;
 
 // Bump when copy/content changes; keeps crawlers from re-indexing on every
 // build the way a fresh `new Date()` per entry would.
-const LAST_UPDATED = new Date("2026-10-05");
+const LAST_UPDATED = new Date("2026-10-09");
 
 // Static routes only — single-page sections (services/machines live inside
 // their own pages), so no per-item entries are needed at this scale.

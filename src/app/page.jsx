@@ -39,13 +39,20 @@ export const metadata = pageMetadata({
 export default function Home() {
   return (
     <>
-      {/* Brand banner — full-width logo strip over a primary hairline */}
-      <div className="mb-6 flex w-full justify-center border-b border-primary pb-2">
+      {/* Brand banner — full-width logo strip over a primary hairline; the
+          PYME Costa Rica accreditation seal sits beside the logo */}
+      <div className="mb-6 flex w-full items-center justify-center gap-6 border-b border-primary pb-2">
         <Image
           alt="Logo Completo"
           src="/images/logos/full_size_logo.jpeg"
           height={80}
           width={180}
+        />
+        <Image
+          alt="Sello PYME Costa Rica — ID: 960285"
+          src="/images/logos/pyme_badge.png"
+          height={86}
+          width={56}
         />
       </div>
       {/* Page hero — title banner from home imagery */}
